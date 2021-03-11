@@ -1,0 +1,38 @@
+name: Release Charts
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Fetch history
+        run: git fetch --prune --unshallow
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.0.0-rc.2
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Copy README.md files to gh-pages
+        run: |
+          existing_worktree=$(git worktree list --porcelain | grep -B 2 "branch refs/heads/gh-pages" | head -n 1 | cut -d ' ' -f 2)
+          if [[ $existing_worktree != "" ]]; then git worktree remove -f $existing_worktree; fi
+          tmp_folder=$(mktemp -d)
+          git worktree add ${tmp_folder} gh-pages
+          rm -f -r ${tmp_folder}/charts
+          cp -r charts ${tmp_folder}/
+          pushd ${tmp_folder}
+          git add -A "charts/**/README.md"
+          git commit -m "Updating README.md files" && git push || true
+          popd
