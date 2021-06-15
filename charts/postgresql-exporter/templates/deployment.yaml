@@ -1,22 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "promcat-postgresql.exporterDeploymentName" . }}
+  name: {{ include "postgresql-exporter.exporterDeploymentName" . }}
   labels:
-    {{- include "promcat-postgresql.labels" . | nindent 4 }}
+    {{- include "postgresql-exporter.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "promcat-postgresql.selectorLabels" . | nindent 6 }}
+      {{- include "postgresql-exporter.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- include "postgresql-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{- with .Values.podAnnotations }}
+          {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
-        {{- include "promcat-postgresql.selectorLabels" . | nindent 8 }}
+        {{- include "postgresql-exporter.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -33,17 +34,17 @@ spec:
               port: 9187
           env:
             - name: DATA_SOURCE_URI
-              value: {{ include "promcat-postgresql.connectionString" . }}
+              value: {{ include "postgresql-exporter.connectionString" . }}
             - name: DATA_SOURCE_USER
               valueFrom:
-                configMapKeyRef:
-                  name: {{ include "promcat-postgresql.configMapName" . }}
-                  key: POSTGRES_EXPORTER_USER
+                secretKeyRef:
+                  name: {{ .Values.secretName | quote }}
+                  key: username
             - name: DATA_SOURCE_PASS
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "promcat-postgresql.secretName" . }}
-                  key: POSTGRES_EXPORTER_PASSWORD
+                  name: {{ .Values.secretName | quote }}
+                  key: password
             - name: PG_EXPORTER_EXTEND_QUERY_PATH
               value: /tmp/queries.yaml
             - name: PG_EXPORTER_DISABLE_SETTINGS_METRICS
@@ -78,14 +79,14 @@ spec:
       volumes:
         - configMap:
             defaultMode: 420
-            name: {{ include "promcat-postgresql.queriesName" . }}
+            name: {{ include "postgresql-exporter.queriesName" . }}
           name: postgres-queries
         {{- if .Values.dbInstance.sslRootCertEnabled }}
         - name: ssl-root-cert
           secret:
             defaultMode: 420
-            secretName: {{ include "promcat-postgresql.secretName" . }}
+            secretName: {{ .Values.secretName | quote }}
             items:
-              - key: postgres-ssl-root-cert
+              - key: sslRootCert
                 path: ssl-root-cert.pem
         {{- end }}

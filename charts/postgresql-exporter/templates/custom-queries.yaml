@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ printf "%s-queries" (include "promcat-postgresql.fullname" .) }}
+  name: {{ printf "%s-queries" (include "postgresql-exporter.fullname" .) }}
   labels:
-    {{- include "promcat-postgresql.labels" . | nindent 4 }}
+    {{- include "postgresql-exporter.labels" . | nindent 4 }}
 data:
   queries.yaml: |
     pg_replication:
