@@ -1,5 +1,21 @@
 apiVersion: v1
 entries:
+  nginx-exporter:
+  - apiVersion: v2
+    appVersion: 1.17.0
+    created: "2021-06-15T16:10:09.593655505Z"
+    description: A Helm chart for the nginx prometheus integration
+    digest: da62d83a7171fe84cfe611ffd0f188f900e0e934b5e3b4d45e379630fedce16b
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: nginx-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/nginx-exporter-0.1.0/nginx-exporter-0.1.0.tgz
+    version: 0.1.0
   postgresql-exporter:
   - apiVersion: v2
     appVersion: 1.16.0
