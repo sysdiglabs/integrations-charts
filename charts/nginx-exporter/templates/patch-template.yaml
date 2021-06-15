@@ -1,0 +1,15 @@
+spec:
+  template:
+    metadata:
+      annotations:
+        promcat.sysdig.com/port: "9113"
+    spec:
+      containers:
+      - name: nginx-exporter
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        args:
+          - "-nginx.scrape-uri=http://localhost:80/nginx_status"
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        ports:
+        - containerPort: 9113
