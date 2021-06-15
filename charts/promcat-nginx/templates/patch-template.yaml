@@ -1,0 +1,17 @@
+spec:
+  template:
+    metadata:
+      annotations:
+        promcat.sysdig.com/port: "9113"
+    spec:
+      containers:
+      - name: nginx-exporter
+        image: quay.io/sysdig/nginx-exporter:latest
+        args:
+          - "-nginx.scrape-uri=http://localhost:80/nginx_status"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9113
