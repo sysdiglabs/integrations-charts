@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: wrouesnel/postgres_exporter
+  repository: quay.io/sysdig/postgresql-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v0.8.0"
@@ -14,9 +14,7 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-podAnnotations: 
-  prometheus.io/scrape: "true"
-  prometheus.io/port: "9187"
+podAnnotations: {}
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -48,46 +46,18 @@ tolerations: []
 
 affinity: {}
 
+namespaceName: ""
+workloadType: ""
+workloadName: ""
+exporterNamespaceName: "sysdig-agent"
+secretName: "postgresql-exporter"
+
 dbInstance:
-  #$ FIELD: Host of your DB instance
-  #$ TYPE: text
-  #$ REQ: true
   host: "localhost"
-
-  #$ FIELD: Port of your DB instance
-  #$ TYPE: int
-  #$ REQ: false
   port: "5432"
-  
-  #$ FIELD: Database 
-  #$ TYPE: text
-  #$ REQ: false
   database: "postgres"
-  
-  #$ FIELD: SSL mode
-  #$ TYPE: select {disable, require, prefer}
-  #$ REQ: false
   sslmode: "disable"
-  
-  #$ FIELD: User 
-  #$ TYPE: text
-  #$ REQ: true
-  user: "user"
-  
-  #$ FIELD: Password 
-  #$ TYPE: password
-  #$ REQ: true
-  password: "password"
-  
-  #$ FIELD: Use SSL Root Certificate
-  #$ TYPE: bool
-  #$ REQ: false
   sslRootCertEnabled: false
-
-  #$ FIELD: File of your SSL Root Certificate
-  #$ TYPE: file
-  #$ REQ: false
-  sslRootCert: ""
 
 exporterParams:
   autoDiscoverDatabases: true

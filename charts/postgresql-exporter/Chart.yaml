@@ -1,5 +1,5 @@
 apiVersion: v2
-name: promcat-postgresql
+name: postgresql-exporter
 description: A Helm chart for the postgreSQL prometheus integration
 
 # A chart can be either an 'application' or a 'library' chart.
@@ -22,8 +22,6 @@ version: 0.1.2
 # follow Semantic Versioning. They should reflect the version the application is using.
 appVersion: 1.16.0
 maintainers:
-  - name: carillan81
-    email: carlos.arilla@sysdig.com
   - name: daviddetorres
     email: david.detorres@sysdig.com
   - name: dlorite
