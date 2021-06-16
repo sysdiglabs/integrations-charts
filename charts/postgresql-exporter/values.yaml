@@ -8,7 +8,7 @@ image:
   repository: quay.io/sysdig/postgresql-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.8.0"
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -28,17 +28,17 @@ securityContext: {}
   # runAsUser: 1000
 
 
-resources: {}
+resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  limits:
+    cpu: 100m
+    memory: 64Mi
+  requests:
+    cpu: 50m
+    memory: 32Mi
 
 nodeSelector: {}
 
@@ -46,22 +46,50 @@ tolerations: []
 
 affinity: {}
 
+
 namespaceName: ""
+  # The namespace of the application that the exporter will connect to in order to generate metrics
+
 workloadType: ""
+  # The kubernetes workload type of the application the exporter will connect to. 
+  # Possible values: deployment, statefulset, daemonset, pod
+
 workloadName: ""
+  # The name of the workload of teh application that the exporter will connect to.
+
 exporterNamespaceName: "sysdig-agent"
+  # The namespace where the exporter will be deployed
+
 secretName: "postgresql-exporter"
+  # The name of the secret where the credentials of the exporter to connect to the application are stored.
 
 dbInstance:
   host: "localhost"
+    # Address of the PostgreSQL instance
+
   port: "5432"
+    # Port of the PostgreSQL instance
+  
   database: "postgres"
+    # The database the exporter will connect to in the PostgreSQL instance
+
   sslmode: "disable"
+    # ssl mode of the connection 
+    # More info here: https://www.postgresql.org/docs/9.1/libpq-ssl.html
+  
   sslRootCertEnabled: false
+    # Use of ssl root certificate
 
 exporterParams:
   autoDiscoverDatabases: true
+    # Use auto-discovery of databases
+
   disableSettingsMetrics: false
+    # Disable setting metrics
+
   excludeDatabases: ""
+    # A list of databases to remove when autoDiscoverDatabases is enabled, separated by commas.
 
 customMetrics: ""
+    # Write here the custom metrics that will be added to the default ones to generate new metrics
+    # You can check some examples here: https://github.com/prometheus-community/postgres_exporter/blob/master/queries.yaml
