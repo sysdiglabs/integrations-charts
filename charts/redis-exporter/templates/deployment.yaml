@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "redis-exporter.exporterDeploymentName" . }}
+  labels:
+    {{- include "redis-exporter.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "redis-exporter.selectorLabels" . | nindent 6 }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      annotations:
+      {{- include "redis-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{- with .Values.podAnnotations }}
+          {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "redis-exporter.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+          - containerPort: 9121
+        env:
+        - name: REDIS_ADDR
+          value: redis://{{ .Values.url.name }}:6379
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
