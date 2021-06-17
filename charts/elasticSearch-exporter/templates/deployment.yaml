@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "elasticsearch-exporter.exporterDeploymentName" . }}
+  labels:
+    {{- include "elasticsearch-exporter.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "elasticsearch-exporter.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+      {{- include "elasticsearch-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{- with .Values.podAnnotations }}
+          {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "elasticsearch-exporter.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          command:
+          - elasticsearch_exporter
+          - --es.all
+          - --es.indices
+          - --es.indices_settings
+          - --es.shards
+          - --es.snapshots
+          - --es.cluster_settings
+          - --es.timeout=60s
+          - --es.ssl-skip-verify
+          - --web.listen-address=:9108
+          - --web.telemetry-path=/metrics
+          env:
+            - name: ES_URI
+              value: {{ .Values.url.http }}://{{ .Values.url.name }}
+          {{- if eq .Values.url.http "https" }}
+            - name: ELASTIC_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: username
+                  name: elastic-config
+            - name: ELASTICSEARCH_ADMIN_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: password
+                  name: elastic-config
+          {{ end }}
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                - /bin/bash
+                - -c
+                - sleep 20
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 5
+          ports:
+          - containerPort: 9108
+            name: http
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 5
+          securityContext:
+              {{- toYaml .Values.securityContext | nindent 12 }}
