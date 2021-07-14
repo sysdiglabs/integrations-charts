@@ -50,6 +50,21 @@ entries:
   postgresql-exporter:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-07-14T18:02:29.121828377Z"
+    description: A Helm chart for the postgreSQL prometheus integration
+    digest: 7c78ebed9dc648b00458f4a0a10bafab6e04526bb54669f13b1319928dae686d
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: postgresql-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/postgresql-exporter-0.1.5/postgresql-exporter-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-07-14T18:00:04.492074801Z"
     description: A Helm chart for the postgreSQL prometheus integration
     digest: a77927fd4eacd79d1bedcd742a4459ff0e62cfe651dfe9ef4c4a1d1f4f3491c1
