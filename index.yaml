@@ -3,6 +3,21 @@ entries:
   elasticSearch-exporter:
   - apiVersion: v2
     appVersion: 6.8.0
+    created: "2021-07-14T06:44:57.455817032Z"
+    description: A Helm chart for the ElasticSearch prometheus integration
+    digest: 672edcd79e02e8d83683bda436c9a2229fb3e4c7c24aaabe135d2eae2c5168f1
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: elasticSearch-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/elasticSearch-exporter-0.1.1/elasticSearch-exporter-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 6.8.0
     created: "2021-06-17T11:21:47.719497474Z"
     description: A Helm chart for the ElasticSearch prometheus integration
     digest: 50cbbc956d9c8ed58826e0152841bd964ace153d503f9ea98005cbb5113d2122
@@ -66,4 +81,20 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/promcat-postgresql-0.1.2/promcat-postgresql-0.1.2.tgz
     version: 0.1.2
+  redis-exporter:
+  - apiVersion: v2
+    appVersion: "2"
+    created: "2021-07-14T06:44:57.647641183Z"
+    description: A Helm chart for the ElasticSearch prometheus integration
+    digest: ab2b2375a2d39e931f374ffb5aa1aa9ad0a5aecc05e26b21a60e044b259fc0e8
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: redis-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
+    version: 0.1.0
 generated: "2021-03-15T09:30:41.650520067Z"
