@@ -51,6 +51,8 @@ workloadType: ""
 workloadName: ""
 exporterNamespaceName: "sysdig-agent"
 secretName: "postgresql-exporter"
+integrationType: "postgresql"
+# The name of the integration
 
 dbInstance:
   host: "localhost"
