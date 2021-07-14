@@ -33,3 +33,6 @@ workloadName: "redis"
 
 exporterNamespaceName: "sysdig-agent"
   # The namespace where the exporter will be deployed
+
+integrationType: "redis"
+  # The name of the integration
