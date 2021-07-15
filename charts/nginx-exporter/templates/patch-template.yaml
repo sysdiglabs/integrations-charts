@@ -2,7 +2,7 @@ spec:
   template:
     metadata:
       annotations:
-        promcat.sysdig.com/port: "9113"
+      {{- include "nginx-exporter.sysdigAnnotations" . | nindent 8 }}
     spec:
       containers:
       - name: nginx-exporter

@@ -10,7 +10,7 @@ Visit [PromCat.io](https://promcat.io/apps/nginx) for dashboards, alerts and fur
 
 Use the following options: 
 ```
-helm template nginx nginx-exporter
+helm template nginx ./charts/nginx-exporter
 ```
 # Attributions
 This helm chart is maintained by [Sysdig team](https://sysdig.com/).
