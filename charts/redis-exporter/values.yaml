@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: quay.io/sysdig/redis-exporter
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "v1.24.0"
 
 
 resources: 
