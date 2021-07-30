@@ -50,7 +50,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Annotations
 */}}
 {{- define "redis-exporter.sysdigAnnotations" -}}
-promcat.sysdig.com/port: "9187"
+promcat.sysdig.com/port: "9121"
 promcat.sysdig.com/target_ns: {{ required "A valid namespace for the application must be passed in .Values.namespaceName" .Values.namespaceName | quote }}
 promcat.sysdig.com/target_workload_type: {{ required "A valid workload type for the application must be passed in .Values.workloadType" .Values.workloadType | quote }}
 promcat.sysdig.com/target_workload_name: {{ required "A valid workload name for the application must be passed in .Values.workloadName" .Values.workloadName | quote }}
