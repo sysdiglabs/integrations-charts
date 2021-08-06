@@ -37,7 +37,7 @@ spec:
             value: "{{ $value }}"
         {{- end }}
         {{- end }}
-        {{- if .Values.ssl }}
+        {{- if or ( .Values.ssl ) ( .Values.tls ) }}
         volumeMounts:
         - name: mongodb-exporter-key
           mountPath: /etc/mongodb/mongodb-exporter-key.pem
@@ -62,7 +62,7 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       volumes:
-      {{- if .Values.ssl }}
+      {{- if or ( .Values.ssl ) ( .Values.tls )}}
       - secret:
           defaultMode: 420
           secretName: mongodb-exporter-auth
