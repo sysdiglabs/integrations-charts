@@ -1,0 +1,64 @@
+replicaCount: 1
+
+image:
+  repository: quay.io/sysdig/mongodb-exporter
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v0.20.6"
+
+
+resources: 
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 100m
+    memory: 64Mi
+  requests:
+    cpu: 50m
+    memory: 32Mi
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: metrics
+  initialDelaySeconds: 10
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop: ["all"]
+  readOnlyRootFilesystem: true
+  runAsGroup: 10000
+  runAsNonRoot: true
+  runAsUser: 10000
+
+# Name of an externally managed secret (in the same namespace) containing the connection uri as key `mongodb-uri`.
+# If this is provided, the value mongodb.uri is ignored.
+existingSecret:
+  name: ""
+  key: "mongodb-uri"
+
+# [mongodb[+srv]://][user:pass@]host1[:port1][,host2[:port2],...][/database][?options]
+mongodb:
+  uri: "mongodb://exporter-user:exporter-pass@mongodb:27017"
+
+port: "9216"
+
+ssl: false
+
+namespaceName: "sysdig-agent"
+  # The namespace of the application that the exporter will connect to in order to generate metrics
+
+workloadType: "deployment"
+  # The kubernetes workload type of the application the exporter will connect to. 
+  # Possible values: deployment, statefulset, daemonset, pod
+
+workloadName: "mongodb"
+  # The name of the workload of teh application that the exporter will connect to.
+
+exporterNamespaceName: "mongodb"
+  # The namespace where the exporter will be deployed
+
+integrationType: "mongodb"
+  # The name of the integration

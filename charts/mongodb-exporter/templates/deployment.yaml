@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mongodb-exporter.exporterDeploymentName" . }}
+  labels:
+    {{- include "mongodb-exporter.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "mongodb-exporter.selectorLabels" . | nindent 6 }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      annotations:
+      {{- include "mongodb-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{- with .Values.podAnnotations }}
+          {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "mongodb-exporter.selectorLabels" . | nindent 8 }}
+    spec:
+      affinity: {}
+      containers:
+      - name: mongodb-exporter
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        args:
+        - --web.listen-address={{ printf ":%s" .Values.port }}
+        env:
+          - name: MONGODB_URI
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "prometheus-mongodb-exporter.secretName" . }}
+                key: {{ .Values.existingSecret.key }}
+        {{- if .Values.env }}
+        {{- range $key, $value := .Values.env }}
+          - name: "{{ $key }}"
+            value: "{{ $value }}"
+        {{- end }}
+        {{- end }}
+        {{- if .Values.ssl }}
+        volumeMounts:
+        - name: mongodb-exporter-key
+          mountPath: /etc/mongodb/mongodb-exporter-key.pem
+          subPath: mongodb-exporter-key.pem
+        - name: mongodb-exporter-ca
+          mountPath: /etc/mongodb/mongodb-exporter-ca.pem
+          subPath: mongodb-exporter-ca.pem
+        {{- end }}
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          {{- toYaml .Values.livenessProbe | nindent 10 }}
+        ports:
+        - name: metrics
+          containerPort: {{ .Values.port }}
+          protocol: TCP
+        readinessProbe:
+          {{- toYaml .Values.readinessProbe | nindent 10 }}
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 10 }}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      volumes:
+      {{- if .Values.ssl }}
+      - secret:
+          defaultMode: 420
+          secretName: mongodb-exporter-auth
+          items: 
+            - key: mongodb-key
+              path: mongodb-exporter-key.pem 
+        name: mongodb-exporter-key
+      - secret:
+          defaultMode: 420
+          secretName: mongodb-exporter-auth
+          items: 
+            - key: mongodb-ca
+              path: mongodb-exporter-ca.pem 
+        name: mongodb-exporter-ca
+      {{- end }}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
