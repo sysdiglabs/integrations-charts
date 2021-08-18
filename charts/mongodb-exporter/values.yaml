@@ -1,10 +1,12 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/sysdig/mongodb-exporter
+  repository: quay.io/sysdig/promcat-mongodb-exporter
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.20.6"
+  tag: "v0.11.3"
 
+imagePullSecrets: []
+#  - name: regcred
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -45,8 +47,8 @@ mongodb:
 
 port: "9216"
 
-ssl: false
-tls: false
+sslmode: false
+tlsmode: false
 
 namespaceName: "sysdig-agent"
   # The namespace of the application that the exporter will connect to in order to generate metrics

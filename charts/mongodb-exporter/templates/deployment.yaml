@@ -25,6 +25,11 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         args:
         - --web.listen-address={{ printf ":%s" .Values.port }}
+        - --collect.collection
+        - --collect.database
+        - --collect.indexusage
+        - --collect.topmetrics
+        - --collect.connpoolstats
         env:
           - name: MONGODB_URI
             valueFrom:
@@ -37,7 +42,7 @@ spec:
             value: "{{ $value }}"
         {{- end }}
         {{- end }}
-        {{- if or ( .Values.ssl ) ( .Values.tls ) }}
+        {{- if or ( .Values.sslmode ) ( .Values.tlsmode ) }}
         volumeMounts:
         - name: mongodb-exporter-key
           mountPath: /etc/mongodb/mongodb-exporter-key.pem
@@ -61,8 +66,12 @@ spec:
           {{- toYaml .Values.securityContext | nindent 10 }}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 8 }}
+      {{- end }}
       volumes:
-      {{- if or ( .Values.ssl ) ( .Values.tls )}}
+      {{- if or ( .Values.sslmode ) ( .Values.tlsmode )}}
       - secret:
           defaultMode: 420
           secretName: mongodb-exporter-auth
