@@ -13,7 +13,7 @@ Use the following options:
 helm install -n sysdig-agent my-release ./charts/elasticSearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
-  --set workloadName="elasticSearch" \
+  --set workloadName="elasticsearch" \
   --set url.name="elasticsearch:9200"
 ```
 
@@ -29,7 +29,7 @@ kubectl create -n sysdig-agent secret generic elastic-config \
 helm install -n sysdig-agent my-release ./charts/elasticSearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
-  --set workloadName="elasticSearch" \
+  --set workloadName="elasticsearch" \
   --set url.name="$(ELASTIC_USER):$(ELASTICSEARCH_ADMIN_PASSWORD)@sysdigcloud-elasticsearch:9200"
   --set url.http="https"
 ```
