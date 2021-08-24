@@ -45,6 +45,8 @@ url:
 
 secretName: elastic-config
 
+tlsmode: false
+
 namespaceName: "sysdig-agent"
   # The namespace of the application that the exporter will connect to in order to generate metrics
 
