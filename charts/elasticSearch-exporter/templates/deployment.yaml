@@ -40,19 +40,23 @@ spec:
           - --web.listen-address=:9108
           - --web.telemetry-path=/metrics
           env:
+          {{- if eq .Values.url.http "http" }}
             - name: ES_URI
-              value: {{ .Values.url.http }}://{{ .Values.url.name }}
+              value: {{ .Values.url.http }}://{{ .Values.url.name }}:{{ .Values.url.port }}
+          {{ end }}
           {{- if eq .Values.url.http "https" }}
+            - name: ES_URI
+              value: {{ .Values.url.http }}://$(ELASTIC_USER):$(ELASTICSEARCH_ADMIN_PASSWORD)@{{ .Values.url.name }}:{{ .Values.url.port }}
             - name: ELASTIC_USER
               valueFrom:
                 configMapKeyRef:
                   key: username
-                  name: elastic-config
+                  name: {{ values.secretName }}
             - name: ELASTICSEARCH_ADMIN_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   key: password
-                  name: elastic-config
+                  name: {{ values.secretName }}
           {{ end }}
           lifecycle:
             preStop:
@@ -71,6 +75,11 @@ spec:
             periodSeconds: 5
             successThreshold: 1
             timeoutSeconds: 5
+          {{- if .Values.tlsmode }}
+          volumeMounts:
+          - mountPath: /usr/share/elasticsearch/config/certs/
+            name: elasticsearch-tls-certs
+          {{ end }}
           ports:
           - containerPort: 9108
             name: http
@@ -87,3 +96,10 @@ spec:
             timeoutSeconds: 5
           securityContext:
               {{- toYaml .Values.securityContext | nindent 12 }}
+      {{- if .Values.tlsmode }}
+      volumes:
+      - name: elasticsearch-tls-certs
+        secret:
+          defaultMode: 256
+          secretName: {{ values.secretName }}
+      {{ end }}

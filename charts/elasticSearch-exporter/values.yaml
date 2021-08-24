@@ -40,7 +40,10 @@ resources:
 
 url:
   http: http
-  name: elasticsearch:9200
+  name: elasticsearch
+  port: 9200
+
+secretName: elastic-config
 
 namespaceName: "sysdig-agent"
   # The namespace of the application that the exporter will connect to in order to generate metrics
