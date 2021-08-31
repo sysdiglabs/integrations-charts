@@ -108,6 +108,22 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/mongodb-exporter-0.1.0/mongodb-exporter-0.1.0.tgz
     version: 0.1.0
+  mysql-exporter:
+  - apiVersion: v2
+    appVersion: "2"
+    created: "2021-08-31T19:22:20.581643085Z"
+    description: A Helm chart for the MySQL prometheus integration
+    digest: 5281327a15999d1c8fae7b7aea46a5812239edb8e8d2173c7839f8c604ccb463
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: mysql-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/mysql-exporter-0.1.0/mysql-exporter-0.1.0.tgz
+    version: 0.1.0
   nginx-exporter:
   - apiVersion: v2
     appVersion: 1.17.0
