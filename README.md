@@ -36,4 +36,4 @@ $ helm search repo promcat-charts
 </ul>
 
 See specific information about each _chart_ at the GitHub repository:
-* [https://github.com/sysdiglabs/integrations-charts/tree/main/charts](https://github.com/sysdiglabs/integrations-charts/charts/tree/main/charts)
+* [https://github.com/sysdiglabs/integrations-charts/tree/main/charts](https://github.com/sysdiglabs/integrations-charts/tree/main/charts)
