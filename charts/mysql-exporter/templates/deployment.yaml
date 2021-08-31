@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mysql-exporter.exporterDeploymentName" . }}
+  labels:
+    {{- include "mysql-exporter.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "mysql-exporter.selectorLabels" . | nindent 6 }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      annotations:
+      {{- include "mysql-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{- with .Values.podAnnotations }}
+          {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "mysql-exporter.selectorLabels" . | nindent 8 }}
+    spec:
+      affinity: {}
+      containers:
+      - name: mysql-exporter
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        args:
+        - --config.my-cnf=/tmp/.my.cnf
+        ports:
+          - containerPort: {{ .Values.port }}
+        volumeMounts:
+          - name: my-cnf
+            mountPath: /tmp/.my.cnf
+            subPath: .my.cnf
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 8 }}
+      {{- end }}
+      volumes:
+        - name: my-cnf
+          secret:
+            defaultMode: 420
+            secretName: {{ .Values.secretName }}
+            items:
+              - key: .my.cnf
+                path: .my.cnf
