@@ -27,10 +27,22 @@ spec:
         - --config.my-cnf=/tmp/.my.cnf
         ports:
           - containerPort: {{ .Values.port }}
+        imagePullPolicy: Always
         volumeMounts:
           - name: my-cnf
             mountPath: /tmp/.my.cnf
             subPath: .my.cnf
+        {{- if .Values.sslmode }}
+          - name: ssl-ca
+            mountPath: /lib/cert/ca.pem
+            subPath: ca.pem
+          - name: ssl-key
+            mountPath: /lib/cert/client-key.pem
+            subPath: client-key.pem
+          - name: ssl-cert
+            mountPath: /lib/cert/client-cert.pem
+            subPath: client-cert.pem
+        {{- end }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
       {{- if .Values.imagePullSecrets }}
@@ -45,3 +57,26 @@ spec:
             items:
               - key: .my.cnf
                 path: .my.cnf
+        {{- if .Values.sslmode }}
+        - name: ssl-ca
+          secret:
+            defaultMode: 420
+            secretName: mysql-exporter-ssl
+            items:
+              - key: ca.pem
+                path: ca.pem
+        - name: ssl-key
+          secret:
+            defaultMode: 420
+            secretName: mysql-exporter-ssl
+            items:
+              - key: client-key.pem
+                path: client-key.pem
+        - name: ssl-cert
+          secret:
+            defaultMode: 420
+            secretName: mysql-exporter-ssl
+            items:
+              - key: client-cert.pem
+                path: client-cert.pem
+        {{- end }}
