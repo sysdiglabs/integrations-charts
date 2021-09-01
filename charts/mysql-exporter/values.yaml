@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: quay.io/sysdig/mysql-exporter
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.13.1"
+  tag: "v0.13.2"
 
 imagePullSecrets: []
 #  - name: regcred
@@ -23,6 +23,7 @@ resources:
 secretName: mysql-exporter
 
 port: "9104"
+sslmode: false
 
 namespaceName: "sysdig-agent"
   # The namespace of the application that the exporter will connect to in order to generate metrics
