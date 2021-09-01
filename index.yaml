@@ -111,6 +111,21 @@ entries:
   mysql-exporter:
   - apiVersion: v2
     appVersion: "2"
+    created: "2021-09-01T16:39:23.975522514Z"
+    description: A Helm chart for the MySQL prometheus integration
+    digest: 6f7db85453b6c9c8390d1e0931e89979ff6c97f724144566bf7d9e816208cab0
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: mysql-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/mysql-exporter-0.1.3/mysql-exporter-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: "2"
     created: "2021-09-01T15:13:31.059408129Z"
     description: A Helm chart for the MySQL prometheus integration
     digest: 5bcddfd93b93ec97710ee571714cf31339acbf5929ceb6e0f41906fa3eeb6887
