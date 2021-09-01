@@ -61,21 +61,21 @@ spec:
         - name: ssl-ca
           secret:
             defaultMode: 420
-            secretName: mysql-exporter-ssl
+            secretName: {{ .Values.secretName }}
             items:
               - key: ca.pem
                 path: ca.pem
         - name: ssl-key
           secret:
             defaultMode: 420
-            secretName: mysql-exporter-ssl
+            secretName: {{ .Values.secretName }}
             items:
               - key: client-key.pem
                 path: client-key.pem
         - name: ssl-cert
           secret:
             defaultMode: 420
-            secretName: mysql-exporter-ssl
+            secretName: {{ .Values.secretName }}
             items:
               - key: client-cert.pem
                 path: client-cert.pem
