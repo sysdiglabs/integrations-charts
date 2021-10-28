@@ -1,0 +1,49 @@
+{{- if not .Values.configmap }}
+spec:
+  template:
+    metadata:
+      annotations:
+      {{- include "apache-exporter.sysdigAnnotations" . | nindent 8 }}
+    spec:
+      containers:
+      - name: apache-exporter
+        image:  "{{ .Values.image.apache.repository }}:{{ .Values.image.apache.tag }}"
+        args:
+          - "--scrape_uri"
+          - "http://localhost/server-status/?auto"
+        ports:
+        - containerPort: 9117   
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        ports:
+        - containerPort: 9113
+      - name: grok-exporter
+        image: "{{ .Values.image.grok.repository }}:{{ .Values.image.grok.tag }}"
+        ports:
+        - containerPort: 9144
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "64m"
+        volumeMounts:
+          - name: grok-config
+            mountPath: /grok/config.yml
+            subPath: config.yml
+          - name: apache-logs
+            mountPath: /tmp/logs
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 8 }}
+      {{- end }}
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: apache-config
+          name: apache-config
+        - configMap:
+            defaultMode: 420
+            name: grok-config
+          name: grok-config  
+        - name: apache-logs
+          emptyDir: {}
+{{- end }}

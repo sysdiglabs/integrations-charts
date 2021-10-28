@@ -1,0 +1,46 @@
+{{- if .Values.configmap }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grok-config
+  namespace: apache
+data:
+  config.yml: |
+    global:
+      config_version: 3
+    input:
+      type: file
+      path: /tmp/logs/accesss.log
+      fail_on_missing_logfile: false
+      readall: true
+    imports:
+    - type: grok_patterns
+      dir: ./patterns
+    metrics:
+    - type: counter
+      name: apache_http_response_codes_total
+      help: HTTP requests to Apache
+      match: '%{COMMONAPACHELOG}'
+      labels:
+        code: '{{.response}}'
+        method: '{{.verb}}'
+    - type: gauge
+      name: apache_http_response_bytes_total
+      help: Size of HTTP responses
+      match: '%{COMMONAPACHELOG}'
+      value: '{{.bytes}}'
+      cumulative: true
+      labels:
+        code: '{{.response}}'
+        method: '{{.verb}}'
+    - type: gauge
+      name: apache_http_last_request_seconds
+      help: Timestamp of the last HTTP request
+      match: '%{COMMONAPACHELOG}'
+      value: {{`"'{{timestamp "02/Jan/2006:15:04:05 -0700" .timestamp}}'"`}}
+      labels:
+        code: '{{.response}}'
+        method: '{{.verb}}'
+    server:
+      protocol: http
+{{- end }}
