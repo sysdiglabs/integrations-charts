@@ -3,6 +3,21 @@ entries:
   apache-exporter:
   - apiVersion: v2
     appVersion: 2.4.0
+    created: "2021-10-29T07:46:13.889423814Z"
+    description: A Helm chart for the apache prometheus integration
+    digest: 3b7676bb9f43d7b9482725c598c85dfc93887b7a4f48396d40f9dbbf86877153
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: apache-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/apache-exporter-0.1.1/apache-exporter-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 2.4.0
     created: "2021-10-28T14:36:14.755845605Z"
     description: A Helm chart for the apache prometheus integration
     digest: a014fcddbd78652c36e4714aebb4b4d4c225d785dbc2435153004981c37db30e
