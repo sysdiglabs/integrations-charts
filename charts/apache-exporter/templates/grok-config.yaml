@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grok-config
-  namespace: apache
+  namespace: {{ .Release.Namespace }}
 data:
   config.yml: |
     global:
@@ -22,25 +22,25 @@ data:
       help: HTTP requests to Apache
       match: '%{COMMONAPACHELOG}'
       labels:
-        code: '{{.response}}'
-        method: '{{.verb}}'
+        code: {{`'{{.response}}'`}}
+        method: {{`'{{.verb}}'`}}
     - type: gauge
       name: apache_http_response_bytes_total
       help: Size of HTTP responses
       match: '%{COMMONAPACHELOG}'
-      value: '{{.bytes}}'
+      value: {{`'{{.bytes}}'`}}
       cumulative: true
       labels:
-        code: '{{.response}}'
-        method: '{{.verb}}'
+        code: {{`'{{.response}}'`}}
+        method: {{`'{{.verb}}'`}}
     - type: gauge
       name: apache_http_last_request_seconds
       help: Timestamp of the last HTTP request
       match: '%{COMMONAPACHELOG}'
-      value: {{`"'{{timestamp "02/Jan/2006:15:04:05 -0700" .timestamp}}'"`}}
+      value: {{`'{{timestamp "02/Jan/2006:15:04:05 -0700" .timestamp}}'`}}
       labels:
-        code: '{{.response}}'
-        method: '{{.verb}}'
+        code: {{`'{{.response}}'`}}
+        method: {{`'{{.verb}}'`}}
     server:
       protocol: http
 {{- end }}
