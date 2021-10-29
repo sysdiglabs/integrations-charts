@@ -15,8 +15,6 @@ spec:
         - containerPort: 9117   
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
-        ports:
-        - containerPort: 9113
       - name: grok-exporter
         image: "{{ .Values.image.grok.repository }}:{{ .Values.image.grok.tag }}"
         ports:
