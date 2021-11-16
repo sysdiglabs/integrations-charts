@@ -153,6 +153,22 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/elasticsearch-exporter-0.1.2/elasticsearch-exporter-0.1.2.tgz
     version: 0.1.2
+  memcached-exporter:
+  - apiVersion: v2
+    appVersion: 1.6.12
+    created: "2021-11-16T12:01:11.988868212Z"
+    description: A Helm chart for the memcached prometheus integration
+    digest: 5d442aebcdfbe58a013a9e6d01e827b505c55b86747c86e4e7d3bdfd96a8f327
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: memcached-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/memcached-exporter-0.0.1/memcached-exporter-0.0.1.tgz
+    version: 0.0.1
   mongodb-exporter:
   - apiVersion: v2
     appVersion: "2"
