@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "postgresql-exporter.exporterDeploymentName" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "postgresql-exporter.labels" . | nindent 4 }}
 spec:

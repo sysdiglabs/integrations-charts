@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "mongodb-exporter.exporterDeploymentName" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "mongodb-exporter.labels" . | nindent 4 }}
 spec:

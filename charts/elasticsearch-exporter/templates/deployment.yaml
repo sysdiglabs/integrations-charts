@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "elasticsearch-exporter.exporterDeploymentName" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "elasticsearch-exporter.labels" . | nindent 4 }}
 spec:
