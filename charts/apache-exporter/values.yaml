@@ -28,3 +28,4 @@ integrationType: "apache"
 imagePullSecrets: []
 
 configmap: false
+ubi: false

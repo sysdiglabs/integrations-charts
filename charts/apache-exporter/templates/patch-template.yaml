@@ -7,7 +7,12 @@ spec:
     spec:
       containers:
       - name: apache-exporter
-        image:  "{{ .Values.image.apache.repository }}:{{ .Values.image.apache.tag }}"
+      {{- if not .Values.ubi }}
+        image: "{{ .Values.image.apache.repository }}:{{ .Values.image.apache.tag }}"
+      {{- end }}
+      {{- if .Values.ubi }}
+        image: "{{ .Values.image.apache.repository }}:{{ .Values.image.apache.tag }}-ubi"
+      {{- end }}
         args:
           - "--scrape_uri"
           - "http://localhost/server-status/?auto"
@@ -16,7 +21,12 @@ spec:
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
       - name: grok-exporter
-        image: "{{ .Values.image.grok.repository }}:{{ .Values.image.grok.tag }}"
+      {{- if not .Values.ubi }}
+        image:  "{{ .Values.image.grok.repository }}:{{ .Values.image.grok.tag }}"
+      {{- end }}
+      {{- if .Values.ubi }}
+        image:  "{{ .Values.image.grok.repository }}:{{ .Values.image.grok.tag }}-ubi"
+      {{- end }}        
         ports:
         - containerPort: 9144
         resources:
