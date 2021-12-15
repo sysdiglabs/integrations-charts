@@ -62,3 +62,4 @@ exporterNamespaceName: "sysdig-agent"
 
 integrationType: "elasticsearch"
   # The name of the integration
+ubi: false
