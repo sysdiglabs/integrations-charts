@@ -65,3 +65,4 @@ exporterNamespaceName: "mongodb"
 
 integrationType: "mongodb"
   # The name of the integration
+ubi: false

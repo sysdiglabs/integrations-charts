@@ -36,3 +36,4 @@ exporterNamespaceName: "sysdig-agent"
 
 integrationType: "redis"
   # The name of the integration
+ubi: false

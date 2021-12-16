@@ -18,3 +18,4 @@ resources:
 
 integrationType: "nginx"
   # The name of the integration
+ubi: false

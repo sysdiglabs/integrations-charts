@@ -67,3 +67,4 @@ exporterParams:
   excludeDatabases: ""
 
 customMetrics: ""
+ubi: false

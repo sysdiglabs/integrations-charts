@@ -23,7 +23,12 @@ spec:
       affinity: {}
       containers:
       - name: mongodb-exporter
+        {{- if not .Values.ubi }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        {{- end }}
+        {{- if .Values.ubi }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
+        {{- end }}   
         args:
         - --web.listen-address={{ printf ":%s" .Values.port }}
         - --collect.collection

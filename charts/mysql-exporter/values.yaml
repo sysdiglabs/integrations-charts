@@ -40,3 +40,4 @@ exporterNamespaceName: "mysql"
 
 integrationType: "mysql"
   # The name of the integration
+ubi: false

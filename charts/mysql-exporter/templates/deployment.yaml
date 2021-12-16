@@ -23,8 +23,12 @@ spec:
       affinity: {}
       containers:
       - name: mysql-exporter
+        {{- if not .Values.ubi }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        args:
+        {{- end }}
+        {{- if .Values.ubi }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
+        {{- end }}           args:
         - --config.my-cnf=/tmp/.my.cnf
         ports:
           - containerPort: {{ .Values.port }}

@@ -6,8 +6,12 @@ spec:
     spec:
       containers:
       - name: nginx-exporter
+        {{- if not .Values.ubi }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        args:
+        {{- end }}
+        {{- if .Values.ubi }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
+        {{- end }}           args:
           - "-nginx.scrape-uri=http://localhost:80/nginx_status"
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
