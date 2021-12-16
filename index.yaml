@@ -201,6 +201,21 @@ entries:
   memcached-exporter:
   - apiVersion: v2
     appVersion: 1.6.12
+    created: "2021-12-16T08:47:23.70240565Z"
+    description: A Helm chart for the memcached prometheus integration
+    digest: 78205f2db00d1daaa5ab24011fb37de4b889b80e5af44e79f16313e54d6ea30f
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: memcached-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/memcached-exporter-0.0.2/memcached-exporter-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 1.6.12
     created: "2021-11-16T12:01:11.988868212Z"
     description: A Helm chart for the memcached prometheus integration
     digest: 5d442aebcdfbe58a013a9e6d01e827b505c55b86747c86e4e7d3bdfd96a8f327
@@ -215,6 +230,21 @@ entries:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/memcached-exporter-0.0.1/memcached-exporter-0.0.1.tgz
     version: 0.0.1
   mongodb-exporter:
+  - apiVersion: v2
+    appVersion: "2"
+    created: "2021-12-16T08:47:23.831960247Z"
+    description: A Helm chart for the Mongodb prometheus integration
+    digest: 266b5bf569db786f4f971ab5efdcd8724085ae186caf59adde5529467ffc150c
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: mongodb-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/mongodb-exporter-0.1.2/mongodb-exporter-0.1.2.tgz
+    version: 0.1.2
   - apiVersion: v2
     appVersion: "2"
     created: "2021-11-18T08:15:30.70015448Z"
@@ -246,6 +276,21 @@ entries:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/mongodb-exporter-0.1.0/mongodb-exporter-0.1.0.tgz
     version: 0.1.0
   mysql-exporter:
+  - apiVersion: v2
+    appVersion: "2"
+    created: "2021-12-16T08:47:23.962442457Z"
+    description: A Helm chart for the MySQL prometheus integration
+    digest: 1fc0ac2e937679ecb53a9867db55c881794467d92643dab85625f4144f65a32f
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: mysql-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/mysql-exporter-0.1.5/mysql-exporter-0.1.5.tgz
+    version: 0.1.5
   - apiVersion: v2
     appVersion: "2"
     created: "2021-11-18T08:15:30.850063349Z"
@@ -309,6 +354,21 @@ entries:
   nginx-exporter:
   - apiVersion: v2
     appVersion: 1.17.0
+    created: "2021-12-16T08:47:24.100410358Z"
+    description: A Helm chart for the nginx prometheus integration
+    digest: a3581237fb5c3bfdec74fd1d5030e3f2d538b52aa8d378ee7a8e7fab4f92a61a
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: nginx-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/nginx-exporter-0.1.3/nginx-exporter-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.17.0
     created: "2021-07-15T10:41:27.606648974Z"
     description: A Helm chart for the nginx prometheus integration
     digest: 09ecdfeb03c409a93c5021c1f8cacddf007a50b9cce33deea304a89026577363
@@ -338,6 +398,21 @@ entries:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/nginx-exporter-0.1.0/nginx-exporter-0.1.0.tgz
     version: 0.1.0
   postgresql-exporter:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-12-16T08:47:24.238813065Z"
+    description: A Helm chart for the postgreSQL prometheus integration
+    digest: ab2eff467c60eac4bdca0d1cecbc81cf8a14560f0493dffc0285c9d750cb7e46
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: postgresql-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/postgresql-exporter-0.1.8/postgresql-exporter-0.1.8.tgz
+    version: 0.1.8
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2021-11-18T08:15:31.099683395Z"
@@ -447,6 +522,21 @@ entries:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/promcat-postgresql-0.1.2/promcat-postgresql-0.1.2.tgz
     version: 0.1.2
   redis-exporter:
+  - apiVersion: v2
+    appVersion: "2"
+    created: "2021-12-16T08:47:24.367489752Z"
+    description: A Helm chart for the ElasticSearch prometheus integration
+    digest: eb46ab470c85da16d003ff2ee0690739cacdf1d5a56f791370f1760424ec7a93
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: redis-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.5/redis-exporter-0.1.5.tgz
+    version: 0.1.5
   - apiVersion: v2
     appVersion: "2"
     created: "2021-11-18T08:15:31.270016546Z"
