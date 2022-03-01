@@ -55,14 +55,14 @@ spec:
               value: {{ .Values.url.http }}://$(ELASTIC_USER):$(ELASTICSEARCH_ADMIN_PASSWORD)@{{ .Values.url.name }}:{{ .Values.url.port }}
             - name: ELASTIC_USER
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   key: username
-                  name: {{ values.secretName }}
+                  name: {{ .Values.secretName }}
             - name: ELASTICSEARCH_ADMIN_PASSWORD
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   key: password
-                  name: {{ values.secretName }}
+                  name: {{ .Values.secretName }}
           {{ end }}
           lifecycle:
             preStop:
@@ -107,5 +107,5 @@ spec:
       - name: elasticsearch-tls-certs
         secret:
           defaultMode: 256
-          secretName: {{ values.secretName }}
+          secretName: {{ .Values.secretName }}
       {{ end }}
