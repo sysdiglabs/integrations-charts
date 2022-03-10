@@ -95,6 +95,21 @@ entries:
   elasticsearch-exporter:
   - apiVersion: v2
     appVersion: 6.8.0
+    created: "2022-03-10T21:55:56.03603989Z"
+    description: A Helm chart for the ElasticSearch prometheus integration
+    digest: 7c2a6edc4934b9be1c16ac312cbff2d19cd6ebbe2052778347249ca9db049eb0
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: elasticsearch-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/elasticsearch-exporter-0.1.9/elasticsearch-exporter-0.1.9.tgz
+    version: 0.1.9
+  - apiVersion: v2
+    appVersion: 6.8.0
     created: "2021-12-15T11:38:28.85824024Z"
     description: A Helm chart for the ElasticSearch prometheus integration
     digest: 02b8fc2cff23225de65f34440e2ab1319e4c327515eb7dccdd5c4b4d05f42eb1
