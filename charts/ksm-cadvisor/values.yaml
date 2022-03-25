@@ -1,5 +1,4 @@
 prometheus:
-  # enabled: true
   alertmanager:
     enabled: false
   alertmanagerFiles:
