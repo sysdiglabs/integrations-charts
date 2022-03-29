@@ -340,7 +340,7 @@ prometheus:
         - expr: |
             label_replace(
               label_replace(
-                sum by (node, namespace, pod, container, owner_name) (container_memory_usage_bytes{job="kubernetes-nodes-cadvisor", image!="", container!="POD"}) * on(pod) group_left(node, created_by_name, created_by_kind) kube_pod_info
+                sum by (node, namespace, pod, container, created_by_name, created_by_kind) (container_memory_usage_bytes{job="kubernetes-nodes-cadvisor", image!="", container!="POD"}) * on(pod) group_left(node, created_by_name, created_by_kind) kube_pod_info
               , "kube_workload_name", "$1", "created_by_name", "(.*)")
             , "kube_workload_type", "$1", "created_by_kind", "(.*)") 
           record: ksm_container_memory_used_bytes
