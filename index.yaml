@@ -213,6 +213,33 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/elasticsearch-exporter-0.1.2/elasticsearch-exporter-0.1.2.tgz
     version: 0.1.2
+  ksm-cadvisor:
+  - apiVersion: v2
+    appVersion: 2.34.0
+    created: "2022-03-29T10:40:31.885182911Z"
+    dependencies:
+    - name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 15.5.*
+    description: A Helm chart for ksm-cadvisor integration
+    digest: e2901fd7a904779e8d8cca98198f4e9dc381559a25e0b89749f9a5404600b45d
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiego
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    name: ksm-cadvisor
+    sources:
+    - https://github.com/prometheus/prometheus
+    - https://github.com/kubernetes/kube-state-metrics
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/ksm-cadvisor-0.0.1/ksm-cadvisor-0.0.1.tgz
+    version: 0.0.1
   memcached-exporter:
   - apiVersion: v2
     appVersion: 1.6.12
@@ -672,4 +699,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-15T09:30:41.650520067Z"
+generated: "2022-03-29T10:40:31.885274011Z"
