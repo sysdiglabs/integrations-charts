@@ -286,16 +286,16 @@ prometheus:
         - expr: |
             label_replace(
               label_replace(
-                sum by(node, namespace, pod, container, owner_name, owner_kind) (rate(container_cpu_usage_seconds_total{container!="POD",image!="",job="kubernetes-nodes-cadvisor"}[5m])) * on(namespace, pod) group_left(node, owner_name,owner_kind) topk by(namespace, pod, owner_name,owner_kind) (1, max by(namespace, pod, node, owner_name, owner_kind) (label_replace(kube_pod_owner, "node", "$1", "kubernetes_node", "(.*)")))
-              , "kube_workload_name", "$1", "owner_name", "(.*)")
-            , "kube_workload_type", "$1", "owner_kind", "(.*)")
+                sum by(node, namespace, pod, container, created_by_name, created_by_kind) (rate(container_cpu_usage_seconds_total{container!="POD",image!="",job="kubernetes-nodes-cadvisor"}[5m])) * on(namespace, pod) group_left(node, created_by_name,created_by_kind) topk by(namespace, pod, created_by_name,created_by_kind) (1, max by(namespace, pod, node, created_by_name, created_by_kind) (kube_pod_info))
+              , "kube_workload_name", "$1", "created_by_name", "(.*)")
+            , "kube_workload_type", "$1", "created_by_kind", "(.*)")
           record: "node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate"
         - expr: |
             label_replace(
               label_replace(
-                sum by (namespace, pod, node, owner_name, owner_kind, container)(container_memory_usage_bytes{job="kubernetes-nodes-cadvisor", image!="", container!="POD"}* on (namespace, pod) group_left(node, owner_name, owner_kind) label_replace(kube_pod_owner, "node", "$1", "kubernetes_node", "(.*)") )
-              , "kube_workload_name", "$1", "owner_name", "(.*)")
-            , "kube_workload_type", "$1", "owner_kind", "(.*)")
+                sum by (namespace, pod, node, created_by_name, created_by_kind, container)(container_memory_usage_bytes{job="kubernetes-nodes-cadvisor", image!="", container!="POD"}* on (namespace, pod) group_left(node, created_by_name, created_by_kind) kube_pod_info )
+              , "kube_workload_name", "$1", "created_by_name", "(.*)")
+            , "kube_workload_type", "$1", "created_by_kind", "(.*)")
           record: "namespace:container_memory_usage_bytes:sum"
       - name: ksm.rules
         rules:
@@ -340,9 +340,9 @@ prometheus:
         - expr: |
             label_replace(
               label_replace(
-                sum by (node, namespace, pod, container, owner_name) (container_memory_usage_bytes{job="kubernetes-nodes-cadvisor", image!="", container!="POD"}) * on(pod) group_left(node, owner_name, owner_kind) label_replace(kube_pod_owner, "node", "$1", "kubernetes_node", "(.*)")
-              , "kube_workload_name", "$1", "owner_name", "(.*)")
-            , "kube_workload_type", "$1", "owner_kind", "(.*)") 
+                sum by (node, namespace, pod, container, owner_name) (container_memory_usage_bytes{job="kubernetes-nodes-cadvisor", image!="", container!="POD"}) * on(pod) group_left(node, created_by_name, created_by_kind) kube_pod_info
+              , "kube_workload_name", "$1", "created_by_name", "(.*)")
+            , "kube_workload_type", "$1", "created_by_kind", "(.*)") 
           record: ksm_container_memory_used_bytes
           labels:
             remote_write: true
