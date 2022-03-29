@@ -1,4 +1,4 @@
-name: Release Charts
+name: Release Charts Deleteme
 
 on:
   push:
