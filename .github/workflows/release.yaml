@@ -25,7 +25,8 @@ jobs:
           sudo apt-get install helm
 
       - name: Add dependency repositories
-        run: helm repo add prometheus https://prometheus-community.github.io/helm-charts
+        run: |
+          helm repo add prometheus https://prometheus-community.github.io/helm-charts
 
       - name: Configure Git
         run: |
