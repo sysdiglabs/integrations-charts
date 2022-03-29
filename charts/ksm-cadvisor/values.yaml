@@ -297,22 +297,6 @@ prometheus:
               , "kube_workload_name", "$1", "owner_name", "(.*)")
             , "kube_workload_type", "$1", "owner_kind", "(.*)")
           record: "namespace:container_memory_usage_bytes:sum"
-        - expr: kube_node_status_capacity
-          record: kube_node_status_capacity:k8s
-          labels:
-            remote_write: true
-        - expr: kube_node_status_allocatable
-          record: kube_node_status_allocatable:k8s
-          labels:
-            remote_write: true
-        - expr: kube_pod_container_resource_requests
-          record: kube_pod_container_resource_requests:k8s
-          labels:
-            remote_write: true
-        - expr: kube_resourcequota
-          record: kube_resourcequota:k8s
-          labels:
-            remote_write: true
       - name: ksm.rules
         rules:
         - expr: |
@@ -489,5 +473,17 @@ prometheus:
             remote_write: true
         - expr: label_replace(kube_pod_container_resource_limits_memory_bytes:ksm * on (pod) group_left(owner_kind) kube_pod_owner,"kube_workload_type", "$1", "owner_kind", "(.*)")
           record: kube_pod_container_resource_limits_memory_bytes
+          labels:
+            remote_write: true
+        - expr: kube_node_status_capacity
+          record: ksm_kube_node_status_capacity
+          labels:
+            remote_write: true
+        - expr: kube_node_status_allocatable
+          record: ksm_kube_node_status_allocatable
+          labels:
+            remote_write: true
+        - expr: kube_resourcequota
+          record: ksm_kube_resourcequota
           labels:
             remote_write: true
