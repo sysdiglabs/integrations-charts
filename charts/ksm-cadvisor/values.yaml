@@ -352,7 +352,7 @@ prometheus:
                 kube_deployment_status_replicas_available{job="kubernetes-service-endpoints"},
                 "workload", "$1", "deployment", "(.*)"
               )
-          record: kube_workload_status_available:ksm
+          record: ksm_workload_status_available:ksm
           labels:
             workload_type: deployment
             remote_write: true
@@ -361,7 +361,7 @@ prometheus:
                 kube_daemonset_status_number_available{job="kubernetes-service-endpoints"},
                 "workload", "$1", "daemonset", "(.*)"
               )
-          record: kube_workload_status_available:ksm
+          record: ksm_workload_status_available:ksm
           labels:
             workload_type: daemonset
             remote_write: true
@@ -370,7 +370,7 @@ prometheus:
                 kube_statefulset_status_replicas_ready{job="kubernetes-service-endpoints"},
                 "workload", "$1", "statefulset", "(.*)"
               )
-          record: kube_workload_status_available:ksm
+          record: ksm_workload_status_available:ksm
           labels:
             workload_type: statefulset
             remote_write: true
@@ -436,24 +436,24 @@ prometheus:
             remote_write: true
         - expr: |
             sum by (kube_workload_name,namespace,kube_workload_type,condition) (ksm_kube_pod_status_ready)
-          record: kube_workload_status_ready
+          record: ksm_workload_status_ready
           labels:
             remote_write: true
         - expr: |
             sum by (kube_workload_name,namespace)(label_replace(kube_replicaset_spec_replicas, "kube_workload_name", "$1", "replicaset", "(.*)"))
-          record: kube_workload_status_desired
+          record: ksm_workload_status_desired
           labels:
             kube_workload_type: ReplicaSet
             remote_write: true
         - expr: |
             sum by (kube_workload_name,namespace)(label_replace(kube_statefulset_replicas, "kube_workload_name", "$1", "statefulset", "(.*)"))
-          record: kube_workload_status_desired
+          record: ksm_workload_status_desired
           labels:
             kube_workload_type: StatefulSet
             remote_write: true
         - expr: |
             sum by (kube_workload_name,namespace)(label_replace(kube_daemonset_status_desired_number_scheduled, "kube_workload_name", "$1", "daemonset", "(.*)"))
-          record: kube_workload_status_desired
+          record: ksm_workload_status_desired
           labels:
             kube_workload_type: DaemonSet
             remote_write: true
