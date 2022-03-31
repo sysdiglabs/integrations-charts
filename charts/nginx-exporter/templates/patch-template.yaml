@@ -13,7 +13,7 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
         {{- end }}
         args:
-          - "-nginx.scrape-uri=http://localhost:80/nginx_status"
+          - "-nginx.scrape-uri={{ .Values.scrape.protocol }}://{{ .Values.scrape.host }}:{{ .Values.scrape.port }}{{ .Values.scrape.path }}"
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
         ports:
