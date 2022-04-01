@@ -19,3 +19,9 @@ resources:
 integrationType: "nginx"
   # The name of the integration
 ubi: false
+
+scrape:
+  protocol: http
+  host: localhost
+  port: 80
+  path: /nginx_status
