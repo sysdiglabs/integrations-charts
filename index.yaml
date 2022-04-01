@@ -478,6 +478,21 @@ entries:
   nginx-exporter:
   - apiVersion: v2
     appVersion: 1.17.0
+    created: "2022-04-01T09:53:22.400069567Z"
+    description: A Helm chart for the nginx prometheus integration
+    digest: 8a0e0abc17d072806581cc0929a12b1d3112b82f7f10afc455cc6b7c0c7ed2bc
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: nginx-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/nginx-exporter-0.1.5/nginx-exporter-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.17.0
     created: "2022-02-23T07:19:28.954487118Z"
     description: A Helm chart for the nginx prometheus integration
     digest: 98c24dc8276357d70262d5b3c961c10716d0abb975cc257b34b01003c4a76d08
@@ -751,4 +766,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2022-03-30T12:43:58.460900077Z"
+generated: "2022-04-01T09:53:22.40016547Z"
