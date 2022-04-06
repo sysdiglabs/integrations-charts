@@ -3,7 +3,7 @@ image:
     repository: quay.io/sysdig/apache-exporter
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "v0.10.2"
+    tag: "v0.10.5"
   grok:
     repository: quay.io/sysdig/grok-exporter
     pullPolicy: IfNotPresent
