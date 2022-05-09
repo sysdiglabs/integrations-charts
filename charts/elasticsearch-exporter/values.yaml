@@ -42,6 +42,7 @@ url:
   http: http
   name: elasticsearch
   port: 9200
+  secretURL: 
 
 secretName: elastic-config
 

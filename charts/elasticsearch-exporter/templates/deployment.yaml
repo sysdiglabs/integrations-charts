@@ -52,17 +52,10 @@ spec:
           {{ end }}
           {{- if eq .Values.url.http "https" }}
             - name: ES_URI
-              value: {{ .Values.url.http }}://$(ELASTIC_USER):$(ELASTICSEARCH_ADMIN_PASSWORD)@{{ .Values.url.name }}:{{ .Values.url.port }}
-            - name: ELASTIC_USER
               valueFrom:
                 secretKeyRef:
-                  key: username
-                  name: {{ .Values.secretName }}
-            - name: ELASTICSEARCH_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: password
-                  name: {{ .Values.secretName }}
+                  key: url
+                  name: {{ .Values.url.secretURL}}
           {{ end }}
           lifecycle:
             preStop:
@@ -100,8 +93,7 @@ spec:
             periodSeconds: 5
             successThreshold: 1
             timeoutSeconds: 5
-          securityContext:
-              {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml .Values.securityContext | nindent 12 }}
       {{- if .Values.tlsmode }}
       volumes:
       - name: elasticsearch-tls-certs
