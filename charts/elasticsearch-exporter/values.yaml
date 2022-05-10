@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: quay.io/sysdig/elasticsearch-exporter
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.2.1"
+  tag: "v1.3.2"
 
 imagePullSecrets: []
 
@@ -42,10 +42,8 @@ url:
   http: http
   name: elasticsearch
   port: 9200
-  secretURL: 
-
-secretName: elastic-config
-
+secretURL: 
+secretTLS: elastic-tls-secret
 tlsmode: false
 
 namespaceName: "sysdig-agent"
