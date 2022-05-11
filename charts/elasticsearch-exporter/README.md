@@ -45,33 +45,6 @@ helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set secretURL="elastic-url-secret" \
   --set secretTLS="elastic-tls-secret"
 ```
-# Deprecated
-## Stand-alone ElasticSearch without authentication
-Use the following options: 
-```
-helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
-  --set namespaceName="logging" \
-  --set workloadType="statefulset" \
-  --set workloadName="elasticsearch" \
-  --set url.name="elasticsearch:9200"
-```
-
-## Stand-alone ElasticSearch with authentication
-
-```
-kubectl create -n sysdig-agent secret generic elastic-config \
-  --from-literal=username=userName \
-  --from-literal=password=password
-```
-
-```
-helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
-  --set namespaceName="logging" \
-  --set workloadType="statefulset" \
-  --set workloadName="elasticsearch" \
-  --set url.name="$(ELASTIC_USER):$(ELASTICSEARCH_ADMIN_PASSWORD)@sysdigcloud-elasticsearch:9200"
-  --set url.http="https"
-```
 
 # Attributions
 This helm chart is maintained by [Sysdig team](https://sysdig.com/).
