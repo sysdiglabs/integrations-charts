@@ -10,12 +10,14 @@ Visit [PromCat.io](https://promcat.io/apps/elasticsearch) for dashboards, alerts
 ## Create The Secret For The URL
 #### Without Authentication
 ```sh
-kubectl -n Your-Application-Namespace create secret generic elastic-url-secret --from-literal=url='http://SERVICE:PORT'
+kubectl -n Your-Application-Namespace create secret generic elastic-url-secret \
+  --from-literal=url='http://SERVICE:PORT'
 ```
 
 #### With Basic Auth
 ```sh
-kubectl -n Your-Application-Namespace create secret generic elastic-url-secret --from-literal=url='https://USERNAME:PASSWORD@SERVICE:PORT'
+kubectl -n Your-Application-Namespace create secret generic elastic-url-secret \
+  --from-literal=url='https://USERNAME:PASSWORD@SERVICE:PORT'
 ```
 NOTE: You can use either http or https in the URL.
 
