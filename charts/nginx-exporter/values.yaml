@@ -2,7 +2,7 @@ image:
   repository: quay.io/sysdig/nginx-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.9.0"
+  tag: "v0.9.3"
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -19,3 +19,9 @@ resources:
 integrationType: "nginx"
   # The name of the integration
 ubi: false
+
+scrape:
+  protocol: http
+  host: localhost
+  port: 80
+  path: /nginx_status
