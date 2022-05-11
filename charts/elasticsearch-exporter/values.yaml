@@ -42,9 +42,8 @@ url:
   http: http
   name: elasticsearch
   port: 9200
-
-secretName: elastic-config
-
+secretURL: 
+secretTLS: elastic-tls-secret
 tlsmode: false
 
 namespaceName: "sysdig-agent"
