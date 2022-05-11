@@ -1,0 +1,39 @@
+replicaCount: 1
+
+image:
+  repository: quay.io/sysdig/ntp-exporter
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v2.0.2"
+
+imagePullSecrets: []
+
+resources: 
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 100m
+    memory: 64Mi
+  requests:
+    cpu: 50m
+    memory: 32Mi
+
+server: 
+
+namespaceName: "sysdig-agent"
+  # The namespace of the application that the exporter will connect to in order to generate metrics
+
+workloadType: "daemonset"
+  # The kubernetes workload type of the application the exporter will connect to. 
+  # Possible values: deployment, statefulset, daemonset, pod
+
+workloadName: "ntp"
+  # The name of the workload of teh application that the exporter will connect to.
+
+exporterNamespaceName: "sysdig-agent"
+  # The namespace where the exporter will be deployed
+
+integrationType: "ntp"
+  # The name of the integration
+ubi: false
