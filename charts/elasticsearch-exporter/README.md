@@ -24,7 +24,7 @@ NOTE: You can use either http or https in the URL.
 # Usage
 ## ElasticSearch without custom certificates
 ```
-helm install -n sysdig-agent my-release ./charts/elasticSearch-exporter/ \
+helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
   --set workloadName="elasticsearch" \
