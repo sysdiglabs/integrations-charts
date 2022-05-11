@@ -10,14 +10,12 @@ Visit [PromCat.io](https://promcat.io/apps/elasticsearch) for dashboards, alerts
 ## Create The Secret For The URL
 #### Without Authentication
 ```sh
-kubectl -n Your-Application-Namespace create secret generic elastic-url-secret \ 
-  --from-literal=url='http://SERVICE:PORT'
+kubectl -n Your-Application-Namespace create secret generic elastic-url-secret --from-literal=url='http://SERVICE:PORT'
 ```
 
 #### With Basic Auth
 ```sh
-kubectl -n Your-Application-Namespace create secret generic elastic-url-secret \ 
-  --from-literal=url='https://USERNAME:PASSWORD@SERVICE:PORT'
+kubectl -n Your-Application-Namespace create secret generic elastic-url-secret --from-literal=url='https://USERNAME:PASSWORD@SERVICE:PORT'
 ```
 NOTE: You can use either http or https in the URL.
 
@@ -40,7 +38,7 @@ kubectl create -n Your-Application-Namespace secret generic elastic-tls-secret \
   --from-file=root-ca.pem=/path/to/tls/ca-pem
 ```
 ```
-helm install -n sysdig-agent my-release ./charts/elasticSearch-exporter/ \
+helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
   --set workloadName="elasticsearch" \
@@ -51,7 +49,7 @@ helm install -n sysdig-agent my-release ./charts/elasticSearch-exporter/ \
 ## Stand-alone ElasticSearch without authentication
 Use the following options: 
 ```
-helm install -n sysdig-agent my-release ./charts/elasticSearch-exporter/ \
+helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
   --set workloadName="elasticsearch" \
@@ -67,7 +65,7 @@ kubectl create -n sysdig-agent secret generic elastic-config \
 ```
 
 ```
-helm install -n sysdig-agent my-release ./charts/elasticSearch-exporter/ \
+helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
   --set workloadName="elasticsearch" \
