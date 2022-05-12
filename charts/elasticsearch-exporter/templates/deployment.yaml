@@ -98,5 +98,5 @@ spec:
       - name: elasticsearch-tls-certs
         secret:
           defaultMode: 256
-          secretTLS: {{ .Values.secretTLS }}
+          secretName: {{ .Values.secretTLS }}
       {{ end }}
