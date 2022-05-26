@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ include "ntp-exporter.exporterDeploymentName" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "ntp-exporter.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "ntp-exporter.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "ntp-exporter.selectorLabels" . | nindent 8 }}
+      annotations:
+      {{- include "ntp-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{- with .Values.podAnnotations }}
+          {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+      - name: {{ .Chart.Name }}
+        {{- if not .Values.ubi }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        {{- end }}
+        {{- if .Values.ubi }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
+        {{- end }}
+        args: [
+          "-ntp.server", { .Values.server }
+        ]
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
