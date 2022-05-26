@@ -701,6 +701,24 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/nginx-exporter-0.1.0/nginx-exporter-0.1.0.tgz
     version: 0.1.0
+  ntp-exporter:
+  - apiVersion: v2
+    appVersion: "2"
+    created: "2022-05-26T09:17:39.710982779Z"
+    description: A Helm chart for the NTP prometheus integration
+    digest: 8ee7fb175c40a68456e6cfc8d1751f6e96deea19d3692d37ade353eca8f5a40d
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    name: ntp-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/ntp-exporter-0.1.0/ntp-exporter-0.1.0.tgz
+    version: 0.1.0
   postgresql-exporter:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -946,4 +964,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2022-05-11T10:18:43.197413853Z"
+generated: "2022-05-26T09:17:39.711211981Z"
