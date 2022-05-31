@@ -19,8 +19,9 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.0.0-rc.2
+        uses: helm/chart-releaser-action@v1.2.1
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
@@ -34,5 +35,6 @@ jobs:
           cp -r charts ${tmp_folder}/
           pushd ${tmp_folder}
           git add -A "charts/**/README.md"
-          git commit -m "Updating README.md files" && git push || true
+          git add -A "charts/**/values.yaml"
+          git pull && git commit -m "Updating README.md and values files" && git push
           popd
