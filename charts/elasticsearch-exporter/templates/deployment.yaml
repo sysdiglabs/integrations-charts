@@ -42,7 +42,12 @@ spec:
           - --es.snapshots
           - --es.cluster_settings
           - --es.timeout=60s
+          {{- if .Values.tlsmode }}
           - --es.es.ca=/usr/share/elasticsearch/config/certs/ca.crt
+          {{- end }}
+          {{- if not .Values.tlsmode }}
+          - --es.ssl-skip-verify
+          {{- else}}
           - --web.listen-address=:9108
           - --web.telemetry-path=/metrics
           env:
@@ -100,10 +105,10 @@ spec:
           defaultMode: 256
           {{- if eq .Values.eck.enabled "true" }}
           secretName: {{ .Values.eck.cluster.name }}-es-{{ .Values.eck.cluster.nodeSet }}
-          {{ else }}
-          secretName: {{ .Values.secretTLS }}
-          {{ end }}
           items:
             - key: ca.crt
               path: ca.crt
+          {{ else }}
+          secretName: {{ .Values.secretTLS }}
+          {{ end }}
       {{ end }}
