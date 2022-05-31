@@ -6,32 +6,46 @@ Visit [PromCat.io](https://promcat.io/apps/elasticsearch) for dashboards, alerts
 # Requirements
 * Helm v3
 
+# Prerequisites
+## Create The Secret For The URL
+#### Without Authentication
+```sh
+kubectl -n Your-Application-Namespace create secret generic elastic-url-secret \
+  --from-literal=url='http://SERVICE:PORT'
+```
+
+#### With Basic Auth
+```sh
+kubectl -n Your-Application-Namespace create secret generic elastic-url-secret \
+  --from-literal=url='https://USERNAME:PASSWORD@SERVICE:PORT'
+```
+NOTE: You can use either http or https in the URL.
+
 # Usage
-## Stand-alone ElasticSearch without authentication
-Use the following options: 
+## ElasticSearch without custom certificates
 ```
-helm install -n sysdig-agent my-release ./charts/elasticSearch-exporter/ \
+helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
   --set workloadName="elasticsearch" \
-  --set url.name="elasticsearch:9200"
+  --set secretURL="elastic-url-secret"
 ```
-
-## Stand-alone ElasticSearch with authentication
-
+## ElasticSearch with custom certificates
+### Create The Secret For The TLS certs
+Only needed in the case you are using https with custom certificates.
+```sh
+kubectl create -n Your-Application-Namespace secret generic elastic-tls-secret \
+  --from-file=root-ca.crt=/path/to/tls/ca-cert \
+  --from-file=root-ca.key=/path/to/tls/ca-key \
+  --from-file=root-ca.pem=/path/to/tls/ca-pem
 ```
-kubectl create -n sysdig-agent secret generic elastic-config \
-  --from-literal=username=userName \
-  --from-literal=password=password
 ```
-
-```
-helm install -n sysdig-agent my-release ./charts/elasticSearch-exporter/ \
+helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
   --set workloadName="elasticsearch" \
-  --set url.name="$(ELASTIC_USER):$(ELASTICSEARCH_ADMIN_PASSWORD)@sysdigcloud-elasticsearch:9200"
-  --set url.http="https"
+  --set secretURL="elastic-url-secret" \
+  --set secretTLS="elastic-tls-secret"
 ```
 
 # Attributions

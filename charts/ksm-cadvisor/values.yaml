@@ -1,0 +1,477 @@
+prometheus:
+  alertmanager:
+    enabled: false
+  alertmanagerFiles:
+    alertmanager.yml: ""
+  kubeStateMetrics:
+    enabled: true
+  nodeExporter:
+    enabled: false
+  pushgateway:
+    enabled: false
+  server:
+    persistentVolume:
+      size: 20Gi
+    statefulSet:
+      enabled: true
+    podAnnotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "9090"
+    strategy:
+      type: Recreate 
+    global:
+      evaluation_interval: 1m
+      scrape_interval: 1m
+      scrape_timeout: 10s
+  serverFiles:
+    prometheus.yml: 
+      scrape_configs:
+      - job_name: prometheus
+        static_configs:
+        - targets:
+          - localhost:9090
+      - bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        job_name: kubernetes-apiservers
+        kubernetes_sd_configs:
+        - role: endpoints
+        relabel_configs:
+        - action: keep
+          regex: default;kubernetes;https
+          source_labels:
+          - __meta_kubernetes_namespace
+          - __meta_kubernetes_service_name
+          - __meta_kubernetes_endpoint_port_name
+        scheme: https
+        tls_config:
+          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          insecure_skip_verify: true
+      - bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        job_name: kubernetes-nodes
+        kubernetes_sd_configs:
+        - role: node
+        relabel_configs:
+        - action: labelmap
+          regex: __meta_kubernetes_node_label_(.+)
+        - replacement: kubernetes.default.svc:443
+          target_label: __address__
+        - regex: (.+)
+          replacement: /api/v1/nodes/$1/proxy/metrics
+          source_labels:
+          - __meta_kubernetes_node_name
+          target_label: __metrics_path__
+        scheme: https
+        tls_config:
+          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          insecure_skip_verify: true
+      - bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        job_name: kubernetes-nodes-cadvisor
+        kubernetes_sd_configs:
+        - role: node
+        relabel_configs:
+        - action: labelmap
+          regex: __meta_kubernetes_node_label_(.+)
+        - replacement: kubernetes.default.svc:443
+          target_label: __address__
+        - regex: (.+)
+          replacement: /api/v1/nodes/$1/proxy/metrics/cadvisor
+          source_labels:
+          - __meta_kubernetes_node_name
+          target_label: __metrics_path__
+        scheme: https
+        tls_config:
+          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          insecure_skip_verify: true
+      - job_name: kubernetes-service-endpoints
+        kubernetes_sd_configs:
+        - role: endpoints
+        relabel_configs:
+        - action: keep
+          regex: true
+          source_labels:
+          - __meta_kubernetes_service_annotation_prometheus_io_scrape
+        - action: replace
+          regex: (https?)
+          source_labels:
+          - __meta_kubernetes_service_annotation_prometheus_io_scheme
+          target_label: __scheme__
+        - action: replace
+          regex: (.+)
+          source_labels:
+          - __meta_kubernetes_service_annotation_prometheus_io_path
+          target_label: __metrics_path__
+        - action: replace
+          regex: ([^:]+)(?::\d+)?;(\d+)
+          replacement: $1:$2
+          source_labels:
+          - __address__
+          - __meta_kubernetes_service_annotation_prometheus_io_port
+          target_label: __address__
+        - action: labelmap
+          regex: __meta_kubernetes_service_label_(.+)
+        - action: replace
+          source_labels:
+          - __meta_kubernetes_namespace
+          target_label: kubernetes_namespace
+        - action: replace
+          source_labels:
+          - __meta_kubernetes_service_name
+          target_label: kubernetes_name
+        - action: replace
+          source_labels:
+          - __meta_kubernetes_pod_node_name
+          target_label: kubernetes_node
+      - honor_labels: true
+        job_name: prometheus-pushgateway
+        kubernetes_sd_configs:
+        - role: service
+        relabel_configs:
+        - action: keep
+          regex: pushgateway
+          source_labels:
+          - __meta_kubernetes_service_annotation_prometheus_io_probe
+      - job_name: kubernetes-services
+        kubernetes_sd_configs:
+        - role: service
+        metrics_path: /probe
+        params:
+          module:
+          - http_2xx
+        relabel_configs:
+        - action: keep
+          regex: true
+          source_labels:
+          - __meta_kubernetes_service_annotation_prometheus_io_probe
+        - source_labels:
+          - __address__
+          target_label: __param_target
+        - replacement: blackbox
+          target_label: __address__
+        - source_labels:
+          - __param_target
+          target_label: instance
+        - action: labelmap
+          regex: __meta_kubernetes_service_label_(.+)
+        - source_labels:
+          - __meta_kubernetes_namespace
+          target_label: kubernetes_namespace
+        - source_labels:
+          - __meta_kubernetes_service_name
+          target_label: kubernetes_name
+      - job_name: kubernetes-pods
+        kubernetes_sd_configs:
+        - role: pod
+        relabel_configs:
+        - action: keep
+          regex: true
+          source_labels:
+          - __meta_kubernetes_pod_annotation_prometheus_io_scrape
+        - action: replace
+          regex: (.+)
+          source_labels:
+          - __meta_kubernetes_pod_annotation_prometheus_io_path
+          target_label: __metrics_path__
+        - action: replace
+          regex: ([^:]+)(?::\d+)?;(\d+)
+          replacement: $1:$2
+          source_labels:
+          - __address__
+          - __meta_kubernetes_pod_annotation_prometheus_io_port
+          target_label: __address__
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_(.+)
+        - action: replace
+          source_labels:
+          - __meta_kubernetes_namespace
+          target_label: kubernetes_namespace
+        - action: replace
+          source_labels:
+          - __meta_kubernetes_pod_name
+          target_label: kubernetes_pod_name
+      - job_name: kubernetes-kube-controller-manager
+        honor_labels: true
+        kubernetes_sd_configs:
+        - role: pod
+        relabel_configs:
+        - action: keep
+          source_labels:
+          - __meta_kubernetes_namespace
+          - __meta_kubernetes_pod_name
+          separator: '/'
+          regex: 'kube-system/kube-controller-manager.+'
+        - source_labels:
+          - __address__
+          action: replace
+          target_label: __address__
+          regex: (.+?)(\\:\\d+)?
+          replacement: $1:10252
+        - source_labels:
+          - __meta_kubernetes_pod_name
+          action: replace
+          target_label: instance
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_(.+)
+      - job_name: kubernetes-kube-scheduler
+        honor_labels: true
+        kubernetes_sd_configs:
+        - role: pod
+        relabel_configs:
+        - action: keep
+          source_labels:
+          - __meta_kubernetes_namespace
+          - __meta_kubernetes_pod_name
+          separator: '/'
+          regex: 'kube-system/kube-scheduler.+'
+        - source_labels:
+          - __address__
+          action: replace
+          target_label: __address__
+          regex: (.+?)(\\:\\d+)?
+          replacement: $1:10251
+        - source_labels:
+          - __meta_kubernetes_pod_name
+          action: replace
+          target_label: instance
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_(.+)
+      - job_name: kube-state-metrics
+        honor_labels: true
+        kubernetes_sd_configs:
+        - role: pod
+        relabel_configs:
+        - action: keep
+          source_labels:
+          - __meta_kubernetes_namespace
+          - __meta_kubernetes_pod_name
+          separator: '/'
+          regex: 'monitoring/prometheus-kube-state-metrics.+'
+        - source_labels:
+          - __address__
+          action: replace
+          target_label: __address__
+          regex: (.+?)(\\:\\d+)?
+          replacement: $1
+        - source_labels:
+          - __meta_kubernetes_pod_name
+          action: replace
+          target_label: instance
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_(.+)
+      - job_name: kubernetes-kube-proxy
+        honor_labels: true
+        kubernetes_sd_configs:
+        - role: pod
+        relabel_configs:
+        - action: keep
+          source_labels:
+          - __meta_kubernetes_namespace
+          - __meta_kubernetes_pod_name
+          separator: '/'
+          regex: 'kube-system/kube-proxy.+'
+        - source_labels:
+          - __address__
+          action: replace
+          target_label: __address__
+          regex: (.+?)(\\:\\d+)?
+          replacement: $1:10249
+        - source_labels:
+          - __meta_kubernetes_pod_name
+          action: replace
+          target_label: instance
+        - action: labelmap
+          regex: __meta_kubernetes_pod_label_(.+)
+    recording_rules.yml:
+      groups:
+      - name: k8s.rules
+        rules:
+        - expr: |
+            label_replace(
+              label_replace(
+                sum by(node, namespace, pod, container, created_by_name, created_by_kind) (rate(container_cpu_usage_seconds_total{container!="POD",image!="",job="kubernetes-nodes-cadvisor"}[5m])) * on(namespace, pod) group_left(node, created_by_name,created_by_kind) topk by(namespace, pod, created_by_name,created_by_kind) (1, max by(namespace, pod, node, created_by_name, created_by_kind) (kube_pod_info))
+              , "kube_workload_name", "$1", "created_by_name", "(.*)")
+            , "kube_workload_type", "$1", "created_by_kind", "(.*)")
+          record: "node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate"
+        - expr: |
+            label_replace(
+              label_replace(
+                sum by (namespace, pod, node, created_by_name, created_by_kind, container)(container_memory_usage_bytes{job="kubernetes-nodes-cadvisor", image!="", container!="POD"}* on (namespace, pod) group_left(node, created_by_name, created_by_kind) kube_pod_info )
+              , "kube_workload_name", "$1", "created_by_name", "(.*)")
+            , "kube_workload_type", "$1", "created_by_kind", "(.*)")
+          record: "namespace:container_memory_usage_bytes:sum"
+      - name: ksm.rules
+        rules:
+        - expr: |
+            label_replace(
+              label_replace(kube_pod_container_resource_limits{resource="cpu"} * on(pod) group_left(owner_name,owner_kind) kube_pod_owner, "kube_workload_name", "$1", "owner_name", "(.*)")
+            , "kube_workload_type", "$1", "owner_kind", "(.*)") 
+          record: kube_pod_container_resource_limits_cpu_cores:ksm
+        - expr: kube_pod_container_resource_requests_memory_bytes
+          record: kube_pod_container_resource_requests_memory_bytes:ksm
+        - expr: |
+            label_replace( 
+              label_replace(kube_pod_container_resource_limits{resource="memory"} * on(pod) group_left(owner_name,owner_kind) kube_pod_owner, "kube_workload_name", "$1", "owner_name", "(.*)")
+            , "kube_workload_type", "$1", "owner_kind", "(.*)") 
+          record: kube_pod_container_resource_limits_memory_bytes:ksm
+        - expr: kube_pod_owner
+          record: kube_pod_owner:ksm
+        - expr: |
+            100 * sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate) by (namespace, pod, container, kube_workload_name, kube_workload_type)
+            / sum(kube_pod_container_resource_limits_cpu_cores:ksm) by (namespace, pod, container, kube_workload_name, kube_workload_type)
+          record: ksm_container_cpu_quota_used_percent
+          labels:
+            remote_write: true
+        - expr: node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate
+          record: ksm_container_cpu_cores_used
+          labels:
+            remote_write: true
+        - expr: |
+            100 * sum(namespace:container_memory_usage_bytes:sum) by (namespace, pod, container, kube_workload_name, kube_workload_type)
+            / sum(kube_pod_container_resource_limits_memory_bytes:ksm) by (namespace, pod, container, kube_workload_name,kube_workload_type)
+          record: ksm_container_memory_limit_used_percent
+          labels:
+            remote_write: true
+        - expr: |
+            label_replace(
+              label_replace(
+                sum by (node, namespace, pod, container, created_by_name, created_by_kind) (container_memory_usage_bytes{job="kubernetes-nodes-cadvisor", image!="", container!="POD"}) * on(pod) group_left(node, created_by_name, created_by_kind) kube_pod_info
+              , "kube_workload_name", "$1", "created_by_name", "(.*)")
+            , "kube_workload_type", "$1", "created_by_kind", "(.*)") 
+          record: ksm_container_memory_used_bytes
+          labels:
+            remote_write: true
+        - expr: |
+            label_replace(
+                kube_deployment_status_replicas_available{job="kubernetes-service-endpoints"},
+                "workload", "$1", "deployment", "(.*)"
+              )
+          record: ksm_workload_status_available:ksm
+          labels:
+            workload_type: deployment
+        - expr: |
+            label_replace(
+                kube_daemonset_status_number_available{job="kubernetes-service-endpoints"},
+                "workload", "$1", "daemonset", "(.*)"
+              )
+          record: ksm_workload_status_available:ksm
+          labels:
+            workload_type: daemonset
+        - expr: |
+            label_replace(
+                kube_statefulset_status_replicas_ready{job="kubernetes-service-endpoints"},
+                "workload", "$1", "statefulset", "(.*)"
+              )
+          record: ksm_workload_status_available:ksm
+          labels:
+            workload_type: statefulset
+        - expr: |
+            label_replace(
+              label_replace(
+                kube_pod_status_ready * on(pod) group_left(owner_name,owner_kind) kube_pod_owner
+              ,"kube_workload_name", "$1", "owner_name", "(.*)"
+              ),"kube_workload_type", "$1", "owner_kind", "(.*)"
+            )
+          record: ksm_kube_pod_status_ready
+          labels:
+            remote_write: true
+        - expr: |
+            label_replace(
+              label_replace(
+                kube_pod_container_info * on(pod) group_left(owner_name,owner_kind) kube_pod_owner
+              ,"kube_workload_name", "$1", "owner_name", "(.*)"
+              ),"kube_workload_type", "$1", "owner_kind", "(.*)"
+            )
+          record: ksm_container_info
+          labels:
+            remote_write: true
+        - expr: |
+            label_replace(
+              label_replace(
+                kube_pod_container_status_restarts_total * on(pod) group_left(owner_name,owner_kind) kube_pod_owner
+              ,"kube_workload_name", "$1", "owner_name", "(.*)"
+              ),"kube_workload_type", "$1", "owner_kind", "(.*)"
+            )
+          record: ksm_kube_pod_container_status_restarts_total
+          labels:
+            remote_write: true
+        - expr: |
+            label_replace(
+                label_replace(
+                  kube_pod_container_status_waiting_reason * on(pod) group_left(owner_name,owner_kind) kube_pod_owner
+                ,"kube_workload_name", "$1", "owner_name", "(.*)"
+                ),"kube_workload_type", "$1", "owner_kind", "(.*)"
+              )
+          record: ksm_kube_pod_container_status_waiting_reason
+          labels:
+            remote_write: true
+        - expr: |
+            label_replace(
+                label_replace(
+                  kube_pod_container_status_terminated_reason * on(pod) group_left(owner_name,owner_kind) kube_pod_owner
+                ,"kube_workload_name", "$1", "owner_name", "(.*)"
+                ),"kube_workload_type", "$1", "owner_kind", "(.*)"
+              )
+          record: ksm_kube_pod_container_status_terminated_reason
+          labels:
+            remote_write: true
+        - expr: |
+            label_replace(
+                label_replace(
+                  kube_pod_status_reason * on(pod) group_left(owner_name,owner_kind) kube_pod_owner
+                ,"kube_workload_name", "$1", "owner_name", "(.*)"
+                ),"kube_workload_type", "$1", "owner_kind", "(.*)"
+              )
+          record: ksm_kube_pod_status_reason
+          labels:
+            remote_write: true
+        - expr: |
+            sum by (kube_workload_name,namespace,kube_workload_type,condition) (ksm_kube_pod_status_ready)
+          record: ksm_workload_status_ready
+          labels:
+            remote_write: true
+        - expr: |
+            sum by (kube_workload_name,namespace)(label_replace(kube_replicaset_spec_replicas, "kube_workload_name", "$1", "replicaset", "(.*)"))
+          record: ksm_workload_status_desired
+          labels:
+            kube_workload_type: ReplicaSet
+            remote_write: true
+        - expr: |
+            sum by (kube_workload_name,namespace)(label_replace(kube_statefulset_replicas, "kube_workload_name", "$1", "statefulset", "(.*)"))
+          record: ksm_workload_status_desired
+          labels:
+            kube_workload_type: StatefulSet
+            remote_write: true
+        - expr: |
+            sum by (kube_workload_name,namespace)(label_replace(kube_daemonset_status_desired_number_scheduled, "kube_workload_name", "$1", "daemonset", "(.*)"))
+          record: ksm_workload_status_desired
+          labels:
+            kube_workload_type: DaemonSet
+            remote_write: true
+        - expr: |
+            label_replace(label_replace(kube_pod_container_resource_requests{resource="cpu"} * on (pod) group_left(owner_kind,owner_name) kube_pod_owner, "kube_workload_name", "$1", "owner_name", "(.*)"),"kube_workload_type", "$1", "owner_kind", "(.*)")
+          record: kube_pod_container_cpu_request
+          labels:
+            remote_write: true
+        - expr: |
+            label_replace(label_replace(kube_pod_container_resource_requests{resource="memory"} * on (pod) group_left(owner_kind,owner_name) kube_pod_owner, "kube_workload_name", "$1", "owner_name", "(.*)"),"kube_workload_type", "$1", "owner_kind", "(.*)")
+          record: kube_pod_container_memory_request
+          labels:
+            remote_write: true
+        - expr: label_replace(kube_pod_container_resource_limits_cpu_cores:ksm * on (pod) group_left(owner_kind) kube_pod_owner,"kube_workload_type", "$1", "owner_kind", "(.*)")
+          record: kube_pod_container_resource_limits_cpu_cores
+          labels:
+            remote_write: true
+        - expr: label_replace(kube_pod_container_resource_limits_memory_bytes:ksm * on (pod) group_left(owner_kind) kube_pod_owner,"kube_workload_type", "$1", "owner_kind", "(.*)")
+          record: kube_pod_container_resource_limits_memory_bytes
+          labels:
+            remote_write: true
+        - expr: kube_node_status_capacity
+          record: ksm_kube_node_status_capacity
+          labels:
+            remote_write: true
+        - expr: kube_node_status_allocatable
+          record: ksm_kube_node_status_allocatable
+          labels:
+            remote_write: true
+        - expr: kube_resourcequota
+          record: ksm_kube_resourcequota
+          labels:
+            remote_write: true

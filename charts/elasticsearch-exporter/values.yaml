@@ -1,0 +1,70 @@
+replicaCount: 1
+
+image:
+  repository: quay.io/sysdig/elasticsearch-exporter
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v1.3.2"
+  pullPolicy: "IfNotPresent"
+
+imagePullSecrets: []
+
+securityContext:
+  capabilities:
+    drop:
+    - SETPCAP
+    - MKNOD
+    - AUDIT_WRITE
+    - CHOWN
+    - NET_RAW
+    - DAC_OVERRIDE
+    - FOWNER
+    - FSETID
+    - KILL
+    - SETGID
+    - SETUID
+    - NET_BIND_SERVICE
+    - SYS_CHROOT
+    - SETFCAP
+  readOnlyRootFilesystem: true
+
+resources: 
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 100m
+    memory: 64Mi
+  requests:
+    cpu: 50m
+    memory: 32Mi
+
+url:
+  http: http
+  name: elasticsearch
+  port: 9200
+secretURL: 
+secretTLS: elastic-tls-secret
+tlsmode: false
+eck:
+  enabled: "true"
+  cluster:
+    name: "elasticsearch"
+    nodeSet: "default"
+
+namespaceName: "sysdig-agent"
+  # The namespace of the application that the exporter will connect to in order to generate metrics
+
+workloadType: "statefulset"
+  # The kubernetes workload type of the application the exporter will connect to. 
+  # Possible values: deployment, statefulset, daemonset, pod
+
+workloadName: "elastic-search"
+  # The name of the workload of teh application that the exporter will connect to.
+
+exporterNamespaceName: "sysdig-agent"
+  # The namespace where the exporter will be deployed
+
+integrationType: "elasticsearch"
+  # The name of the integration
+ubi: false

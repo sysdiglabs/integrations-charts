@@ -1,0 +1,27 @@
+image:
+  repository: quay.io/sysdig/nginx-exporter
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v0.9.3"
+
+resources: 
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 128m
+    memory: 128Mi
+  requests:
+    cpu: 64m
+    memory: 64Mi
+
+integrationType: "nginx"
+  # The name of the integration
+ubi: false
+
+scrape:
+  protocol: http
+  host: localhost
+  port: 80
+  path: /nginx_status
