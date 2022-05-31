@@ -4,6 +4,7 @@ image:
   repository: quay.io/sysdig/elasticsearch-exporter
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.3.2"
+  pullPolicy: "IfNotPresent"
 
 imagePullSecrets: []
 
@@ -45,6 +46,11 @@ url:
 secretURL: 
 secretTLS: elastic-tls-secret
 tlsmode: false
+eck:
+  enabled: "true"
+  cluster:
+    name: "elasticsearch"
+    nodeSet: "default"
 
 namespaceName: "sysdig-agent"
   # The namespace of the application that the exporter will connect to in order to generate metrics
