@@ -110,6 +110,23 @@ entries:
   elasticsearch-exporter:
   - apiVersion: v2
     appVersion: 6.8.0
+    created: "2022-06-01T07:49:46.038808402Z"
+    description: A Helm chart for the ElasticSearch prometheus integration
+    digest: 32c1153df27de566c500b310b91663d92b9c7433ce6d1f32ef33f8c18bd63aa7
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    name: elasticsearch-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/elasticsearch-exporter-0.2.2/elasticsearch-exporter-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
+    appVersion: 6.8.0
     created: "2022-05-11T10:18:43.197068243Z"
     description: A Helm chart for the ElasticSearch prometheus integration
     digest: c6c5ceeecec63507b24f398506ff9082a5d20f14f4a035e8e6f98bc27032810a
@@ -964,4 +981,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2022-05-26T09:17:39.711211981Z"
+generated: "2022-06-01T07:49:46.039051507Z"
