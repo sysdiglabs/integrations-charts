@@ -22,6 +22,13 @@ kubectl -n Your-Application-Namespace create secret generic elastic-url-secret \
 NOTE: You can use either http or https in the URL.
 
 # Usage
+
+- NamespaceName is the namespace where the elastic search is running
+- WorkloadName is the workload name of the elasticsearch, usually the name of the statefulset
+- WorkloadType is the workload type, can be: statefulset, deployment or daemonset
+
+These variables are used to scope where the elastic search is running
+
 ## ElasticSearch without custom certificates
 ```
 helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
