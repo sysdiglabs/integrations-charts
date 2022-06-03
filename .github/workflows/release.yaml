@@ -23,7 +23,7 @@ jobs:
           
       - name: Update dependecy
         run: |
-          helm dependency update charts/ksm-cadvisor
+          helm repo add prometheus https://prometheus-community.github.io/helm-charts
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.1
