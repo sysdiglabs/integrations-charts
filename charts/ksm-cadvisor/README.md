@@ -1,6 +1,6 @@
 # KSM CaAdvisor
 
-This chart deploys a Prometheus alongside with the kubernetes state metrics and the recording rules needed for the 
+This chart deploys a Prometheus alongside with the kubernetes state metrics and the recording rules needed for the Dashboards and alerts.
 
 # Requirements
 * Helm v3
@@ -71,3 +71,8 @@ helm -n monitoring install ksm-cadvisor-test-chart ksm-cadvisor --repo=https://s
 --set prometheus.server.remoteWrite[0].write_relabel_configs[0].action=keep \
 --set prometheus.kubeStateMetrics.enabled=false
 ```
+
+# Attributions
+This helm chart is maintained by [Sysdig team](https://sysdig.com/).
+
+KSM and Prometheus [Chart](https://github.com/prometheus-community/helm-charts) with Apache v2 license.
