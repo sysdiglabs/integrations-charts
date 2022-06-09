@@ -1,0 +1,7 @@
+**/.idea
+**/.envrc
+**/deploy/**
+**/coverage.out
+**/tmp/**
+**/.vscode/**
+emptyfile
