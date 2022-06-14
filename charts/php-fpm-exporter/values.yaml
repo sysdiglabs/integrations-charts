@@ -1,8 +1,8 @@
 image:
-  repository: quay.io/sysdig/fpm-php-exporter
+  repository: quay.io/sysdig/php-fpm-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.0.1"
+  tag: "v2.3.0"
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -16,16 +16,17 @@ resources:
     cpu: 64m
     memory: 64Mi
 
+# The name of the integration
 integrationType: "php-fpm"
-  # The name of the integration
+  
 ubi: false
 
 env:
   web: 
-    listen-address: 9253
-    telemetry-path: /metrics
+    listen_address: 9253
+    telemetry_path: /metrics
   phpfpm:
-    scrape-uri: tcp://127.0.0.1:9000/status
-    fix-process-count: false
+    scrape_uri: tcp://127.0.0.1:9000/status
+    fix_process_count: false
   log: 
     level: info
