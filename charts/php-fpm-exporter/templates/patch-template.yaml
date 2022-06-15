@@ -1,0 +1,29 @@
+spec:
+  template:
+    metadata:
+      annotations:
+      {{- include "php-fpm-exporter.sysdigAnnotations" . | nindent 8 }}
+    spec:
+      containers:
+      - name: php-fpm-exporter
+        {{- if not .Values.ubi }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        {{- end }}
+        {{- if .Values.ubi }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
+        {{- end }}
+        ports:
+        - containerPort: {{ .Values.env.web.listen_address }}
+        env:
+        - name: PHP_FPM_WEB_LISTEN_ADDRESS
+          value: :{{ .Values.env.web.listen_address }}
+        - name: PHP_FPM_WEB_TELEMETRY_PATH
+          value: {{ .Values.env.web.telemetry_path }}
+        - name: PHP_FPM_SCRAPE_URI
+          value: {{ .Values.env.phpfpm.scrape_uri }}
+        - name: PHP_FPM_FIX_PROCESS_COUNT
+          value: "{{ .Values.env.phpfpm.fix_process_count }}"
+        - name: PHP_FPM_LOG_LEVEL
+          value: {{ .Values.env.log.level }}
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
