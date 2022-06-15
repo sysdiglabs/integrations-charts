@@ -779,6 +779,30 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/ntp-exporter-0.1.0/ntp-exporter-0.1.0.tgz
     version: 0.1.0
+  php-fpm-exporter:
+  - apiVersion: v2
+    appVersion: 2.2.0
+    created: "2022-06-15T09:17:04.339755987Z"
+    description: A Helm chart for the php-fpm prometheus integration
+    digest: c9415b8dd7a9710312ce11318fdb2ceb844874c441fa798f6c6e946c8bc0e4f0
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiego
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: php-fpm-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/php-fpm-exporter-0.0.1/php-fpm-exporter-0.0.1.tgz
+    version: 0.0.1
   postgresql-exporter:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -1024,4 +1048,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2022-06-03T11:21:42.870254597Z"
+generated: "2022-06-15T09:17:04.33990309Z"
