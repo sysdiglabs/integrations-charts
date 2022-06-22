@@ -50,6 +50,7 @@ spec:
           {{- else}}
           - --web.listen-address=:9108
           - --web.telemetry-path=/metrics
+          {{- end }}
           env:
           {{- if not .Values.secretURL }}
             - name: ES_URI
