@@ -1,0 +1,28 @@
+spec:
+  template:
+    metadata:
+      annotations:
+      {{- include "jmx-exporter.sysdigAnnotations" . | nindent 8 }}
+    spec:
+      containers:
+      - name: "{{ include "jmx-exporter.finalIntegrationName" . }}-jmx-exporter"
+        {{- if not .Values.ubi }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        {{- end }}
+        {{- if .Values.ubi }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
+        {{- end }}
+        ports:
+        - containerPort: {{ .Values.port }}
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /opt/jmx_exporter/config.yml
+          name: {{ include "jmx-exporter.finalConfigmapName" . }}
+          subPath: config.yml        
+      volumes:
+        - name: {{ include "jmx-exporter.finalConfigmapName" . }}
+          configMap:
+              name: {{ include "jmx-exporter.finalConfigmapName" . }}
