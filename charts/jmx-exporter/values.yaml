@@ -17,10 +17,10 @@ resources:
     memory: 64Mi
 
 # The type of integration (a 'bundled' one, or "custom")
-integrationType: "custom"
+integrationType: ""
 
 # In case of "custom" integration, the name of the integration
-customIntegrationTypeName: "asd"
+customIntegrationTypeName: ""
 
 # Custom name for the JMX configurations configmap 
 customJMXConfigMapName: ""
