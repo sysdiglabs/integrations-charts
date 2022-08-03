@@ -46,7 +46,7 @@ tls:
   insecureSkipVerify: false
   # The kafka server's name. Used to verify the hostname on the returned certificates unless tls.insecureSkipVerify is set to true.
   serverName: ""
-  mountPath: /secret/certs
+  mountPath: /secret/client/certs
   # secretName: <name of an existing secret>
 
 sasl:
@@ -76,7 +76,7 @@ server:
   tls:
     enabled: false
     mutualAuthEnabled: false
-    mountPath: /secret/certs
+    mountPath: /secret/server/certs
   # secretName: <name of an existing secret>
 
 
