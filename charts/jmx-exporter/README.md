@@ -15,7 +15,7 @@ To automatically generate a ConfigMap with those configurations inside, set the 
 ```
 helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=kafka
 
-helm template jmx ./charts/jmx-exporter --set jmx_port=7199 integrationType=cassandra
+helm template jmx ./charts/jmx-exporter --set jmx_port=7199 --set integrationType=cassandra
 ```
 
 Then deploy the ConfigMap, and apply the patch with the JMX-Exporter as a sidecar into your workload (deployment, statefulset...):
