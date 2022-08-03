@@ -1,5 +1,5 @@
 # Redis integration
-This helm chart part of the [integration of PromCat.io for redis](https://promcat.io/apps/redis) installs our version of the [Redis Prometheus exporter](https://github.com/oliver006/redis_exporter).
+This helm chart is part of the [integration of PromCat.io for redis](https://promcat.io/apps/redis) installs our version of the [Redis Prometheus exporter](https://github.com/oliver006/redis_exporter).
 
 Visit [PromCat.io](https://promcat.io/apps/redis) for dashboards, alerts and further documentation for this integration. 
 
