@@ -1,3 +1,4 @@
+{{ if not .Values.onlyCreateJMXConfigMap  }}
 spec:
   template:
     metadata:
@@ -26,3 +27,4 @@ spec:
         - name: {{ include "jmx-exporter.finalConfigmapName" . }}
           configMap:
               name: {{ include "jmx-exporter.finalConfigmapName" . }}
+{{- end }}

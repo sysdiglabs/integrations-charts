@@ -1,4 +1,4 @@
-{{ if contains "true" ( include "jmx-exporter.isBundledIntegration" . ) }}
+{{ if and (contains "true" ( include "jmx-exporter.isBundledIntegration" . ) ) ( not .Values.onlyCreateSidecarPatch ) }}
 apiVersion: v1
 kind: ConfigMap
 metadata:

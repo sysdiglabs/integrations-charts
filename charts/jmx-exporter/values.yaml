@@ -16,6 +16,12 @@ resources:
     cpu: 64m
     memory: 64Mi
 
+ubi: false
+
+port: 5556
+
+jmx_port: 9010
+
 # The type of integration (a 'bundled' one, or "custom")
 integrationType: ""
 
@@ -25,8 +31,5 @@ customIntegrationTypeName: ""
 # Custom name for the JMX configurations configmap 
 customJMXConfigMapName: ""
 
-ubi: false
-
-port: 5556
-
-jmx_port: 9010
+onlyCreateJMXConfigMap: false
+onlyCreateSidecarPatch: false

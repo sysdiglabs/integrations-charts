@@ -10,38 +10,40 @@ Visit [PromCat.io](https://promcat.io/) for dashboards, alerts and further docum
 
 This Helm chart comes bundled with production-ready JMX configurations for the following integrations: Kafka, Cassandra. 
 
-To automatically generate a ConfigMap with those configurations inside, set the 'integrationType' to the required integration, and the JMX port:
+To automatically generate a ConfigMap with those configurations inside, set the 'integrationType' to the required integration, the JMX port, and the flag 'onlyCreateJMXConfigMap' as true:
 
 ```
-helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=kafka
+helm -n yourNamespace install jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=kafka --set onlyCreateJMXConfigMap=true
 
-helm template jmx ./charts/jmx-exporter --set jmx_port=7199 --set integrationType=cassandra
+helm -n yourNamespace install jmx ./charts/jmx-exporter --set jmx_port=7199 --set integrationType=cassandra --set onlyCreateJMXConfigMap=true
 ```
 
-Then deploy the ConfigMap, and apply the patch with the JMX-Exporter as a sidecar into your workload (deployment, statefulset...):
+Then create the sidecar patch, and apply it to your application workload (possible values: deployment, statefulset, daemonset, pod). An example for a StatefulSet workload:
 ```
-kubectl apply -f jmx-config.yaml
+helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=kafka --set onlyCreateSidecarPatch=true > patch.yml
+or
+helm template jmx ./charts/jmx-exporter --set jmx_port=7199 --set integrationType=cassandra --set onlyCreateSidecarPatch=true > patch.yml
 
-kubectl patch statefulset kafka --patch-file patch-file.yaml
+kubectl -n yourNamespace patch sts yourStatefulSetWorkload --patch-file patch.yml
 ```
 
-If you want to use your own ConfigMap with your own JMX configurations, deploy it beforehand, use the "custom" value as the 'integrationType', set the 'customIntegrationTypeName' with the name of your application.
+If you want to use your own ConfigMap with your own JMX configurations, deploy it beforehand, use the "custom" value as the 'integrationType', and set the 'customIntegrationTypeName' with the name of your application.
 
 Examples:
 ```
-helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=custom --set customIntegrationTypeName=kafka
+helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=custom --set customIntegrationTypeName=kafka > patch.yml
 
-helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=custom --set customIntegrationTypeName=jenkins --set customJMXConfigMapName=my-jenkins-jmx-configmap
+helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=custom --set customIntegrationTypeName=jenkins --set customJMXConfigMapName=my-jenkins-jmx-configmap > patch.yml
 
-helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=custom --set customIntegrationTypeName=minecraft
+helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=custom --set customIntegrationTypeName=minecraft > patch.yml
 ```
 
-If you want the ConfigMap with the JMX configurations to have a different name than the custom "jmx-config", aset the 'customJMXConfigMapName' with your desired name:
+If you want the ConfigMap with the JMX configurations to have a different name than the custom "jmx-config", set the 'customJMXConfigMapName' with your desired name:
 
 ```
-helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=kafka  --set customJMXConfigMapName=my-kafka-jmx-configmap
+helm -n yourNamespace install template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=kafka --set onlyCreateJMXConfigMap=true --set customJMXConfigMapName=my-kafka-jmx-configmap
 
-helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=custom --set customIntegrationTypeName=jenkins --set customJMXConfigMapName=my-jenkins-jmx-configmap
+helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=custom --set customIntegrationTypeName=jenkins --set onlyCreateJMXConfigMap=true --set customJMXConfigMapName=my-jenkins-jmx-configmap > patch.yml
 ```
 
 # Attributions
