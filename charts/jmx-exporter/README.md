@@ -18,7 +18,7 @@ helm -n yourNamespace install jmx ./charts/jmx-exporter --set jmx_port=9010 --se
 helm -n yourNamespace install jmx ./charts/jmx-exporter --set jmx_port=7199 --set integrationType=cassandra --set onlyCreateJMXConfigMap=true
 ```
 
-Then create the sidecar patch, and apply it to your application workload (possible values: deployment, statefulset, daemonset, pod). An example for a StatefulSet workload:
+Then create the sidecar patch with the flag 'onlyCreateSidecarPatch' as true, and apply it to your application workload (possible values: deployment, statefulset, daemonset, pod). An example for a StatefulSet workload:
 ```
 helm template jmx ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=kafka --set onlyCreateSidecarPatch=true > patch.yml
 or
