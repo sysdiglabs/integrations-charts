@@ -126,7 +126,7 @@ spec:
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
 
-        {{- if or (.Values.tls.mountPath) (.Values.sasl.kerberos.mountPath) }}
+        {{- if or (and (.Values.tls.enabled) (.Values.tls.mountPath ) ) (and (.Values.sasl.enabled) (.Values.sasl.kerberos.mountPath) ) (and (.Values.server.tls.enabled) (.Values.server.tls.mountPath ) ) }}
         volumeMounts:
           {{- if .Values.tls.mountPath }}
           - mountPath: {{ .Values.tls.mountPath }}
@@ -145,7 +145,7 @@ spec:
           {{- end }}
         {{- end }}
 
-      {{- if or (.Values.tls.mountPath) (.Values.sasl.kerberos.mountPath) }}
+      {{- if or (and (.Values.tls.enabled) (.Values.tls.mountPath ) ) (and (.Values.sasl.enabled) (.Values.sasl.kerberos.mountPath) ) (and (.Values.server.tls.enabled) (.Values.server.tls.mountPath ) ) }}
       volumes:
         {{- if .Values.tls.mountPath }}
         - name: kafka-exporter-client-certs
