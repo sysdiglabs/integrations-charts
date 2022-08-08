@@ -1,5 +1,5 @@
 # Apache integration
-This helm chart part of the [integration of PromCat.io for Apache](https://promcat.io/apps/apache) and installs our version of the [apache Prometheus exporter](https://github.com/Lusitaniae/apache_exporter).
+This helm chart is part of the [integration of PromCat.io for Apache](https://promcat.io/apps/apache) and installs our version of the [apache Prometheus exporter](https://github.com/Lusitaniae/apache_exporter).
 
 Visit [PromCat.io](https://promcat.io/apps/apache) for dashboards, alerts and further documentation for this integration. 
 

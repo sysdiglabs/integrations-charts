@@ -1,5 +1,5 @@
 # PostgreSQL integration
-This helm chart part of the [integration of PromCat.io for PostgreSQL](https://promcat.io/apps/postgresql) and installs the [postgreSQL Prometheus exporter](https://github.com/wrouesnel/postgres_exporter).
+This helm chart is part of the [integration of PromCat.io for PostgreSQL](https://promcat.io/apps/postgresql) and installs the [postgreSQL Prometheus exporter](https://github.com/wrouesnel/postgres_exporter).
 
 Visit [PromCat.io](https://promcat.io/apps/postgresql) for dashboards, alerts and further documentation for this integration. 
 

@@ -1,5 +1,5 @@
 # Nginx integration
-This helm chart part of the [integration of PromCat.io for Nginx](https://promcat.io/apps/nginx) and installs our version of the [nginx Prometheus exporter](https://github.com/nginxinc/nginx-prometheus-exporter).
+This helm chart is part of the [integration of PromCat.io for Nginx](https://promcat.io/apps/nginx) and installs our version of the [nginx Prometheus exporter](https://github.com/nginxinc/nginx-prometheus-exporter).
 
 Visit [PromCat.io](https://promcat.io/apps/nginx) for dashboards, alerts and further documentation for this integration. 
 

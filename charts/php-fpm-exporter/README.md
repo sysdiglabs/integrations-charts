@@ -1,5 +1,5 @@
 # Php-fpm integration
-This helm chart part of the [integration of PromCat.io for Php-Fpm](https://promcat.io/apps/php-fpm) and installs our version of the [php-fpm Prometheus exporter](https://github.com/hipages/php-fpm_exporter).
+This helm chart is part of the [integration of PromCat.io for Php-Fpm](https://promcat.io/apps/php-fpm) and installs our version of the [php-fpm Prometheus exporter](https://github.com/hipages/php-fpm_exporter).
 
 Visit [PromCat.io](https://promcat.io/apps/php-fpm) for dashboards, alerts and further documentation for this integration. 
 
