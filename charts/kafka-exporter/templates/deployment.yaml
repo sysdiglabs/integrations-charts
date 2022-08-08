@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "kafka-exporter.exporterDeploymentName" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ .Values.exporterNamespaceName }}
   labels:
     {{- include "kafka-exporter.labels" . | nindent 4 }}
 spec:
@@ -128,17 +128,17 @@ spec:
 
         {{- if or (and (.Values.tls.enabled) (.Values.tls.mountPath ) ) (and (.Values.sasl.enabled) (.Values.sasl.kerberos.mountPath) ) (and (.Values.server.tls.enabled) (.Values.server.tls.mountPath ) ) }}
         volumeMounts:
-          {{- if .Values.tls.mountPath }}
+          {{- if and (.Values.tls.enabled) (.Values.tls.mountPath ) }}
           - mountPath: {{ .Values.tls.mountPath }}
             name: kafka-exporter-client-certs
             readOnly: true
           {{- end }}
-          {{- if .Values.sasl.kerberos.mountPath }}
+          {{- if and (.Values.sasl.enabled) (.Values.sasl.kerberos.mountPath) }}
           - mountPath: {{ .Values.sasl.kerberos.mountPath }}
             name: kafka-exporter-kerberos
             readOnly: true
           {{- end }}
-          {{- if .Values.server.tls.mountPath }}
+          {{- if and (.Values.server.tls.enabled) (.Values.server.tls.mountPath ) }}
           - mountPath: {{ .Values.server.tls.mountPath }}
             name: kafka-exporter-server-certs
             readOnly: true
@@ -147,17 +147,17 @@ spec:
 
       {{- if or (and (.Values.tls.enabled) (.Values.tls.mountPath ) ) (and (.Values.sasl.enabled) (.Values.sasl.kerberos.mountPath) ) (and (.Values.server.tls.enabled) (.Values.server.tls.mountPath ) ) }}
       volumes:
-        {{- if .Values.tls.mountPath }}
+        {{- if and (.Values.tls.enabled) (.Values.tls.mountPath ) }}
         - name: kafka-exporter-client-certs
           secret:
             secretName: {{ .Values.tls.secretName }}
         {{- end }}
-        {{- if .Values.sasl.kerberos.mountPath }}
+        {{- if and (.Values.sasl.enabled) (.Values.sasl.kerberos.mountPath) }}
         - name: kafka-exporter-kerberos
           secret:
             secretName: {{ .Values.sasl.kerberos.secretName }}
         {{- end }}
-        {{- if .Values.server.tls.mountPath }}
+        {{- if and (.Values.server.tls.enabled) (.Values.server.tls.mountPath ) }}
         - name: kafka-exporter-server-certs
           secret:
             secretName: {{ .Values.server.tls.secretName }}
