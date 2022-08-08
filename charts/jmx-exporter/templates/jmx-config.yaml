@@ -1,0 +1,10 @@
+{{ if and (contains "true" ( include "jmx-exporter.isBundledIntegration" . ) ) ( not .Values.onlyCreateSidecarPatch ) }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "jmx-exporter.finalConfigmapName" . }}
+data:
+  config.yml: |
+    jmxUrl: service:jmx:rmi:///jndi/rmi://localhost:{{ .Values.jmx_port }}/jmxrmi
+    {{- .Files.Get (printf "%s%s%s" "jmx-configs/" .Values.integrationType ".yml") | nindent 4 }}
+{{- end }}

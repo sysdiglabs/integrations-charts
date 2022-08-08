@@ -1,5 +1,5 @@
 # MySQL integration
-This helm chart part of the [integration of PromCat.io for mysql](https://promcat.io/apps/mysql) installs our version of the [MySQL Prometheus exporter](https://github.com/prometheus/mysqld_exporter).
+This helm chart is part of the [integration of PromCat.io for mysql](https://promcat.io/apps/mysql) installs our version of the [MySQL Prometheus exporter](https://github.com/prometheus/mysqld_exporter).
 
 Visit [PromCat.io](https://promcat.io/apps/mysql) for dashboards, alerts and further documentation for this integration. 
 
