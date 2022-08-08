@@ -86,7 +86,7 @@ namespaceName: "kafka"
 
 # The kubernetes workload type of the application the exporter will connect to. 
 # Possible values: deployment, statefulset, daemonset, pod
-workloadType: "deployment"
+workloadType: "statefulset"
 
 # The name of the workload of teh application that the exporter will connect to.
 workloadName: "kafka"
