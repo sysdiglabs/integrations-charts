@@ -1,5 +1,5 @@
 # Mongodb integration
-This helm chart part of the [integration of PromCat.io for mondogdb](https://promcat.io/apps/mongodb) installs our version of the [Mongodb Prometheus exporter](https://github.com/percona/mongodb_exporter).
+This helm chart is part of the [integration of PromCat.io for mondogdb](https://promcat.io/apps/mongodb) installs our version of the [Mongodb Prometheus exporter](https://github.com/percona/mongodb_exporter).
 
 Visit [PromCat.io](https://promcat.io/apps/mongodb) for dashboards, alerts and further documentation for this integration. 
 

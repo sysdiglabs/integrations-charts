@@ -1,5 +1,5 @@
 # NTP integration
-This helm chart part of the [integration of PromCat.io for NTP](https://promcat.io/apps/ntp) installs our version of the [NTP Prometheus exporter](https://github.com/sapcc/ntp_exporter).
+This helm chart is part of the [integration of PromCat.io for NTP](https://promcat.io/apps/ntp) installs our version of the [NTP Prometheus exporter](https://github.com/sapcc/ntp_exporter).
 
 Visit [PromCat.io](https://promcat.io/apps/ntp) for dashboards, alerts and further documentation for this integration. 
 
