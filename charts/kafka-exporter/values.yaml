@@ -88,7 +88,7 @@ namespaceName: "kafka"
 # Possible values: deployment, statefulset, daemonset, pod
 workloadType: "statefulset"
 
-# The name of the workload of teh application that the exporter will connect to.
+# The name of the workload of the application that the exporter will connect to.
 workloadName: "kafka"
 
 # The namespace where the exporter will be deployed
