@@ -91,9 +91,6 @@ workloadType: "statefulset"
 # The name of the workload of the application that the exporter will connect to.
 workloadName: "kafka"
 
-# The namespace where the exporter will be deployed
-exporterNamespaceName: "kafka"
-
 integrationType: "kafka"
 
 ubi: false
