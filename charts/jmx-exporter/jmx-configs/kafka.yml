@@ -2,7 +2,6 @@ lowercaseOutputName: true
 lowercaseOutputLabelNames: true
 whitelistObjectNames: [
   "kafka.log:type=Log,name=Size,topic=*,partition=*",
-  "kafka.cluster:type=Partition,name=UnderMinIsr,topic=*,partition=*",
   "kafka.server:type=ReplicaManager,name=UnderReplicatedPartitions",
   "kafka.server:type=ReplicaManager,name=UnderMinIsrPartitionCount",
   "kafka.server:type=ReplicaManager,name=LeaderCount",
@@ -44,14 +43,6 @@ rules:
   - pattern : kafka.server<type=ReplicaManager, name=UnderMinIsrPartitionCount><>Value
     name: kafka_server_under_isr_partitions
     type: GAUGE
-    help: "Number of partitions whose in-sync replicas count is less than mininum in sync replicas."
-
-  - pattern : kafka.cluster<type=Partition, name=UnderMinIsr, topic=(.+), partition=(.*)><>Value
-    name: kafka_cluster_under_minisr_partitions
-    type: GAUGE
-    labels:
-      topic: "$1"
-      partition: "$2"
     help: "Number of partitions whose in-sync replicas count is less than mininum in sync replicas."
 
   - pattern : kafka.server<type=ReplicaManager, name=LeaderCount><>Value
