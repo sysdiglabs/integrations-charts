@@ -390,6 +390,30 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/jmx-exporter-0.0.1/jmx-exporter-0.0.1.tgz
     version: 0.0.1
+  kafka-exporter:
+  - apiVersion: v2
+    appVersion: 1.4.2
+    created: "2022-08-10T06:41:04.367662543Z"
+    description: A Helm chart for the Kafka Prometheus integration
+    digest: eab79414b1d3e0a75fab7d193d066419582107f835209cade869236dfdd031e0
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiego
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: kafka-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/kafka-exporter-0.0.1/kafka-exporter-0.0.1.tgz
+    version: 0.0.1
   ksm-cadvisor:
   - apiVersion: v2
     appVersion: 2.34.0
@@ -1162,6 +1186,21 @@ entries:
   redis-exporter:
   - apiVersion: v2
     appVersion: "2"
+    created: "2022-08-10T06:41:04.511467482Z"
+    description: A Helm chart for the Redis prometheus integration
+    digest: abf5143af0a1e55daeb5d1c8b8e0f1683559a4f9c0c7808ff2987eb5a5415c7a
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    name: redis-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.8/redis-exporter-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: "2"
     created: "2022-08-08T06:46:48.115939483Z"
     description: A Helm chart for the ElasticSearch prometheus integration
     digest: 12a1c0bfafaf8f4a5b3b6968c68320837563fbdb06000c85f17dd4ba31e78d80
@@ -1280,4 +1319,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2022-08-09T08:59:16.547736186Z"
+generated: "2022-08-10T06:41:04.511628281Z"
