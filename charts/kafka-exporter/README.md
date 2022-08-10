@@ -23,7 +23,7 @@ helm install -n kafka my-kafka-exporter-release ./charts/kafka-exporter/ \
 
 Example of Kafka-Exporter with TLS auth:
 ```
-helm -n kafka install kafka-exporter promcat-charts/kafka-exporter
+helm install -n kafka my-kafka-exporter-release ./charts/kafka-exporter/ \
   --set namespaceName="kafka" \
   --set workloadType="statefulset" \
   --set workloadName="kafka" \
@@ -36,7 +36,7 @@ helm -n kafka install kafka-exporter promcat-charts/kafka-exporter
 
 Example of Kafka-Exporter with SASL+SCRAM auth:
 ```
-helm -n kafka install kafka-exporter promcat-charts/kafka-exporter
+helm install -n kafka my-kafka-exporter-release ./charts/kafka-exporter/ \
   --set namespaceName="kafka" \
   --set workloadType="statefulset" \
   --set workloadName="kafka" \
@@ -50,7 +50,7 @@ helm -n kafka install kafka-exporter promcat-charts/kafka-exporter
 
 Example of Kafka-Exporter with SASL+Kerberos auth:
 ```
-helm -n kafka install kafka-exporter promcat-charts/kafka-exporter
+helm install -n kafka my-kafka-exporter-release ./charts/kafka-exporter/ \
   --set namespaceName="kafka" \
   --set workloadType="statefulset" \
   --set workloadName="kafka" \
