@@ -18,8 +18,50 @@ helm install -n kafka my-kafka-exporter-release ./charts/kafka-exporter/ \
   --set namespaceName="kafka" \
   --set workloadType="statefulset" \
   --set workloadName="kafka" \
-  --set exporterNamespaceName="kafka" \
-  --set kafkaServer[0]=kafka-cp-kafka:9092 
+  --set kafkaServer[0]=kafka-cp-kafka:9092
+```
+
+Example of Kafka-Exporter with TLS auth:
+```
+helm -n kafka install kafka-exporter promcat-charts/kafka-exporter
+  --set namespaceName="kafka" \
+  --set workloadType="statefulset" \
+  --set workloadName="kafka" \
+  --set kafkaServer[0]=kafka-cp-kafka:9092 \
+  --set tls.enabled=true \
+  --set tls.insecureSkipVerify=false \
+  --set tls.serverName="kafkaServerName" \
+  --set tls.secretName="kafka-exporter-certs"
+```
+
+Example of Kafka-Exporter with SASL+SCRAM auth:
+```
+helm -n kafka install kafka-exporter promcat-charts/kafka-exporter
+  --set namespaceName="kafka" \
+  --set workloadType="statefulset" \
+  --set workloadName="kafka" \
+  --set kafkaServer[0]=kafka-cp-kafka:9092 \
+  --set sasl.enabled=true \
+  --set sasl.handshake=true \
+  --set sasl.scram.enabled=true \
+  --set sasl.scram.mechanism="plain" \
+  --set sasl.scram.secretName="kafka-exporter-sasl-scram"
+```
+
+Example of Kafka-Exporter with SASL+Kerberos auth:
+```
+helm -n kafka install kafka-exporter promcat-charts/kafka-exporter
+  --set namespaceName="kafka" \
+  --set workloadType="statefulset" \
+  --set workloadName="kafka" \
+  --set kafkaServer[0]=kafka-cp-kafka:9092 \
+  --set sasl.enabled=true \
+  --set sasl.handshake=true \
+  --set sasl.kerberos.enabled=true \
+  --set sasl.kerberos.serviceName="kerberos-service" \
+  --set sasl.kerberos.realm="kerberos-realm" \
+  --set sasl.kerberos.kerberosAuthType="keytabAuth" \
+  --set sasl.kerberos.secretName="kafka-exporter-sasl-kerberos"
 ```
 
 # Attributions
