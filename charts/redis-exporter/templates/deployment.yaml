@@ -33,5 +33,17 @@ spec:
         env:
         - name: REDIS_ADDR
           value: redis://{{ .Values.url.name }}:6379
+        {{- if and (.Values.auth.enabled) (.Values.auth.secretName) }}
+        - name: REDIS_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.auth.secretName | quote }}
+              key: user
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.auth.secretName | quote }}
+              key: password
+        {{- end }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
