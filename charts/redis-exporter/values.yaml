@@ -18,10 +18,15 @@ resources:
     cpu: 50m
     memory: 32Mi
 
+auth:
+  enabled: false
+  secretName: "redis-exporter-auth"
+    # The auth secret name in case auth is enabled in redis
+
 url:
   name: redis
 
-namespaceName: "sysdig-agent"
+namespaceName: "redis"
   # The namespace of the application that the exporter will connect to in order to generate metrics
 
 workloadType: "deployment"
@@ -29,9 +34,9 @@ workloadType: "deployment"
   # Possible values: deployment, statefulset, daemonset, pod
 
 workloadName: "redis"
-  # The name of the workload of teh application that the exporter will connect to.
+  # The name of the workload of the application that the exporter will connect to.
 
-exporterNamespaceName: "sysdig-agent"
+exporterNamespaceName: "redis"
   # The namespace where the exporter will be deployed
 
 integrationType: "redis"
