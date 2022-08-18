@@ -85,6 +85,8 @@ server:
     secretName:
 
 
+# The namespace where the exporter will be deployed
+exporterNamespaceName: ""
 
 # The namespace of the application that the exporter will connect to in order to generate metrics
 namespaceName: "kafka"
