@@ -37,39 +37,43 @@ env: []
 extraArgs: []
 
 # this allows the usage of tls connection to your kafka cluster based on a secret in tls format
-# mandatory keys:
-# ca.crt
-# tls.crt
-# tls.key
 tls:
   enabled: false
   insecureSkipVerify: false
   # The kafka server's name. Used to verify the hostname on the returned certificates unless tls.insecureSkipVerify is set to true.
   serverName: ""
   mountPath: /secret/client/certs
-  # secretName: <name of an existing secret>
+  # Name of an existing secret
+  # mandatory keys in the secret:
+  # ca.crt
+  # tls.crt
+  # tls.key
+  secretName: 
 
 sasl:
   enabled: false
   handshake: true
   scram:
     enabled: false
-    # mechanism: <plain|scram-sha512|scram-sha256>
+    #mechanism can be <plain|scram-sha512|scram-sha256>
+    mechanism: 
 
     # add username and password
-    # username:
-    # password:
+    username:
+    password:
 
     # or use an existing secret
-    # secretName: <name of an existing secret>
+    secretName: 
 
   kerberos:
     enabled: false
-    # serviceName:
-    # realm:
-    # kerberosAuthType: <keytabAuth|userAuth>
+    serviceName:
+    realm:
+    # kerberosAuthType can be <keytabAuth|userAuth>
+    kerberosAuthType:
     mountPath: /secret/kerberos
-    # secretName: <name of an existing secret>
+    # Name of an existing secret
+    secretName:
 
 # This enables TLS for web server
 server:
@@ -77,7 +81,8 @@ server:
     enabled: false
     mutualAuthEnabled: false
     mountPath: /secret/server/certs
-  # secretName: <name of an existing secret>
+    # Name of an existing secret
+    secretName:
 
 
 
