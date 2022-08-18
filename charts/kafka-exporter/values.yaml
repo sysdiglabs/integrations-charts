@@ -81,8 +81,8 @@ server:
     enabled: false
     mutualAuthEnabled: false
     mountPath: /secret/server/certs
-  # Name of an existing secret
-  secretName:
+    # Name of an existing secret
+    secretName:
 
 
 
