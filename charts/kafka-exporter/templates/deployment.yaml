@@ -2,7 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "kafka-exporter.exporterDeploymentName" . }}
+  {{- if .Values.exporterNamespaceName }}
+  namespace: {{ .Values.exporterNamespaceName }}
+  {{- else }}
   namespace: {{ .Release.Namespace }}
+  {{- end }}
   labels:
     {{- include "kafka-exporter.labels" . | nindent 4 }}
 spec:
