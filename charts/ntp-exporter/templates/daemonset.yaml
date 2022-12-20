@@ -30,7 +30,7 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
         {{- end }}
         args: [
-          "-ntp.server", { .Values.server }
+          "-ntp.server", {{ .Values.server }}
         ]
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
