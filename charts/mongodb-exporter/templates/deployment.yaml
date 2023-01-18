@@ -41,7 +41,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: {{ include "prometheus-mongodb-exporter.secretName" . }}
-                key: {{ .Values.existingSecret.key }}
+                key: {{ .Values.existingSecretKey }}
         {{- if .Values.env }}
         {{- range $key, $value := .Values.env }}
           - name: "{{ $key }}"
