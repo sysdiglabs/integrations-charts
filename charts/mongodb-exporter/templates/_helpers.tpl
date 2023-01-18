@@ -67,8 +67,8 @@ Create name of the exporter deployment
 Determine secret name, can either be the self-created of an existing one
 */}}
 {{- define "prometheus-mongodb-exporter.secretName" -}}
-{{- if .Values.existingSecret.name -}}
-    {{- .Values.existingSecret.name -}}
+{{- if .Values.existingSecret -}}
+    {{- .Values.existingSecret -}}
 {{- else -}}
     {{ include "mongodb-exporter.fullname" . }}
 {{- end -}}
