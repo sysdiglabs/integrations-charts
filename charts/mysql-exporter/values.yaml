@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: quay.io/sysdig/mysql-exporter
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.13.5"
+  tag: "v0.14.2"
 
 imagePullSecrets: []
 #  - name: regcred
