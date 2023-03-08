@@ -633,6 +633,36 @@ entries:
   ksm-cadvisor:
   - apiVersion: v2
     appVersion: 2.34.0
+    created: "2023-03-08T23:04:42.175795014Z"
+    dependencies:
+    - name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 15.5.*
+    description: A Helm chart for ksm-cadvisor integration
+    digest: af41ea1ded0393bf0fd3f53eafc297a83f3824e5c5becc8d85031b761f496e8f
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiego
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: ksm-cadvisor
+    sources:
+    - https://github.com/prometheus/prometheus
+    - https://github.com/kubernetes/kube-state-metrics
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/ksm-cadvisor-0.0.6/ksm-cadvisor-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
+    appVersion: 2.34.0
     created: "2022-06-03T11:21:42.869904589Z"
     dependencies:
     - name: prometheus
@@ -1873,4 +1903,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2023-03-01T12:59:59.73606395Z"
+generated: "2023-03-08T23:04:42.176192922Z"
