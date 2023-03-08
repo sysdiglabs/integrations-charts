@@ -72,6 +72,14 @@ helm -n monitoring install ksm-cadvisor-test-chart ksm-cadvisor --repo=https://s
 --set prometheus.kubeStateMetrics.enabled=false
 ```
 
+# Configure Custom Storage Class
+
+Sometimes we will need to change the storage class for Prometheus Server, in order to do that we can use the extra parameter `--set` and specify the following label.
+
+`--set prometheus.server.persistentVolume.storageClass=gp2`
+
+In this example we used `gp2` for AWS cluster, but for every customer service will be different.
+
 # Attributions
 This helm chart is maintained by [Sysdig team](https://sysdig.com/).
 
