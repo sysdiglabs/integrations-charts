@@ -47,10 +47,9 @@ spec:
           {{- end }}
           {{- if not .Values.tlsmode }}
           - --es.ssl-skip-verify
-          {{- else}}
-          - --web.listen-address=:9108
+          {{- end}}
+          - --web.listen-address=:{{ .Values.exporter.port }}
           - --web.telemetry-path=/metrics
-          {{- end }}
           env:
           {{- if not .Values.secretURL }}
             - name: ES_URI
@@ -86,7 +85,7 @@ spec:
             name: elasticsearch-tls-certs
           {{ end }}
           ports:
-          - containerPort: 9108
+          - containerPort: {{ .Values.exporter.port }}
             name: http
             protocol: TCP
           readinessProbe:
@@ -99,6 +98,10 @@ spec:
             periodSeconds: 5
             successThreshold: 1
             timeoutSeconds: 5
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml .Values.imagePullSecrets | nindent 8 }}
+      {{ end }}
       {{- if .Values.tlsmode }}
       volumes:
       - name: elasticsearch-tls-certs

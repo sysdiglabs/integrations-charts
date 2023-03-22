@@ -49,7 +49,7 @@ app.kubernetes.io/name: {{ include "elasticsearch-exporter.name" . }}
 Annotations
 */}}
 {{- define "elasticsearch-exporter.sysdigAnnotations" -}}
-promcat.sysdig.com/port: "9108"
+promcat.sysdig.com/port: "{{ .Values.exporter.port }}"
 promcat.sysdig.com/target_ns: {{ required "A valid namespace for the application must be passed in .Values.namespaceName" .Values.namespaceName | quote }}
 promcat.sysdig.com/target_workload_type: {{ required "A valid workload type for the application must be passed in .Values.workloadType" .Values.workloadType | quote }}
 promcat.sysdig.com/target_workload_name: {{ required "A valid workload name for the application must be passed in .Values.workloadName" .Values.workloadName | quote }}
