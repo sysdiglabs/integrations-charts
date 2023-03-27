@@ -43,6 +43,9 @@ url:
   http: http
   name: elasticsearch
   port: 9200
+  usernameKey: username
+  passwordKey: password
+  secretName: elastic-user-pass-secret
 secretURL: 
 secretTLS: elastic-tls-secret
 tlsmode: false

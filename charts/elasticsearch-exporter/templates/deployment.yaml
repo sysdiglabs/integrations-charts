@@ -36,6 +36,7 @@ spec:
           command:
           - elasticsearch_exporter
           - --es.all
+          - --es.uri={{ .Values.url.http }}://{{ .Values.url.name }}:{{ .Values.url.port }}
           - --es.indices
           - --es.indices_settings
           - --es.shards
@@ -51,16 +52,19 @@ spec:
           - --web.listen-address=:{{ .Values.exporter.port }}
           - --web.telemetry-path=/metrics
           env:
-          {{- if not .Values.secretURL }}
-            - name: ES_URI
-              value: {{ .Values.url.http }}://{{ .Values.url.name }}:{{ .Values.url.port }}
-          {{ end }}
-          {{- if .Values.secretURL }}
-            - name: ES_URI
+          {{- if .Values.url.usernameKey }}
+            - name: ES_USERNAME
               valueFrom:
                 secretKeyRef:
-                  key: url
-                  name: {{ .Values.secretURL}}
+                  name: {{ .Values.url.secretName }}
+                  key: {{ .Values.url.usernameKey }}
+          {{ end }}
+          {{- if .Values.url.passwordKey }}
+            - name: ES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.url.secretName }}
+                  key: {{ .Values.url.passwordKey }}
           {{ end }}
           lifecycle:
             preStop:
