@@ -45,8 +45,7 @@ url:
   port: 9200
   usernameKey: username
   passwordKey: password
-  secretName: elastic-user-pass-secret
-secretURL: 
+  secretName: 
 secretTLS: elastic-tls-secret
 tlsmode: false
 eck:

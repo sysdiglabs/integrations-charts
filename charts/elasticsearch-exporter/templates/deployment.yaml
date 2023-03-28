@@ -52,14 +52,12 @@ spec:
           - --web.listen-address=:{{ .Values.exporter.port }}
           - --web.telemetry-path=/metrics
           env:
-          {{- if .Values.url.usernameKey }}
+          {{- if .Values.url.secretName }}
             - name: ES_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.url.secretName }}
                   key: {{ .Values.url.usernameKey }}
-          {{ end }}
-          {{- if .Values.url.passwordKey }}
             - name: ES_PASSWORD
               valueFrom:
                 secretKeyRef:
