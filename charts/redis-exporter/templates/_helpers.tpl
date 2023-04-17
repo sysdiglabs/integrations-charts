@@ -43,6 +43,7 @@ Selector labels
 */}}
 {{- define "redis-exporter.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "redis-exporter.name" . }}
+app: redis-exporter
 {{- end }}
 
 {{/*
@@ -50,6 +51,7 @@ Annotations
 */}}
 {{- define "redis-exporter.sysdigAnnotations" -}}
 promcat.sysdig.com/port: "9121"
+promcat.sysdig.com/omit: "true"
 promcat.sysdig.com/target_ns: {{ required "A valid namespace for the application must be passed in .Values.namespaceName" .Values.namespaceName | quote }}
 promcat.sysdig.com/target_workload_type: {{ required "A valid workload type for the application must be passed in .Values.workloadType" .Values.workloadType | quote }}
 promcat.sysdig.com/target_workload_name: {{ required "A valid workload name for the application must be passed in .Values.workloadName" .Values.workloadName | quote }}
@@ -61,4 +63,11 @@ Create name of the exporter deployment
 */}}
 {{- define "redis-exporter.exporterDeploymentName" -}}
 {{- printf "%s-deploy" (include "redis-exporter.fullname" .) }}
+{{- end }}
+
+{{/*
+Create name of the exporter service
+*/}}
+{{- define "redis-exporter.exporterServiceName" -}}
+{{- printf "%s-svc" (include "redis-exporter.fullname" .) }}
 {{- end }}

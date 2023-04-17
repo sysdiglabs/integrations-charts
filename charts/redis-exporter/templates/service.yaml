@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ include "redis-exporter.exporterServiceName" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "redis-exporter.labels" . | nindent 4 }}
+spec:
+  selector:
+    {{- include "redis-exporter.selectorLabels" . | nindent 4 }}
+  clusterIP: None
+  ports:
+    - port: 9121
+      name: metrics
