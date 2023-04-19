@@ -49,7 +49,7 @@ url:
 secretTLS: elastic-tls-secret
 tlsmode: false
 eck:
-  enabled: "true"
+  enabled: "false"
   cluster:
     name: "elasticsearch"
     nodeSet: "default"
