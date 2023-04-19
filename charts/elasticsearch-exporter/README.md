@@ -7,19 +7,14 @@ Visit [PromCat.io](https://promcat.io/apps/elasticsearch) for dashboards, alerts
 * Helm v3
 
 # Prerequisites
-## Create The Secret For The URL
-#### Without Authentication
-```sh
-kubectl -n Your-Application-Namespace create secret generic elastic-url-secret \
-  --from-literal=url='http://SERVICE:PORT'
-```
 
-#### With Basic Auth
+If you are usin BASIC AUTH in order to connect to your Elasticsearch, then you will need to create a proper secret for those username and password needed to connect to your elasticsearch.
+
+## Create The Secret For The User and Password
 ```sh
-kubectl -n Your-Application-Namespace create secret generic elastic-url-secret \
-  --from-literal=url='https://USERNAME:PASSWORD@SERVICE:PORT'
+kubectl -n Your-Exporter-Namespace create secret generic elastic-user-pass-secret \
+  --from-literal=username='<your-username>' --from-literal=password='<your-password>'
 ```
-NOTE: You can use either http or https in the URL.
 
 # Usage
 
@@ -34,9 +29,18 @@ These variables are used to scope where the elastic search is running
 helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
-  --set workloadName="elasticsearch" \
-  --set secretURL="elastic-url-secret"
+  --set workloadName="elasticsearch"
 ```
+
+### ElasticSearch without custom certificates and Basic Auth
+```
+helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
+  --set namespaceName="logging" \
+  --set workloadType="statefulset" \
+  --set workloadName="elasticsearch" \
+  --set url.secretName="elastic-user-pass-secret"
+```
+
 ## ElasticSearch with custom certificates
 ### Create The Secret For The TLS certs
 Only needed in the case you are using https with custom certificates.
@@ -51,8 +55,16 @@ helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
   --set workloadName="elasticsearch" \
-  --set secretURL="elastic-url-secret" \
   --set secretTLS="elastic-tls-secret"
+```
+### ElasticSearch wit custom certificates and Basic Auth
+```
+helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
+  --set namespaceName="logging" \
+  --set workloadType="statefulset" \
+  --set workloadName="elasticsearch" \
+  --set secretTLS="elastic-tls-secret" \
+  --set url.secretName="elastic-user-pass-secret"
 ```
 
 # Attributions
