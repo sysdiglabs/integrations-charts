@@ -31,15 +31,12 @@ spec:
         ports:
           - containerPort: 9121
         env:
-        - name: REDIS_EXPORTER_IS_CLUSTER
-          value: "true"
         - name: REDIS_ADDR
-          value: "rediss://"
-        # {{- if .Values.redisTlsConfig.enabled }}
-        #   value: rediss://{{ .Values.url.name }}:{{ .Values.url.port }}
-        # {{- else }}
-        #   value: redis://{{ .Values.url.name }}:{{ .Values.url.port }}
-        # {{- end }}
+        {{- if .Values.redisTlsConfig.enabled }}
+          value: rediss://{{ .Values.url.name }}:{{ .Values.url.port }}
+        {{- else }}
+          value: redis://{{ .Values.url.name }}:{{ .Values.url.port }}
+        {{- end }}
         {{- if .Values.redisTlsConfig.enabled }}
         {{- if .Values.redisTlsConfig.skipTlsVerification }}
         - name: REDIS_EXPORTER_SKIP_TLS_VERIFICATION
