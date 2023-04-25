@@ -54,21 +54,19 @@ eck:
     name: "elasticsearch"
     nodeSet: "default"
 
-namespaceName: "sysdig-agent"
+sysdig:
+  namespaceName:
   # The namespace of the application that the exporter will connect to in order to generate metrics
-
-workloadType: "statefulset"
+  workloadType:
   # The kubernetes workload type of the application the exporter will connect to. 
   # Possible values: deployment, statefulset, daemonset, pod
-
-workloadName: "elastic-search"
+  workloadName:
   # The name of the workload of teh application that the exporter will connect to.
-
-exporterNamespaceName: "sysdig-agent"
+  exporterNamespaceName:
   # The namespace where the exporter will be deployed
-
-integrationType: "elasticsearch"
+  integrationType:
   # The name of the integration
+
 ubi: false
 
 exporter:

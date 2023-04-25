@@ -38,7 +38,12 @@ helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
   --set workloadName="elasticsearch" \
-  --set url.secretName="elastic-user-pass-secret"
+  --set url.secretName="elastic-user-pass-secret" \
+  --set sysdig.namespaceName="sysdig-agent" \
+  --set sysdig.workloadType="statefulset" \
+  --set sysdig.workloadName="elastic-search" \
+  --set sysdig.exporterNamespaceName="sysdig-agent" \
+  --set sysdig.integrationType="elasticsearch"
 ```
 
 ## ElasticSearch with custom certificates
@@ -55,7 +60,12 @@ helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set namespaceName="logging" \
   --set workloadType="statefulset" \
   --set workloadName="elasticsearch" \
-  --set secretTLS="elastic-tls-secret"
+  --set secretTLS="elastic-tls-secret" \
+  --set sysdig.namespaceName="sysdig-agent" \
+  --set sysdig.workloadType="statefulset" \
+  --set sysdig.workloadName="elastic-search" \
+  --set sysdig.exporterNamespaceName="sysdig-agent" \
+  --set sysdig.integrationType="elasticsearch"
 ```
 ### ElasticSearch wit custom certificates and Basic Auth
 ```
@@ -64,7 +74,12 @@ helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
   --set workloadType="statefulset" \
   --set workloadName="elasticsearch" \
   --set secretTLS="elastic-tls-secret" \
-  --set url.secretName="elastic-user-pass-secret"
+  --set url.secretName="elastic-user-pass-secret" \
+  --set sysdig.namespaceName="sysdig-agent" \
+  --set sysdig.workloadType="statefulset" \
+  --set sysdig.workloadName="elastic-search" \
+  --set sysdig.exporterNamespaceName="sysdig-agent" \
+  --set sysdig.integrationType="elasticsearch"
 ```
 
 # Attributions
