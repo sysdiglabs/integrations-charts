@@ -13,7 +13,11 @@ spec:
   template:
     metadata:
       annotations:
+      {{- if .Values.sysdig.namespaceName }}
       {{- include "redis-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{ else }}
+      {{- include "redis-exporter.prometheusAnnotations" . | nindent 8 }}
+      {{- end }}
       {{- with .Values.podAnnotations }}
           {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -29,7 +33,7 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
         {{- end }}   
         ports:
-          - containerPort: 9121
+          - containerPort: {{ .Values.port }}
         env:
         - name: REDIS_ADDR
           value: redis://{{ .Values.url.name }}:6379

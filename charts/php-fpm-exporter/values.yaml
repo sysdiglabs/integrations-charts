@@ -16,8 +16,9 @@ resources:
     cpu: 64m
     memory: 64Mi
 
-# The name of the integration
-integrationType: "php-fpm"
+sysdig:
+  # The name of the integration
+  integrationType:
   
 ubi: false
 

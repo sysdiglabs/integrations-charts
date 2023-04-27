@@ -2,7 +2,11 @@ spec:
   template:
     metadata:
       annotations:
+      {{- if .Values.sysdig.namespaceName }}
       {{- include "nginx-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{ else }}
+      {{- include "nginx-exporter.prometheusAnnotations" . | nindent 8 }}
+      {{- end }}
     spec:
       containers:
       - name: nginx-exporter
@@ -17,4 +21,4 @@ spec:
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
         ports:
-        - containerPort: 9113
+        - containerPort: {{ .Values.port }}

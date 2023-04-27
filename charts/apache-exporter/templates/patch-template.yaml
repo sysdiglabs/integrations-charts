@@ -3,7 +3,9 @@ spec:
   template:
     metadata:
       annotations:
+      {{- if .Values.integrationType }}
       {{- include "apache-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{- end }}
     spec:
       containers:
       - name: apache-exporter
@@ -17,7 +19,7 @@ spec:
           - "--scrape_uri"
           - "http://localhost/server-status/?auto"
         ports:
-        - containerPort: 9117   
+        - containerPort: {{ .Values.apache-exporter.port }}   
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
       - name: grok-exporter
@@ -28,7 +30,7 @@ spec:
         image:  "{{ .Values.image.grok.repository }}:{{ .Values.image.grok.tag }}-ubi"
       {{- end }}        
         ports:
-        - containerPort: 9144
+        - containerPort: {{ .Values.grok-exporter.port }}
         resources:
           limits:
             memory: "128Mi"

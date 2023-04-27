@@ -88,16 +88,16 @@ server:
 # The namespace where the exporter will be deployed
 exporterNamespaceName: ""
 
-# The namespace of the application that the exporter will connect to in order to generate metrics
-namespaceName: "kafka"
+exporterPort: 9308
 
-# The kubernetes workload type of the application the exporter will connect to. 
-# Possible values: deployment, statefulset, daemonset, pod
-workloadType: "statefulset"
-
-# The name of the workload of the application that the exporter will connect to.
-workloadName: "kafka"
-
-integrationType: "kafka"
+sysdig:
+  # The namespace of the application that the exporter will connect to in order to generate metrics
+  namespaceName:
+  # The kubernetes workload type of the application the exporter will connect to. 
+  # Possible values: deployment, statefulset, daemonset, pod
+  workloadType:
+  # The name of the workload of the application that the exporter will connect to.
+  workloadName:
+  integrationType:
 
 ubi: false

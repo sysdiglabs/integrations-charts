@@ -6,6 +6,16 @@ Visit [PromCat.io](https://promcat.io/apps/nginx) for dashboards, alerts and fur
 # Requirements
 * Helm v3
 
+## Sysdig configuration
+
+If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
+
+```
+  --set sysdig.integrationType="nginx"
+```
+
+- IntegrationType is the name of the integration
+
 # Usage
 
 Use the following options: 

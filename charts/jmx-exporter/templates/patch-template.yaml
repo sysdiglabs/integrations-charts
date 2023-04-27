@@ -3,7 +3,11 @@ spec:
   template:
     metadata:
       annotations:
+      {{- if .Values.sysdig.namespaceName }}
       {{- include "jmx-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{ else }}
+      {{- include "jmx-exporter.prometheusAnnotations" . | nindent 8 }}
+      {{- end }}
     spec:
       containers:
       - name: "{{ include "jmx-exporter.finalIntegrationName" . }}-jmx-exporter"

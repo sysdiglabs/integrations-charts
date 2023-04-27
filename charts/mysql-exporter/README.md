@@ -54,11 +54,26 @@ ssl-cert=/lib/cert/client-cert.pem
 Use the following command:
 
 ```
-helm install -n sysdig-agent my-release ./charts/mysql-exporter/ \
-  --set namespaceName="sysdig-agent" \
-  --set workloadType="statefulset" \
-  --set workloadName="mysql"
+helm install -n sysdig-agent my-release ./charts/mysql-exporter/
 ```
+
+## Sysdig configuration
+
+If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
+
+```
+  --set sysdig.namespaceName="sysdig-agent" \
+  --set sysdig.workloadType="statefulset" \
+  --set sysdig.workloadName="mysql" \
+  --set sysdig.exporterNamespaceName="mysql" \
+  --set sysdig.integrationType="mysql"
+```
+
+- NamespaceName is the namespace where the mysql search is running
+- WorkloadType is the workload type, can be: statefulset, deployment or daemonset
+- WorkloadName is the workload name of the mysql, usually the name of the statefulset
+- ExporterNamespaceName is the namespace where the exporter will be deployed
+- IntegrationType is the name of the integration
 
 # Attributions
 This helm chart is maintained by [Sysdig team](https://sysdig.com/).

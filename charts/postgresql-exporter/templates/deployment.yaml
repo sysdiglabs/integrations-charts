@@ -13,7 +13,11 @@ spec:
   template:
     metadata:
       annotations:
+      {{- if .Values.sysdig.integrationType }}
       {{- include "postgresql-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{ else }}
+      {{- include "postgresql-exporter.prometheusAnnotations" . | nindent 8 }}
+      {{- end }}
       {{- with .Values.podAnnotations }}
           {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -33,11 +37,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: metrics
-              containerPort: 9187
+              containerPort: {{ .Values.port }}
           readinessProbe:
             httpGet:
               path: /
-              port: 9187
+              port: {{ .Values.port }}
           env:
             - name: DATA_SOURCE_URI
               value: {{ include "postgresql-exporter.connectionString" . }}
