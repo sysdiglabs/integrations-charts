@@ -10,10 +10,7 @@ Visit [PromCat.io](https://promcat.io/apps/redis) for dashboards, alerts and fur
 ## Stand-alone Redis
 Use the following command:
 ```
-helm install -n sysdig-agent my-release ./charts/redis-exporter/ \
-  --set namespaceName="sysdig-agent" \
-  --set workloadType="deployment" \
-  --set workloadName="redis"
+helm install my-release ./charts/redis-exporter/
 ```
 
 ## Sysdig configuration
@@ -21,6 +18,7 @@ helm install -n sysdig-agent my-release ./charts/redis-exporter/ \
 If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
 
 ```
+helm install my-release ./charts/redis-exporter/ \
   --set sysdig.namespaceName="redis" \
   --set sysdig.workloadType="deployment" \
   --set sysdig.workloadName="redis" \

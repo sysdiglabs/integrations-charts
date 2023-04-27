@@ -54,7 +54,7 @@ ssl-cert=/lib/cert/client-cert.pem
 Use the following command:
 
 ```
-helm install -n sysdig-agent my-release ./charts/mysql-exporter/
+helm install my-release ./charts/mysql-exporter/
 ```
 
 ## Sysdig configuration
@@ -62,6 +62,7 @@ helm install -n sysdig-agent my-release ./charts/mysql-exporter/
 If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
 
 ```
+helm install my-release ./charts/mysql-exporter/ \
   --set sysdig.namespaceName="sysdig-agent" \
   --set sysdig.workloadType="statefulset" \
   --set sysdig.workloadName="mysql" \

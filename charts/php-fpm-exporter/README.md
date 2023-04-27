@@ -18,7 +18,7 @@ helm template php-fpm ./charts/php-fpm-exporter
 If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
 
 ```
-  --set sysdig.integrationType="php-fpm"
+helm template php-fpm ./charts/php-fpm-exporter --set sysdig.integrationType="php-fpm"
 ```
 
 - IntegrationType is the name of the integration

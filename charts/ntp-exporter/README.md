@@ -9,7 +9,7 @@ Visit [PromCat.io](https://promcat.io/apps/ntp) for dashboards, alerts and furth
 # Usage
 ## NTP
 ```
-helm install -n sysdig-agent my-release ./charts/ntp-exporter/ \
+helm install my-release ./charts/ntp-exporter/ \
   --set server="myNTPServer"
 ```
 
@@ -18,6 +18,8 @@ helm install -n sysdig-agent my-release ./charts/ntp-exporter/ \
 If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
 
 ```
+helm install my-release ./charts/ntp-exporter/ \
+  --set server="myNTPServer" \
   --set sysdig.namespaceName="sysdig-agent" \
   --set sysdig.workloadType="daemonset" \
   --set sysdig.workloadName="ntp" \

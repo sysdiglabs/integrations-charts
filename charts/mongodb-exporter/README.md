@@ -10,10 +10,7 @@ Visit [PromCat.io](https://promcat.io/apps/mongodb) for dashboards, alerts and f
 ## Stand-alone Mongodb
 Use the following command:
 ```
-helm install -n sysdig-agent my-release ./charts/mongodb-exporter/ \
-  --set namespaceName="sysdig-agent" \
-  --set workloadType="deployment" \
-  --set workloadName="mongodb"
+helm install my-release ./charts/mongodb-exporter/
 ```
 
 ## Sysdig configuration
@@ -21,6 +18,7 @@ helm install -n sysdig-agent my-release ./charts/mongodb-exporter/ \
 If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
 
 ```
+helm install my-release ./charts/mongodb-exporter/ \
   --set sysdig.namespaceName="sysdig-agent" \
   --set sysdig.workloadType="deployment" \
   --set sysdig.workloadName="mongodb" \

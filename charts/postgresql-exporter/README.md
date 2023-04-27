@@ -25,7 +25,7 @@ kubectl create -n sysdig-agent secret generic postgresql-exporter \
 ## Stand-alone PostgreSQL instance
 Use the following options: 
 ```
-helm install -n sysdig-agent my-release ./charts/postgresql-exporter/ \
+helm install my-release ./charts/postgresql-exporter/ \
   --set dbInstance.host="your-db-host"
 ```
 
@@ -34,6 +34,8 @@ helm install -n sysdig-agent my-release ./charts/postgresql-exporter/ \
 If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
 
 ```
+helm install my-release ./charts/postgresql-exporter/ \
+  --set dbInstance.host="your-db-host" \
   --set sysdig.namespaceName="postgres-ns" \
   --set sysdig.workloadType="deployment" \
   --set sysdig.workloadName="postgresdb" \

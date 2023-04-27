@@ -18,12 +18,12 @@ kubectl -n Your-Exporter-Namespace create secret generic elastic-user-pass-secre
 
 ## ElasticSearch without custom certificates
 ```
-helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/
+helm install my-release ./charts/elasticsearch-exporter/
 ```
 
 ### ElasticSearch without custom certificates and Basic Auth
 ```
-helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
+helm install my-release ./charts/elasticsearch-exporter/ \
   --set url.secretName="elastic-user-pass-secret"
 ```
 
@@ -37,12 +37,12 @@ kubectl create -n Your-Application-Namespace secret generic elastic-tls-secret \
   --from-file=root-ca.pem=/path/to/tls/ca-pem
 ```
 ```
-helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
+helm install my-release ./charts/elasticsearch-exporter/ \
   --set secretTLS="elastic-tls-secret"
 ```
 ### ElasticSearch wit custom certificates and Basic Auth
 ```
-helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
+helm install my-release ./charts/elasticsearch-exporter/ \
   --set secretTLS="elastic-tls-secret" \
   --set url.secretName="elastic-user-pass-secret"
 ```
@@ -52,6 +52,7 @@ helm install -n sysdig-agent my-release ./charts/elasticsearch-exporter/ \
 If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
 
 ```
+helm install my-release ./charts/elasticsearch-exporter/ \
   --set sysdig.namespaceName="sysdig-agent" \
   --set sysdig.workloadType="statefulset" \
   --set sysdig.workloadName="elastic-search" \

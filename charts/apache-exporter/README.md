@@ -18,6 +18,7 @@ helm template apache ./charts/apache-exporter
 If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
 
 ```
+helm template apache ./charts/apache-exporter \
   --set integrationType="apache"
 ```
 

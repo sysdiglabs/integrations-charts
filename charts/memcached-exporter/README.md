@@ -18,7 +18,7 @@ helm template memcached ./charts/memcached-exporter
 If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
 
 ```
-  --set sysdig.integrationType="memcached"
+helm template memcached ./charts/memcached-exporter --set sysdig.integrationType="memcached"
 ```
 
 - IntegrationType is the name of the integration

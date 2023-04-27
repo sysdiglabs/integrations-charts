@@ -51,7 +51,7 @@ helm template jenkins-jmx-exporter ./charts/jmx-exporter --set jmx_port=9010 --s
 If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
 
 ```
-  --set sysdig="true"
+helm -n yourNamespace install kafka-jmx-exporter ./charts/jmx-exporter --set jmx_port=9010 --set integrationType=kafka --set onlyCreateJMXConfigMap=true --set sysdig="true"
 ```
 
 # Attributions
