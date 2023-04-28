@@ -10,6 +10,8 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v0.11.2"
 
+port: 9187
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -46,12 +48,14 @@ tolerations: []
 
 affinity: {}
 
-namespaceName: ""
-workloadType: ""
-workloadName: ""
-exporterNamespaceName: "sysdig-agent"
 secretName: "postgresql-exporter"
-integrationType: "postgresql"
+
+sysdig:
+  namespaceName:
+  workloadType:
+  workloadName:
+  exporterNamespaceName:
+  integrationType:
 # The name of the integration
 
 dbInstance:
