@@ -12,6 +12,17 @@ Use the following options:
 ```
 helm template nginx ./charts/nginx-exporter
 ```
+
+## Sysdig configuration
+
+If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
+
+```
+helm template nginx ./charts/nginx-exporter --set sysdig.integrationType="nginx"
+```
+
+- IntegrationType is the name of the integration
+
 # Attributions
 This helm chart is maintained by [Sysdig team](https://sysdig.com/).
 

@@ -10,11 +10,27 @@ Visit [PromCat.io](https://promcat.io/apps/mongodb) for dashboards, alerts and f
 ## Stand-alone Mongodb
 Use the following command:
 ```
-helm install -n sysdig-agent my-release ./charts/mongodb-exporter/ \
-  --set namespaceName="sysdig-agent" \
-  --set workloadType="deployment" \
-  --set workloadName="mongodb"
+helm install my-release ./charts/mongodb-exporter/
 ```
+
+## Sysdig configuration
+
+If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
+
+```
+helm install my-release ./charts/mongodb-exporter/ \
+  --set sysdig.namespaceName="sysdig-agent" \
+  --set sysdig.workloadType="deployment" \
+  --set sysdig.workloadName="mongodb" \
+  --set sysdig.exporterNamespaceName="mongodb" \
+  --set sysdig.integrationType="mongodb"
+```
+
+- NamespaceName is the namespace where the mongodb is running
+- WorkloadType is the workload type, can be: statefulset, deployment or daemonset
+- WorkloadName is the workload name of the mongodb, usually the name of the statefulset
+- ExporterNamespaceName is the namespace where the exporter will be deployed
+- IntegrationType is the name of the integration
 
 # Attributions
 This helm chart is maintained by [Sysdig team](https://sysdig.com/).

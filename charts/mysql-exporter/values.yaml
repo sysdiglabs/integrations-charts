@@ -25,19 +25,17 @@ secretName: mysql-exporter
 port: "9104"
 sslmode: false
 
-namespaceName: "sysdig-agent"
+sysdig:
+  namespaceName:
   # The namespace of the application that the exporter will connect to in order to generate metrics
-
-workloadType: "statefulset"
+  workloadType:
   # The kubernetes workload type of the application the exporter will connect to. 
   # Possible values: deployment, statefulset, daemonset, pod
-
-workloadName: "mysql"
+  workloadName:
   # The name of the workload of teh application that the exporter will connect to.
-
-exporterNamespaceName: "mysql"
+  exporterNamespaceName:
   # The namespace where the exporter will be deployed
-
-integrationType: "mysql"
+  integrationType:
   # The name of the integration
+
 ubi: false

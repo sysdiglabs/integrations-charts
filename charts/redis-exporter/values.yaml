@@ -26,19 +26,19 @@ auth:
 url:
   name: redis
 
-namespaceName: "redis"
-  # The namespace of the application that the exporter will connect to in order to generate metrics
+port: 9121
 
-workloadType: "deployment"
+sysdig:
+  namespaceName:
+  # The namespace of the application that the exporter will connect to in order to generate metrics
+  workloadType:
   # The kubernetes workload type of the application the exporter will connect to. 
   # Possible values: deployment, statefulset, daemonset, pod
-
-workloadName: "redis"
+  workloadName:
   # The name of the workload of the application that the exporter will connect to.
-
-exporterNamespaceName: "redis"
+  exporterNamespaceName:
   # The namespace where the exporter will be deployed
-
-integrationType: "redis"
+  integrationType:
   # The name of the integration
+
 ubi: false

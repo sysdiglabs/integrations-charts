@@ -22,6 +22,9 @@ port: 5556
 
 jmx_port: 9010
 
+sysdig: "false"
+# set value to true wheh you want to install sysdig configuration
+ 
 # The type of integration (a 'bundled' one, or "custom")
 integrationType: ""
 

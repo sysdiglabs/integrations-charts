@@ -2,7 +2,11 @@ spec:
   template:
     metadata:
       annotations:
+      {{- if .Values.sysdig.integrationType }}
       {{- include "memcached-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{ else }}
+      {{- include "memcached-exporter.prometheusAnnotations" . | nindent 8 }}
+      {{- end }}
       {{- with .Values.podAnnotations }}
           {{- toYaml . | nindent 8 }}
       {{- end }}

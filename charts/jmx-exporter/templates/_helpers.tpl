@@ -39,3 +39,7 @@ Annotations
 promcat.sysdig.com/port: {{ required "A valid port number for the exporter must be passed in .Values.port" .Values.port | quote }}
 promcat.sysdig.com/integration_type: {{ include "jmx-exporter.finalIntegrationName" . | quote}}
 {{- end }}
+{{- define "jmx-exporter.prometheusAnnotations" -}}
+prometheus.io/scrape: "true"
+prometheus.io/port: {{ required "A valid port number for the exporter must be passed in .Values.port" .Values.port | quote }}
+{{- end }}

@@ -2,7 +2,11 @@ spec:
   template:
     metadata:
       annotations:
-      {{- include "php-fpm-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{- if .Values.sysdig.integrationType }}
+      {{- include "php-fp-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{ else }}
+      {{- include "php-fp-exporter.prometheusAnnotations" . | nindent 8 }}
+      {{- end }}
     spec:
       containers:
       - name: php-fpm-exporter

@@ -22,8 +22,14 @@ resources:
     memory: "64Mi"
     cpu: "32m"
 
-integrationType: "apache"
+integrationType:
   # The name of the integration
+
+apache-exporter:
+  port: 9117
+
+grok-exporter:
+  port: 9144
 
 imagePullSecrets: []
 
