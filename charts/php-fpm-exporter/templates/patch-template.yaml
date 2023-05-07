@@ -3,9 +3,9 @@ spec:
     metadata:
       annotations:
       {{- if .Values.sysdig.integrationType }}
-      {{- include "php-fp-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{- include "php-fpm-exporter.sysdigAnnotations" . | nindent 8 }}
       {{ else }}
-      {{- include "php-fp-exporter.prometheusAnnotations" . | nindent 8 }}
+      {{- include "php-fpm-exporter.prometheusAnnotations" . | nindent 8 }}
       {{- end }}
     spec:
       containers:
