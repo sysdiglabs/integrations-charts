@@ -1708,6 +1708,29 @@ entries:
   php-fpm-exporter:
   - apiVersion: v2
     appVersion: 2.2.0
+    created: "2023-05-17T13:22:25.21922711Z"
+    description: A Helm chart for the php-fpm prometheus integration
+    digest: a58a5f6771f52eab861ee6b95480b95c0035499c533aee6cfb5ab13ee8302cda
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiego
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: php-fpm-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/php-fpm-exporter-0.0.6/php-fpm-exporter-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
+    appVersion: 2.2.0
     created: "2023-04-28T09:35:23.5290891Z"
     description: A Helm chart for the php-fpm prometheus integration
     digest: 4a981c877c29cc5f120399a880a491c31d0a4cec49a343ce174847c8a0b2d68b
@@ -2248,4 +2271,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-28T09:35:23.871039927Z"
+generated: "2023-05-17T13:22:25.219663421Z"
