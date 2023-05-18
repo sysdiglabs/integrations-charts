@@ -48,7 +48,7 @@ spec:
           - --es.cluster_settings
           - --es.timeout=60s
           {{- if .Values.tlsmode }}
-          - --es.es.ca=/usr/share/elasticsearch/config/certs/ca.crt
+          - --es.ca=/usr/share/elasticsearch/config/certs/ca.crt
           {{- end }}
           {{- if not .Values.tlsmode }}
           - --es.ssl-skip-verify
