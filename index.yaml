@@ -1728,6 +1728,30 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/ntp-exporter-0.1.0/ntp-exporter-0.1.0.tgz
     version: 0.1.0
+  oracledb-exporter:
+  - apiVersion: v2
+    appVersion: 0.5.1
+    created: "2023-06-07T15:10:31.893927345Z"
+    description: A Helm chart for the OracleDB prometheus integration
+    digest: bfb1dfad2739314b5df29ee66d3666583718b6b37f14c3a1ec2a5a456a98e635
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: oracledb-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/oracledb-exporter-0.0.1/oracledb-exporter-0.0.1.tgz
+    version: 0.0.1
   php-fpm-exporter:
   - apiVersion: v2
     appVersion: 2.2.0
@@ -2294,4 +2318,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2023-05-18T07:46:51.4404816Z"
+generated: "2023-06-07T15:10:31.902289416Z"
