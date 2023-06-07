@@ -7,34 +7,35 @@ Visit [PromCat.io](https://promcat.io/apps/oracle-database) for dashboards, aler
 * Helm v3
 
 # Previous steps
-Create the secret with the Oracle Datasource in the namespace where the exporter will be deployed (by default, `sysdig-agent`):
+### Create OracleDB user and grant permission
+
+Create a user for monitoring in Oracle Database.
+
+Make sure you grant SELECT permission for the monitoring user on the following tables:
 
 ```
-# Secret ConfigMap
-apiVersion: v1
-kind: Secret
-metadata:
-  name:  oracledb-exporter-secret
-  namespace: database-namespace
-data:
-    # Add here the result of:
-    # echo -n YOUR_CONN_STRING | base64
-    # YOUR_CONN_STRING be like: oracle://system:YOUR-PASSWORD-FOR-SYSTEM@database:1521/DB_SID.DB_DOMAIN
-    datasource: XXX
-type: Opaque
+dba_tablespace_usage_metrics
+dba_tablespaces
+v$system_wait_class
+v$asm_diskgroup_stat
+v$datafile
+v$sysstat
+v$process
+v$waitclassmetric
+v$session
+v$resource_limit
 ```
 
-YOUR_CONN_STRING must be a value similar to this before encoding it with base64:
+
+### Create Credentials for OracleDB Exporter
+
+Create the secret with the Oracle Datasource in the namespace where the exporter will be deployed:
 
 ```
-oracle://user:password@localhost:1521/xe
+kubectl create secret -n 'EXPORTER-NAMESPACE' generic oracledb-exporter-secret --from-literal=datasource="YOUR_CONNECTION_STRING"
 ```
 
-Apply ConfigMap:
-
-```
-kubectl apply -f oracledb-exporter-secret.yaml
-```
+YOUR_CONN_STRING be like: `oracle://user:password@hostname:1521/DB_SID`
 
 # Usage
 ## Stand-alone Oracle Database instance

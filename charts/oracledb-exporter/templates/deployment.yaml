@@ -73,5 +73,3 @@ spec:
             defaultMode: 420
             name: {{ include "oracledb-exporter.metricsName" . }}
           name: custom-metrics
-#      imagePullSecrets:
-#      - name: gar-int-pullimage

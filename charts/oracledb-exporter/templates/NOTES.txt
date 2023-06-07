@@ -7,7 +7,8 @@
     export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l app.kubernetes.io/name={{ include "oracledb-exporter.name" . }} -o jsonpath="{.items[0].metadata.name}")
     kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 9161
         
-    a. Open http://localhost:9161/metrics
+    a. Open in a browser http://localhost:9161/metrics
+    or
     b. Execute:
         curl http://localhost:9161/metrics
 
