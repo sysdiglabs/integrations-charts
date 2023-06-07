@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "oracledb-exporter.exporterDeploymentName" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "oracledb-exporter.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "oracledb-exporter.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+      {{- if contains .Values.sysdig "true"}}
+      {{- include "oracledb-exporter.sysdigAnnotations" . | nindent 8 }}
+      {{ else }}
+      {{- include "oracledb-exporter.prometheusAnnotations" . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.podAnnotations }}
+          {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "oracledb-exporter.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          {{- if not .Values.ubi }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          {{- end }}
+          {{- if .Values.ubi }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
+          {{- end }}   
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: metrics
+              containerPort: {{ .Values.port }}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.port }}
+          env:
+            - name: DATA_SOURCE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName | quote }}
+                  key: datasource
+            - name: CUSTOM_METRICS
+              value: /tmp/custom-metrics.toml
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: custom-metrics
+              mountPath: /tmp/custom-metrics.toml
+              subPath: custom-metrics.toml
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: {{ include "oracledb-exporter.metricsName" . }}
+          name: custom-metrics
+#      imagePullSecrets:
+#      - name: gar-int-pullimage
