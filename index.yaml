@@ -1731,6 +1731,29 @@ entries:
   oracledb-exporter:
   - apiVersion: v2
     appVersion: 0.5.1
+    created: "2023-06-08T10:54:44.411339509Z"
+    description: A Helm chart for the OracleDB prometheus integration
+    digest: 8d64762f887ccc7517036e91f36eaecf2196303a9799fc26d2f3adb61d890309
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: oracledb-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/oracledb-exporter-0.0.2/oracledb-exporter-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 0.5.1
     created: "2023-06-07T15:10:31.893927345Z"
     description: A Helm chart for the OracleDB prometheus integration
     digest: bfb1dfad2739314b5df29ee66d3666583718b6b37f14c3a1ec2a5a456a98e635
@@ -2318,4 +2341,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2023-06-07T15:10:31.902289416Z"
+generated: "2023-06-08T10:54:44.411721614Z"
