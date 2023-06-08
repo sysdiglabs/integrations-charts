@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       annotations:
-      {{- if contains .Values.sysdig "true"}}
+      {{- if .Values.integrationType }}
       {{- include "oracledb-exporter.sysdigAnnotations" . | nindent 8 }}
       {{ else }}
       {{- include "oracledb-exporter.prometheusAnnotations" . | nindent 8 }}
