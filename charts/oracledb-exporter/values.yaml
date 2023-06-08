@@ -53,7 +53,7 @@ secretName: "oracledb-exporter-secret"
 sysdig: "false"
 # set value to true wheh you want to install sysdig configuration
  
-integrationType: ""
+integrationType: "oracledb"
 
 dataSourceName: ""
 
