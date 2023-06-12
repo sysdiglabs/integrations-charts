@@ -49,17 +49,14 @@ port: "9216"
 sslmode: false
 tlsmode: false
 
-sysdig:
-  namespaceName:
-  # The namespace of the application that the exporter will connect to in order to generate metrics
-  workloadType:
-  # The kubernetes workload type of the application the exporter will connect to. 
-  # Possible values: deployment, statefulset, daemonset, pod
-  workloadName:
-  # The name of the workload of teh application that the exporter will connect to.
-  exporterNamespaceName:
-  # The namespace where the exporter will be deployed
-  integrationType:
-  # The name of the integration
+namespaceName: "mongodb"
+# The namespace of the application that the exporter will connect to in order to generate metrics
+workloadType: "deployment"
+# The kubernetes workload type of the application the exporter will connect to. 
+# Possible values: deployment, statefulset, daemonset, pod
+workloadName: "mongodb"
+# The name of the workload of teh application that the exporter will connect to.
+exporterNamespaceName:
+# The namespace where the exporter will be deployed
 
 ubi: false
