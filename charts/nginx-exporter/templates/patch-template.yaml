@@ -2,7 +2,7 @@ spec:
   template:
     metadata:
       annotations:
-      {{- if .Values.sysdig.namespaceName }}
+      {{- if .Values.integrationType }}
       {{- include "nginx-exporter.sysdigAnnotations" . | nindent 8 }}
       {{ else }}
       {{- include "nginx-exporter.prometheusAnnotations" . | nindent 8 }}

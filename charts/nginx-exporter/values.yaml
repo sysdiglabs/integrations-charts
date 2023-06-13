@@ -16,8 +16,7 @@ resources:
     cpu: 64m
     memory: 64Mi
 
-sysdig:
-  integrationType:
+integrationType:
   # The name of the integration
 
 ubi: false
