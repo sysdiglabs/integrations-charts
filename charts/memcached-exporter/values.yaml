@@ -2,7 +2,7 @@ image:
   repository: quay.io/sysdig/memcached-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.10.3"
+  tag: "v0.10.6"
 
 
 resources: 
@@ -17,10 +17,8 @@ resources:
     memory: "64Mi"
     cpu: "32m"
 
-sysdig:
-  integrationType:
-
-imagePullSecrets: []
+# This value is only used in Sysdig annotations
+integrationType:
 
 port: 9150
 url:

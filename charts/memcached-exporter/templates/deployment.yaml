@@ -2,7 +2,7 @@ spec:
   template:
     metadata:
       annotations:
-      {{- if .Values.sysdig.integrationType }}
+      {{- if .Values.integrationType }}
       {{- include "memcached-exporter.sysdigAnnotations" . | nindent 8 }}
       {{ else }}
       {{- include "memcached-exporter.prometheusAnnotations" . | nindent 8 }}
@@ -18,13 +18,13 @@ spec:
         {{- end }}
         {{- if .Values.ubi }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
-        {{- end }}        
+        {{- end }} 
+        {{- if ne .Values.url.name ""}}
+        command:
+        - memcached_exporter
+        - --memcached.address={{ .Values.url.name }}:11211
+        {{- end }}       
         ports:
           - containerPort: {{ .Values.port }}
-        env:
-        {{- if ne .Values.url.name ""}}
-        - name: MEMCACHED_ADDR
-          value: {{ .Values.url.name }}
-        {{- end }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
