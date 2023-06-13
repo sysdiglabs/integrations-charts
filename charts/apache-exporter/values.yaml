@@ -31,7 +31,5 @@ apache-exporter:
 grok-exporter:
   port: 9144
 
-imagePullSecrets: []
-
 configmap: false
 ubi: false

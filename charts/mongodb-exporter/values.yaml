@@ -5,7 +5,6 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v0.11.10"
 
-imagePullSecrets: []
 #  - name: regcred
 
 resources: 
@@ -55,7 +54,7 @@ workloadType: "deployment"
 # The kubernetes workload type of the application the exporter will connect to. 
 # Possible values: deployment, statefulset, daemonset, pod
 workloadName: "mongodb"
-# The name of the workload of teh application that the exporter will connect to.
+# The name of the workload of the application that the exporter will connect to.
 exporterNamespaceName:
 # The namespace where the exporter will be deployed
 

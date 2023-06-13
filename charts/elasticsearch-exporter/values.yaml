@@ -6,8 +6,6 @@ image:
   tag: "v1.3.8"
   pullPolicy: "IfNotPresent"
 
-imagePullSecrets: []
-
 securityContext:
   capabilities:
     drop:

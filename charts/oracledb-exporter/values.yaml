@@ -12,7 +12,6 @@ image:
 
 port: 9161
 
-imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
@@ -51,7 +50,7 @@ affinity: {}
 secretName: "oracledb-exporter-secret"
 
 sysdig: "false"
-# set value to true wheh you want to install sysdig configuration
+# set value to true when you want to install sysdig configuration
  
 integrationType: "oracledb"
 
