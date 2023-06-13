@@ -60,7 +60,7 @@ workloadType: "statefulset"
 workloadName: "elasticsearch"
 # The name of the workload of the application that the exporter will connect to.
 exporterNamespaceName:
-# The namespace where the exporter will be deployed
+# The namespace where the exporter will be deployed (only used by Sysdig)
 
 ubi: false
 

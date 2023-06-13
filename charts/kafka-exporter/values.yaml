@@ -85,7 +85,7 @@ server:
     secretName:
 
 
-# The namespace where the exporter will be deployed
+# The namespace where the exporter will be deployed (only used by Sysdig)
 exporterNamespaceName:
 
 exporterPort: 9308
