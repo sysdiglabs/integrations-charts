@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-      {{- if .Values.sysdig.namespaceName }}
+      {{- if .Values.exporterNamespaceName }}
       {{- include "kafka-exporter.sysdigAnnotations" . | nindent 8 }}
       {{ else }}
       {{- include "kafka-exporter.prometheusAnnotations" . | nindent 8 }}
