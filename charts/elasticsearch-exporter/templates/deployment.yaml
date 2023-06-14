@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       annotations:
-      {{- if .Values.sysdig.namespaceName }}
+      {{- if .Values.exporterNamespaceName }}
       {{- include "elasticsearch-exporter.sysdigAnnotations" . | nindent 8 }}
       {{ else }}
       {{- include "elasticsearch-exporter.prometheusAnnotations" . | nindent 8 }}

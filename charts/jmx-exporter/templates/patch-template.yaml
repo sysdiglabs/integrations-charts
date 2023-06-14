@@ -3,7 +3,7 @@ spec:
   template:
     metadata:
       annotations:
-      {{- if contains .Values.sysdig "true"}}
+      {{- if .Values.sysdigAnnotations }}
       {{- include "jmx-exporter.sysdigAnnotations" . | nindent 8 }}
       {{ else }}
       {{- include "jmx-exporter.prometheusAnnotations" . | nindent 8 }}

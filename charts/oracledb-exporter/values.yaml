@@ -12,7 +12,6 @@ image:
 
 port: 9161
 
-imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
@@ -56,9 +55,9 @@ workloadType: "statefulset"
 # The kubernetes workload type of the application the exporter will connect to. 
 # Possible values: deployment, statefulset, daemonset, pod
 workloadName: "oracledb"
-# The name of the workload of teh application that the exporter will connect to.
+# The name of the workload of the application that the exporter will connect to.
 exporterNamespaceName:
-# The namespace where the exporter will be deployed 
+# The namespace where the exporter will be deployed
 
 dataSourceName: ""
 

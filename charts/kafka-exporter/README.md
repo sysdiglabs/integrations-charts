@@ -52,24 +52,6 @@ helm install my-kafka-exporter-release ./charts/kafka-exporter/ \
   --set sasl.kerberos.secretName="kafka-exporter-sasl-kerberos"
 ```
 
-## Sysdig configuration
-
-If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
-
-```
-helm install my-kafka-exporter-release ./charts/kafka-exporter/ \
-  --set kafkaServer[0]=kafka-cp-kafka:9092 \
-  --set sysdig.namespaceName="kafka" \
-  --set sysdig.workloadType="statefulset" \
-  --set sysdig.workloadName="kafka" \
-  --set sysdig.integrationType="kafka"
-```
-
-- NamespaceName is the namespace where the kafka is running
-- WorkloadType is the workload type, can be: statefulset, deployment or daemonset
-- WorkloadName is the workload name of the kafka, usually the name of the statefulset
-- IntegrationType is the name of the integration
-
 # Attributions
 This helm chart is maintained by [Sysdig team](https://sysdig.com/).
 

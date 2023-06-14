@@ -50,10 +50,10 @@ Annotations
 */}}
 {{- define "elasticsearch-exporter.sysdigAnnotations" -}}
 promcat.sysdig.com/port: "{{ .Values.exporter.port }}"
-promcat.sysdig.com/target_ns: {{ required "A valid namespace for the application must be passed in .Values.sysdig.namespaceName" .Values.sysdig.namespaceName | quote }}
-promcat.sysdig.com/target_workload_type: {{ required "A valid workload type for the application must be passed in .Values.sysdig.workloadType" .Values.sysdig.workloadType | quote }}
-promcat.sysdig.com/target_workload_name: {{ required "A valid workload name for the application must be passed in .Values.sysdig.workloadName" .Values.sysdig.workloadName | quote }}
-promcat.sysdig.com/integration_type: {{ required "A valid integration type name for the application must be passed in .Values.sysdig.integrationType" .Values.sysdig.integrationType | quote }}
+promcat.sysdig.com/target_ns: {{ required "A valid namespace for the application must be passed in .Values.namespaceName" .Values.namespaceName | quote }}
+promcat.sysdig.com/target_workload_type: {{ required "A valid workload type for the application must be passed in .Values.workloadType" .Values.workloadType | quote }}
+promcat.sysdig.com/target_workload_name: {{ required "A valid workload name for the application must be passed in .Values.workloadName" .Values.workloadName | quote }}
+promcat.sysdig.com/integration_type: "elasticsearch"
 {{- end }}
 
 {{- define "elasticsearch-exporter.prometheusAnnotations" -}}
