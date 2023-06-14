@@ -22,16 +22,14 @@ resources:
     memory: "64Mi"
     cpu: "32m"
 
+# This value is only used in Sysdig annotations
 integrationType:
-  # The name of the integration
 
-apache-exporter:
+apacheExporter:
   port: 9117
 
-grok-exporter:
+grokExporter:
   port: 9144
-
-imagePullSecrets: []
 
 configmap: false
 ubi: false

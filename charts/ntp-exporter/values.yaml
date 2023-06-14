@@ -5,8 +5,6 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v2.1.1"
 
-imagePullSecrets: []
-
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -21,17 +19,14 @@ resources:
 
 server: 
 
-sysdig:
-  namespaceName:
-  # The namespace of the application that the exporter will connect to in order to generate metrics
-  workloadType:
-  # The kubernetes workload type of the application the exporter will connect to. 
-  # Possible values: deployment, statefulset, daemonset, pod
-  workloadName:
-  # The name of the workload of teh application that the exporter will connect to.
-  exporterNamespaceName:
-  # The namespace where the exporter will be deployed
-  integrationType:
-  # The name of the integration
+namespaceName: "ntp"
+# The namespace of the application that the exporter will connect to in order to generate metrics
+workloadType: "daemonset"
+# The kubernetes workload type of the application the exporter will connect to. 
+# Possible values: deployment, statefulset, daemonset, pod
+workloadName: "ntp"
+# The name of the workload of the application that the exporter will connect to.
+exporterNamespaceName:
+# The namespace where the exporter will be deployed
 
 ubi: false

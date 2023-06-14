@@ -47,27 +47,6 @@ helm install my-release ./charts/elasticsearch-exporter/ \
   --set url.secretName="elastic-user-pass-secret"
 ```
 
-## Sysdig configuration
-
-If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
-
-```
-helm install my-release ./charts/elasticsearch-exporter/ \
-  --set sysdig.namespaceName="sysdig-agent" \
-  --set sysdig.workloadType="statefulset" \
-  --set sysdig.workloadName="elastic-search" \
-  --set sysdig.exporterNamespaceName="sysdig-agent" \
-  --set sysdig.integrationType="elasticsearch"
-```
-
-- NamespaceName is the namespace where the elastic search is running
-- WorkloadType is the workload type, can be: statefulset, deployment or daemonset
-- WorkloadName is the workload name of the elasticsearch, usually the name of the statefulset
-- ExporterNamespaceName is the namespace where the exporter will be deployed
-- IntegrationType is the name of the integration
-
-These variables are used to scope where the elastic search is running
-
 # Attributions
 This helm chart is maintained by [Sysdig team](https://sysdig.com/).
 

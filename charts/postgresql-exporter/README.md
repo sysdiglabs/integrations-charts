@@ -28,27 +28,6 @@ Use the following options:
 helm install my-release ./charts/postgresql-exporter/ \
   --set dbInstance.host="your-db-host"
 ```
-
-## Sysdig configuration
-
-If you want to apply Sysdig configuration to these helm commands, add these other params to each helm command:
-
-```
-helm install my-release ./charts/postgresql-exporter/ \
-  --set dbInstance.host="your-db-host" \
-  --set sysdig.namespaceName="postgres-ns" \
-  --set sysdig.workloadType="deployment" \
-  --set sysdig.workloadName="postgresdb" \
-  --set sysdig.exporterNamespaceName= "sysdig-agent" \
-  --set sysdig.integrationType="postgresql"
-```
-
-- NamespaceName is the namespace where the postgresql is running
-- WorkloadType is the workload type, can be: statefulset, deployment or daemonset
-- WorkloadName is the workload name of the postgresql, usually the name of the statefulset
-- ExporterNamespaceName is the namespace where the exporter will be deployed
-- IntegrationType is the name of the integration
-
 # Attributions
 This helm chart is maintained by [Sysdig team](https://sysdig.com/).
 
