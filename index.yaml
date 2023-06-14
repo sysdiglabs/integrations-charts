@@ -1464,6 +1464,29 @@ entries:
   nginx-exporter:
   - apiVersion: v2
     appVersion: 1.17.0
+    created: "2023-06-14T09:36:58.830883767Z"
+    description: A Helm chart for the nginx prometheus integration
+    digest: d8c88949115c5f0c1142bc0814886a017498867ce405478b6e6715149987cecf
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: nginx-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/nginx-exporter-0.2.0/nginx-exporter-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.17.0
     created: "2023-04-28T09:35:23.229288512Z"
     description: A Helm chart for the nginx prometheus integration
     digest: 9d0c33b03fea91377a41bbc17b91e26613f2482e343d1b5b2fb7a2f3f5e19a55
@@ -1616,6 +1639,29 @@ entries:
   ntp-exporter:
   - apiVersion: v2
     appVersion: "2"
+    created: "2023-06-14T09:36:58.999515334Z"
+    description: A Helm chart for the NTP prometheus integration
+    digest: 6f57534fc38e4d2f1df7dbf4dcf420d360e8a86cd6190806f5ef0e3a49bc77be
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: ntp-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/ntp-exporter-0.1.6/ntp-exporter-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: "2"
     created: "2023-04-28T09:35:23.388919789Z"
     description: A Helm chart for the NTP prometheus integration
     digest: 33bf98e89c52a61a856cc1b6ab8b6a864b85c1aadd90f98e963ec50a679b8670
@@ -1731,6 +1777,29 @@ entries:
   oracledb-exporter:
   - apiVersion: v2
     appVersion: 0.5.1
+    created: "2023-06-14T09:36:59.194571478Z"
+    description: A Helm chart for the OracleDB prometheus integration
+    digest: 0f8465c81b9f6cf1beb1d063e39c9499baaa68247f57e35a92eb90c87d68900d
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: oracledb-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/oracledb-exporter-0.0.4/oracledb-exporter-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: 0.5.1
     created: "2023-06-08T13:52:11.701257208Z"
     description: A Helm chart for the OracleDB prometheus integration
     digest: 850961a490251c193c2a4b893fa232b4ebd8bfb1f783d71cd987559c28f7745e
@@ -1799,6 +1868,29 @@ entries:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/oracledb-exporter-0.0.1/oracledb-exporter-0.0.1.tgz
     version: 0.0.1
   php-fpm-exporter:
+  - apiVersion: v2
+    appVersion: 2.2.0
+    created: "2023-06-14T09:36:59.391118237Z"
+    description: A Helm chart for the php-fpm prometheus integration
+    digest: bac6bab681aa938c4de77765ad346a2f12ce4e6fd47408483f4ca9f0736e2fc9
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiego
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: php-fpm-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/php-fpm-exporter-0.0.7/php-fpm-exporter-0.0.7.tgz
+    version: 0.0.7
   - apiVersion: v2
     appVersion: 2.2.0
     created: "2023-05-17T13:22:25.21922711Z"
@@ -1938,6 +2030,29 @@ entries:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/php-fpm-exporter-0.0.1/php-fpm-exporter-0.0.1.tgz
     version: 0.0.1
   postgresql-exporter:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-06-14T09:36:59.570893721Z"
+    description: A Helm chart for the postgreSQL prometheus integration
+    digest: 0c19f709426893f7ec4b4426119f7acfc7d5edd393df56c8d6c1950e94f3abc2
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: postgresql-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/postgresql-exporter-0.1.14/postgresql-exporter-0.1.14.tgz
+    version: 0.1.14
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-04-28T09:35:23.687715711Z"
@@ -2155,6 +2270,29 @@ entries:
   redis-exporter:
   - apiVersion: v2
     appVersion: "2"
+    created: "2023-06-14T09:36:59.757374075Z"
+    description: A Helm chart for the Redis prometheus integration
+    digest: 5759bc804c6f4532068e4cdf484504e054e3b2d9e72190a0677eb553adeb9ded
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: redis-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.13/redis-exporter-0.1.13.tgz
+    version: 0.1.13
+  - apiVersion: v2
+    appVersion: "2"
     created: "2023-04-28T09:35:23.870569997Z"
     description: A Helm chart for the Redis prometheus integration
     digest: d73b4ef3da2ee11d28e50ae7d57c1d6374f3a039551c2118a771a7c7d68de534
@@ -2364,4 +2502,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2023-06-08T13:52:11.701598613Z"
+generated: "2023-06-14T09:36:59.757930381Z"
