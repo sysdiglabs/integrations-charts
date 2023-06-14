@@ -19,7 +19,7 @@ spec:
           - "--scrape_uri"
           - "http://localhost/server-status/?auto"
         ports:
-        - containerPort: {{ .Values.apache-exporter.port }}   
+          - containerPort: {{ .Values.apacheExporter.port }}   
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
       - name: grok-exporter
@@ -30,7 +30,7 @@ spec:
         image:  "{{ .Values.image.grok.repository }}:{{ .Values.image.grok.tag }}-ubi"
       {{- end }}        
         ports:
-        - containerPort: {{ .Values.grok-exporter.port }}
+          - containerPort: {{ .Values.grokExporter.port }}
         resources:
           limits:
             memory: "128Mi"
