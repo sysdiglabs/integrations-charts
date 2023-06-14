@@ -49,13 +49,15 @@ affinity: {}
 
 secretName: "postgresql-exporter"
 
-sysdig:
-  namespaceName:
-  workloadType:
-  workloadName:
-  exporterNamespaceName:
-  integrationType:
-# The name of the integration
+namespaceName: "postgresql"
+# The namespace of the application that the exporter will connect to in order to generate metrics
+workloadType: "statefulset"
+# The kubernetes workload type of the application the exporter will connect to. 
+# Possible values: deployment, statefulset, daemonset, pod
+workloadName: "postgresql"
+# The name of the workload of teh application that the exporter will connect to.
+exporterNamespaceName:
+# The namespace where the exporter will be deployed
 
 dbInstance:
   host: "localhost"

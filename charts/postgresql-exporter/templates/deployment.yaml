@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       annotations:
-      {{- if .Values.sysdig.integrationType }}
+      {{- if .Values.exporterNamespaceName }}
       {{- include "postgresql-exporter.sysdigAnnotations" . | nindent 8 }}
       {{ else }}
       {{- include "postgresql-exporter.prometheusAnnotations" . | nindent 8 }}

@@ -3,7 +3,7 @@
 Expand the name of the chart.
 */}}
 {{- define "oracledb-exporter.name" -}}
-{{- printf "%s" .Chart.Name}}
+{{- (printf "%s-%s-%s" (default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-") .Values.namespaceName .Values.workloadName) | trunc 63 }}
 {{- end }}
 
 {{/*
@@ -37,7 +37,10 @@ Annotations
 */}}
 {{- define "oracledb-exporter.sysdigAnnotations" -}}
 promcat.sysdig.com/port: "{{ .Values.port }}"
-promcat.sysdig.com/integration_type: {{ required "A valid integration type name for the application must be passed in .Values.integrationType" .Values.integrationType | quote }}
+promcat.sysdig.com/target_ns: {{ required "A valid namespace for the application must be passed in .Values.namespaceName" .Values.namespaceName | quote }}
+promcat.sysdig.com/target_workload_type: {{ required "A valid workload type for the application must be passed in .Values.workloadType" .Values.workloadType | quote }}
+promcat.sysdig.com/target_workload_name: {{ required "A valid workload name for the application must be passed in .Values.workloadName" .Values.workloadName | quote }}
+promcat.sysdig.com/integration_type: "oracledb"
 {{- end }}
 {{- define "oracledb-exporter.prometheusAnnotations" -}}
 prometheus.io/scrape: "true"

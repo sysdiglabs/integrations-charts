@@ -2,7 +2,7 @@ spec:
   template:
     metadata:
       annotations:
-      {{- if .Values.sysdig.integrationType }}
+      {{- if .Values.integrationType }}
       {{- include "php-fpm-exporter.sysdigAnnotations" . | nindent 8 }}
       {{ else }}
       {{- include "php-fpm-exporter.prometheusAnnotations" . | nindent 8 }}

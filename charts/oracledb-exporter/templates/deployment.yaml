@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       annotations:
-      {{- if .Values.integrationType }}
+      {{- if .Values.exporterNamespaceName }}
       {{- include "oracledb-exporter.sysdigAnnotations" . | nindent 8 }}
       {{ else }}
       {{- include "oracledb-exporter.prometheusAnnotations" . | nindent 8 }}
