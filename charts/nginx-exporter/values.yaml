@@ -2,7 +2,7 @@ image:
   repository: quay.io/sysdig/nginx-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.10.2"
+  tag: "v0.10.4"
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
