@@ -3,12 +3,12 @@ image:
     repository: quay.io/sysdig/apache-exporter
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "v0.11.2"
+    tag: "v0.11.5"
   grok:
     repository: quay.io/sysdig/grok-exporter
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: v1.0.5
+    tag: v1.0.6
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
