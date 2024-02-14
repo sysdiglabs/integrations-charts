@@ -1245,6 +1245,29 @@ entries:
   mongodb-exporter:
   - apiVersion: v2
     appVersion: "2"
+    created: "2024-02-14T17:16:04.355588218Z"
+    description: A Helm chart for the Mongodb prometheus integration
+    digest: 6da209c2b56538853daaea4ea69634479491c322fa5032226bc071764c7d6df4
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: mongodb-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/mongodb-exporter-0.1.12/mongodb-exporter-0.1.12.tgz
+    version: 0.1.12
+  - apiVersion: v2
+    appVersion: "2"
     created: "2024-01-16T10:59:27.505243287Z"
     description: A Helm chart for the Mongodb prometheus integration
     digest: d092e6428415c6998cd81032746136482d7f7e336b5f5228c25010247a0f2539
@@ -2831,4 +2854,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-16T10:59:28.51829302Z"
+generated: "2024-02-14T17:16:04.356065651Z"
