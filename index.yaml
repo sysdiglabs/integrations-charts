@@ -1481,6 +1481,29 @@ entries:
   mysql-exporter:
   - apiVersion: v2
     appVersion: "2"
+    created: "2024-04-10T16:49:34.221444417Z"
+    description: A Helm chart for the MySQL prometheus integration
+    digest: e2530fe5d29985563e67143f929989886db260d6d63516a9c05a902d91c91e20
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: mysql-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/mysql-exporter-0.1.15/mysql-exporter-0.1.15.tgz
+    version: 0.1.15
+  - apiVersion: v2
+    appVersion: "2"
     created: "2024-01-16T10:59:27.637255005Z"
     description: A Helm chart for the MySQL prometheus integration
     digest: 7eb39c91494d64e1c755248ff72ba8ee0ba81c05c11a43f09245df2648a4068e
@@ -2174,6 +2197,29 @@ entries:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/oracledb-exporter-0.0.1/oracledb-exporter-0.0.1.tgz
     version: 0.0.1
   php-fpm-exporter:
+  - apiVersion: v2
+    appVersion: 2.2.0
+    created: "2024-04-10T16:49:34.403938886Z"
+    description: A Helm chart for the php-fpm prometheus integration
+    digest: b85e503f2a195fc76874d54e1ca451ca5ce00e415343c56a5fc0e1c4174fa23a
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiego
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: php-fpm-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/php-fpm-exporter-0.0.9/php-fpm-exporter-0.0.9.tgz
+    version: 0.0.9
   - apiVersion: v2
     appVersion: 2.2.0
     created: "2024-01-16T10:59:28.216142518Z"
@@ -2900,4 +2946,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2024-02-22T15:23:18.528288089Z"
+generated: "2024-04-10T16:49:34.404424653Z"
