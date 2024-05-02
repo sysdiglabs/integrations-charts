@@ -2407,6 +2407,29 @@ entries:
   postgresql-exporter:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-05-02T08:37:03.896890773Z"
+    description: A Helm chart for the postgreSQL prometheus integration
+    digest: f53d8bf05ada222a3378aedc21ee8ce894d7ba3f0dead13bc1936dea8352e2f2
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: postgresql-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/postgresql-exporter-0.1.17/postgresql-exporter-0.1.17.tgz
+    version: 0.1.17
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-02-22T15:23:18.527750639Z"
     description: A Helm chart for the postgreSQL prometheus integration
     digest: 04ec8078183613e13d2574e6d4258e09d0f668f120f9f40b5849330eabe713c1
@@ -2946,4 +2969,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2024-04-10T16:49:34.404424653Z"
+generated: "2024-05-02T08:37:03.897495507Z"
