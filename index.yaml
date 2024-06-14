@@ -3,6 +3,29 @@ entries:
   apache-exporter:
   - apiVersion: v2
     appVersion: 2.4.0
+    created: "2024-06-14T08:59:46.320531067Z"
+    description: A Helm chart for the apache prometheus integration
+    digest: 2b300e39cb23ac2e7bc72f753e3910196de499a1717f2a6e38cdc143ee58191a
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: apache-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/apache-exporter-0.1.11/apache-exporter-0.1.11.tgz
+    version: 0.1.11
+  - apiVersion: v2
+    appVersion: 2.4.0
     created: "2024-01-16T10:59:26.774207464Z"
     description: A Helm chart for the apache prometheus integration
     digest: f312eb8011d58c028e371bc11d0678d9cb06653a9a8cc74b4ac58df53213e996
@@ -3061,4 +3084,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2024-06-05T10:36:17.040365305Z"
+generated: "2024-06-14T08:59:46.320962969Z"
