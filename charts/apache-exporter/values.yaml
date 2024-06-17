@@ -5,10 +5,10 @@ image:
     # Overrides the image tag whose default is the chart appVersion.
     tag: "1.0.7"
   grok:
-    repository: quay.io/sysdig/grok-exporter
+    repository: palobo/grok_exporter
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: v1.0.6
+    tag: "1.0"
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
