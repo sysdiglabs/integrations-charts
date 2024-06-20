@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/sysdig/ntp-exporter
+  repository: sapcc/ntp-exporter
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.1.3"
+  tag: "v2.1.0"
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
