@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/sysdig/kafka-exporter
-  tag: "v1.5.3"
+  repository: danielqsj/kafka-exporter
+  tag: "v1.7.0"
 
 
 resources: 
