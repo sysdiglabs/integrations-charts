@@ -885,6 +885,29 @@ entries:
   kafka-exporter:
   - apiVersion: v2
     appVersion: 1.4.2
+    created: "2024-06-20T07:15:13.292640461Z"
+    description: A Helm chart for the Kafka Prometheus integration
+    digest: 98447f63b2f704dec96a099235054030152ff20277357373f0f9911768850d4f
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: kafka-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/kafka-exporter-0.0.9/kafka-exporter-0.0.9.tgz
+    version: 0.0.9
+  - apiVersion: v2
+    appVersion: 1.4.2
     created: "2024-01-16T10:59:27.22774573Z"
     description: A Helm chart for the Kafka Prometheus integration
     digest: 3db517ed44c4f3706f1e899930e8d54626a8bb86a244566038dd09fd92094bcf
@@ -3107,4 +3130,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2024-06-17T14:34:40.909870143Z"
+generated: "2024-06-20T07:15:13.293161424Z"
