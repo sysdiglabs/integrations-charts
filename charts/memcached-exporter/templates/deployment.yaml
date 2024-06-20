@@ -21,7 +21,7 @@ spec:
         {{- end }} 
         {{- if ne .Values.url.name ""}}
         command:
-        - memcached_exporter
+        - /opt/bitnami/memcached-exporter/bin/memcached_exporter
         - --memcached.address={{ .Values.url.name }}:11211
         {{- end }}       
         ports:
