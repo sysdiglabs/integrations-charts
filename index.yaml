@@ -1261,6 +1261,29 @@ entries:
   memcached-exporter:
   - apiVersion: v2
     appVersion: 1.6.12
+    created: "2024-06-20T09:43:52.535710935Z"
+    description: A Helm chart for the memcached prometheus integration
+    digest: a79f110d9211f5d9d239930a1053f82c1559e53a53a4847eeecaccfc07d94659
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: memcached-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/memcached-exporter-0.0.10/memcached-exporter-0.0.10.tgz
+    version: 0.0.10
+  - apiVersion: v2
+    appVersion: 1.6.12
     created: "2024-01-16T10:59:27.359410145Z"
     description: A Helm chart for the memcached prometheus integration
     digest: f6cc067d41c9b133adf55d2bfa5e737567b84cbe97a4da5420d72a010795a84e
@@ -3130,4 +3153,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2024-06-20T07:15:13.293161424Z"
+generated: "2024-06-20T09:43:52.53628323Z"
