@@ -1,8 +1,8 @@
 image:
-  repository: quay.io/sysdig/memcached-exporter
+  repository: bitnami/memcached
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.10.7"
+  tag: "1.6.28"
 
 
 resources: 
