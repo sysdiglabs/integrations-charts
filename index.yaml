@@ -2083,6 +2083,29 @@ entries:
   ntp-exporter:
   - apiVersion: v2
     appVersion: "2"
+    created: "2024-06-21T07:08:56.656141072Z"
+    description: A Helm chart for the NTP prometheus integration
+    digest: 0a2c99e169767733693ca2e1aa11cc24462bfd70a68b844252605d826173fef0
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: ntp-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/ntp-exporter-0.1.8/ntp-exporter-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: "2"
     created: "2024-01-16T10:59:27.916931888Z"
     description: A Helm chart for the NTP prometheus integration
     digest: c0d97aa7005ae0acdf926085974375987c1901d4a34bcd7b8b201d64ce795df1
@@ -3153,4 +3176,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2024-06-20T09:43:52.53628323Z"
+generated: "2024-06-21T07:08:56.656764138Z"
