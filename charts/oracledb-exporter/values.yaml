@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/sysdig/oracledb-exporter
+  repository: ghcr.io/iamseth/oracledb_exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.5.2"
+  tag: "0.6.0"
 
 port: 9161
 
