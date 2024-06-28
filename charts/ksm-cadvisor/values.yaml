@@ -5,9 +5,9 @@ prometheus:
     alertmanager.yml: ""
   kubeStateMetrics:
     enabled: true
-  nodeExporter:
+  prometheus-node-exporter:
     enabled: false
-  pushgateway:
+  prometheus-pushgateway:
     enabled: false
   server:
     persistentVolume:
