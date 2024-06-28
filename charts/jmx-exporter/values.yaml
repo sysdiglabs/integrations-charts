@@ -1,8 +1,8 @@
 image:
-  repository: bitnami/jmx-exporter
+  repository: quay.io/sysdig/promcat-jmx-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.20.0"
+  tag: "v1.0.1"
 
 resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
