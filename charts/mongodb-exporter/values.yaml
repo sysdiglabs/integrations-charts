@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: quay.io/sysdig/mongodb-exporter
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.20.10"
+  tag: "v0.20.11"
 
 #  - name: regcred
 
