@@ -8,7 +8,7 @@ image:
   repository: quay.io/sysdig/postgresql-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.11.10"
+  tag: "v0.11.12"
 
 port: 9187
 
@@ -52,7 +52,7 @@ secretName: "postgresql-exporter"
 namespaceName: "postgresql"
 # The namespace of the application that the exporter will connect to in order to generate metrics
 workloadType: "statefulset"
-# The kubernetes workload type of the application the exporter will connect to. 
+# The kubernetes workload type of the application the exporter will connect to.
 # Possible values: deployment, statefulset, daemonset, pod
 workloadName: "postgresql"
 # The name of the workload of teh application that the exporter will connect to.
