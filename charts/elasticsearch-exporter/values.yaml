@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: quay.io/sysdig/elasticsearch-exporter
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.3.14"
+  tag: "v1.3.16"
   pullPolicy: "IfNotPresent"
 
 securityContext:
@@ -25,7 +25,7 @@ securityContext:
     - SETFCAP
   readOnlyRootFilesystem: true
 
-resources: 
+resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -43,7 +43,7 @@ url:
   port: 9200
   usernameKey: username
   passwordKey: password
-  secretName: 
+  secretName:
 secretTLS: elastic-tls-secret
 tlsmode: false
 eck:
@@ -55,7 +55,7 @@ eck:
 namespaceName: "logging"
 # The namespace of the application that the exporter will connect to in order to generate metrics
 workloadType: "statefulset"
-# The kubernetes workload type of the application the exporter will connect to. 
+# The kubernetes workload type of the application the exporter will connect to.
 # Possible values: deployment, statefulset, daemonset, pod
 workloadName: "elasticsearch"
 # The name of the workload of the application that the exporter will connect to.
