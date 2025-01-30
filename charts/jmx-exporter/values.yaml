@@ -2,9 +2,9 @@ image:
   repository: quay.io/sysdig/promcat-jmx-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0.6"
+  tag: "v1.0.9"
 
-resources: 
+resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -31,7 +31,7 @@ integrationType: ""
 # In case of "custom" integration, the name of the integration
 customIntegrationTypeName: ""
 
-# Custom name for the JMX configurations configmap 
+# Custom name for the JMX configurations configmap
 customJMXConfigMapName: ""
 
 onlyCreateJMXConfigMap: false
