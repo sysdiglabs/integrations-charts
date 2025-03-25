@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: quay.io/sysdig/elasticsearch-exporter
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.3.19"
+  tag: "v1.3.21"
   pullPolicy: "IfNotPresent"
 
 securityContext:
