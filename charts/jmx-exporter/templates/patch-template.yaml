@@ -17,6 +17,7 @@ spec:
         {{- if .Values.ubi }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-ubi"
         {{- end }}
+        command: [ "{{ .Values.command }}"]
         args: [ "{{ .Values.port }}", "{{ .Values.configFileLocation }}" ]
         ports:
         - containerPort: {{ .Values.port }}
