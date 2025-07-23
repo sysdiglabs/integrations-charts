@@ -38,3 +38,5 @@ onlyCreateJMXConfigMap: false
 onlyCreateSidecarPatch: false
 
 configFileLocation: /opt/jmx_exporter/config.yaml
+
+command: /opt/jmx_exporter/start.sh
