@@ -930,6 +930,29 @@ entries:
   jmx-exporter:
   - apiVersion: v2
     appVersion: 1.0.1
+    created: "2025-07-23T12:56:07.912552108Z"
+    description: A Helm chart for the JMX Prometheus integration
+    digest: 7185593bff92d4b6198ed83b8f0f1cba0e4df941dead7708d2ae9264c2b52298
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: jmx-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/jmx-exporter-0.0.23/jmx-exporter-0.0.23.tgz
+    version: 0.0.23
+  - apiVersion: v2
+    appVersion: 1.0.1
     created: "2025-07-15T13:39:11.379756759Z"
     description: A Helm chart for the JMX Prometheus integration
     digest: 18dd7701899eefe8c5323b007b3c9577afd4b2fd9eb528a44b5a73028929070b
@@ -4172,4 +4195,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2025-07-15T13:39:11.787818491Z"
+generated: "2025-07-23T12:56:07.913256048Z"
