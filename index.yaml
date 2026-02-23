@@ -255,6 +255,29 @@ entries:
   elasticsearch-exporter:
   - apiVersion: v2
     appVersion: 6.8.0
+    created: "2026-02-23T11:06:42.563233745Z"
+    description: A Helm chart for the ElasticSearch prometheus integration
+    digest: 4012b1d562b1b722ec6c7cc9976b4309d34eed153d5b1b35df2541ac5a040e9a
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: elasticsearch-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/elasticsearch-exporter-0.2.31/elasticsearch-exporter-0.2.31.tgz
+    version: 0.2.31
+  - apiVersion: v2
+    appVersion: 6.8.0
     created: "2026-01-16T15:20:45.048144978Z"
     description: A Helm chart for the ElasticSearch prometheus integration
     digest: 14afaa4c31a71dccc3a78c91cc45e6187cb0baf1208080ab5892b655c84e01ce
@@ -3426,6 +3449,29 @@ entries:
   postgresql-exporter:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-02-23T11:06:42.720740724Z"
+    description: A Helm chart for the postgreSQL prometheus integration
+    digest: 5129a66ac4b485bfe4a1007bd0388eba9e63e2e36e349c58e4c8b480225e7e34
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: postgresql-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/postgresql-exporter-0.1.36/postgresql-exporter-0.1.36.tgz
+    version: 0.1.36
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2026-01-16T15:20:45.353868212Z"
     description: A Helm chart for the postgreSQL prometheus integration
     digest: b7ff97e20dccaabf6f9fa3074753633744c2ed0c891ef9b0e068d5b52d202842
@@ -4124,6 +4170,29 @@ entries:
   redis-exporter:
   - apiVersion: v2
     appVersion: "2"
+    created: "2026-02-23T11:06:42.860204405Z"
+    description: A Helm chart for the Redis prometheus integration
+    digest: e7c48e634ccffe068a1f832134a58baa154bfa24b617a3a1d4b41f81719b349a
+    maintainers:
+    - email: david.detorres@sysdig.com
+      name: daviddetorres
+    - email: david.lorite@sysdig.com
+      name: dlorite
+    - email: carlos.adiego@sysdig.com
+      name: carlosadiegosysdig
+    - email: jesus.samitier@sysdig.com
+      name: jesussamitier
+    - email: jaime.yerahidalgo@sysdig.com
+      name: jaimeyera
+    - email: manuel.hernandezvalero@sysdig.com
+      name: manuelhernandez
+    name: redis-exporter
+    type: application
+    urls:
+    - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.27/redis-exporter-0.1.27.tgz
+    version: 0.1.27
+  - apiVersion: v2
+    appVersion: "2"
     created: "2026-01-16T15:20:45.543183458Z"
     description: A Helm chart for the Redis prometheus integration
     digest: 3f9bfc6373d334e32e8d9e63061306cde30e8e022dcf2971657fb9e9414c3723
@@ -4655,4 +4724,4 @@ entries:
     urls:
     - https://github.com/sysdiglabs/integrations-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-16T15:20:45.545354713Z"
+generated: "2026-02-23T11:06:42.861440711Z"
